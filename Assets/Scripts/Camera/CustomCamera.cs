@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomCamera : MonoBehaviour
+namespace Camera
 {
-    // Start is called before the first frame update
-    void Start()
+    public class CustomCamera : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Exposed Variables
+        [Header("Target")]
+        [SerializeField] private Transform targetTransform;
     }
 }

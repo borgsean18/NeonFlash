@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+namespace Managers
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerManager : MonoBehaviour
     {
-        
-    }
+        // Exposed Variables
+        [Header("General")]
+        [SerializeField] private GameObject playerPrefab;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Private Variables
     }
 }
