@@ -87,18 +87,18 @@ namespace Movement
             // Player is not on a jump able surface
             if (!hit)
             {
-                Debug.DrawLine(
-                    transform.position,
-                    transform.position - new Vector3(0, 0.6f, 0),
-                    Color.red);
+                // Debug.DrawLine(
+                //     transform.position,
+                //     transform.position - new Vector3(0, 0.6f, 0),
+                //     Color.red);
 
                 return;
             }
                 
-            Debug.DrawLine(
-                transform.position, 
-                transform.position - new Vector3(0, 0.6f, 0), 
-                Color.green);
+            // Debug.DrawLine(
+            //     transform.position, 
+            //     transform.position - new Vector3(0, 0.6f, 0), 
+            //     Color.green);
             
             if (Input.GetKey(KeyCode.Space))
             {
