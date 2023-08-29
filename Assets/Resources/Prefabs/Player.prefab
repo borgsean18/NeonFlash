@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8816593120005837465}
   - component: {fileID: 1305875940746185183}
   - component: {fileID: -1520738041908423877}
+  - component: {fileID: 582456680469215911}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -98,3 +99,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 0}
+--- !u!114 &582456680469215911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8999071723236834869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d914f80b1dd548eb9803ebea5d46add, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingSpeed: 0
+  maxSpeed: 10
+  speedMultiplier:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: -0.0066100955
+      inSlope: 6.132202
+      outSlope: 6.132202
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.05
+      value: 0.3
+      inSlope: 2.067843
+      outSlope: 2.067843
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.038095225
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.7368421
+      outSlope: 0.7368421
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  minutesTillMaxSpeed: 1
