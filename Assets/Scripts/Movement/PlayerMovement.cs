@@ -9,17 +9,21 @@ namespace Movement
     {
         // Exposed Vars
         [Header("Sprinting")]
+        [SerializeField] private bool canMove;
         [SerializeField] private AnimationCurve speedMultiplier;
         [SerializeField] private float minutesTillMaxSpeed;
         
         [Header("Jumping")]
         [SerializeField] private float jumpForce;
+        public float buttonTime = 0.3f;
         [SerializeField] private LayerMask jumpAbleLayers;
         
         // Private Vars
         private float _currentSpeed;
         private float _timePassed;
-        private bool _canJump;
+        
+        private float _jumpTime;
+        private bool _jumping;
         
         // Components
         private Rigidbody2D _rb;
@@ -33,6 +37,8 @@ namespace Movement
 
         private void Init()
         {
+            canMove = true;
+            
             _rb = GetComponent<Rigidbody2D>();
         }
 
@@ -58,6 +64,8 @@ namespace Movement
 
         public void Sprint()
         {
+            if (!canMove) return;
+            
             // Calculate the movement distance based on speed and time
             float movementDistance = _currentSpeed * Time.deltaTime;
 
@@ -79,23 +87,22 @@ namespace Movement
                 -Vector2.up, 
                 0.6f, 
                 jumpAbleLayers);
-
-
-            // Player is not on a jump able surface
-            if (!hit)
+            
+            if (Input.GetKeyDown(KeyCode.Space) && hit) 
             {
-                if (_canJump)
-                    _canJump = false;
-                
-                return;
+                _jumping = true;
+                _jumpTime = 0;
             }
             
-            if (!_canJump)
-                _canJump = true;
-
-            if (Input.GetKeyDown(KeyCode.Space) && _canJump)
+            if(_jumping)
             {
-                _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+                _jumpTime += Time.deltaTime;
+            }
+            
+            if(Input.GetKeyUp(KeyCode.Space) || _jumpTime > buttonTime)
+            {
+                _jumping = false;
             }
         }
     }

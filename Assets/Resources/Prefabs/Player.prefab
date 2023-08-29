@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 15
+  canMove: 1
   speedMultiplier:
     serializedVersion: 2
     m_Curve:
@@ -210,7 +211,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   minutesTillMaxSpeed: 1
-  jumpForce: 20
+  jumpForce: 16
+  buttonTime: 0.15
   jumpAbleLayers:
     serializedVersion: 2
     m_Bits: 64
