@@ -103,7 +103,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -210,7 +210,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   minutesTillMaxSpeed: 1
-  jumpForce: 120
+  jumpForce: 20
   jumpAbleLayers:
     serializedVersion: 2
     m_Bits: 64

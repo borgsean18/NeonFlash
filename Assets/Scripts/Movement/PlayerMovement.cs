@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -18,6 +19,7 @@ namespace Movement
         // Private Vars
         private float _currentSpeed;
         private float _timePassed;
+        private bool _canJump;
         
         // Components
         private Rigidbody2D _rb;
@@ -40,11 +42,6 @@ namespace Movement
             CalculateCurrentSpeed();
 
             Sprint();
-        }
-
-
-        private void FixedUpdate()
-        {
             Jump();
         }
 
@@ -87,22 +84,18 @@ namespace Movement
             // Player is not on a jump able surface
             if (!hit)
             {
-                // Debug.DrawLine(
-                //     transform.position,
-                //     transform.position - new Vector3(0, 0.6f, 0),
-                //     Color.red);
-
+                if (_canJump)
+                    _canJump = false;
+                
                 return;
             }
-                
-            // Debug.DrawLine(
-            //     transform.position, 
-            //     transform.position - new Vector3(0, 0.6f, 0), 
-            //     Color.green);
             
-            if (Input.GetKey(KeyCode.Space))
+            if (!_canJump)
+                _canJump = true;
+
+            if (Input.GetKeyDown(KeyCode.Space) && _canJump)
             {
-                _rb.AddForce(Vector2.up * jumpForce);
+                _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             }
         }
     }
