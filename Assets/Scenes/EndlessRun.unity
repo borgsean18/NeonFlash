@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 715073428}
   - component: {fileID: 715073431}
   - component: {fileID: 715073430}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TempGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}

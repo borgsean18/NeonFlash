@@ -5,8 +5,7 @@ namespace Movement
     public class Movement : MonoBehaviour
     {
         // Exposed Vars
-        [Header("Values")]
-        [SerializeField] protected float startingSpeed;
+        [Header("Generic Values")]
         [SerializeField] protected float maxSpeed;
     }
 }

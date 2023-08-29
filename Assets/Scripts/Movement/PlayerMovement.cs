@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Movement
@@ -6,27 +7,32 @@ namespace Movement
     public class PlayerMovement : Movement, ISprint
     {
         // Exposed Vars
-        [Header("Settings")]
+        [Header("Sprinting")]
         [SerializeField] private AnimationCurve speedMultiplier;
         [SerializeField] private float minutesTillMaxSpeed;
         
+        [Header("Jumping")]
+        [SerializeField] private float jumpForce;
+        [SerializeField] private LayerMask jumpAbleLayers;
+        
         // Private Vars
-        // private bool _init;
         private float _currentSpeed;
         private float _timePassed;
+        
+        // Components
+        private Rigidbody2D _rb;
 
 
-        // private void Awake()
-        // {
-        //     if (!_init)
-        //         Init();
-        // }
-        //
-        //
-        // private void Init()
-        // {
-        //     _currentSpeed = startingSpeed;
-        // }
+        private void Awake()
+        {
+            Init();
+        }
+
+
+        private void Init()
+        {
+            _rb = GetComponent<Rigidbody2D>();
+        }
 
 
         private void Update()
@@ -34,6 +40,12 @@ namespace Movement
             CalculateCurrentSpeed();
 
             Sprint();
+        }
+
+
+        private void FixedUpdate()
+        {
+            Jump();
         }
 
 
@@ -65,7 +77,33 @@ namespace Movement
         
         public void Jump()
         {
-            throw new System.NotImplementedException();
+            RaycastHit2D hit = Physics2D.Raycast(
+                transform.position, 
+                -Vector2.up, 
+                0.6f, 
+                jumpAbleLayers);
+
+
+            // Player is not on a jump able surface
+            if (!hit)
+            {
+                Debug.DrawLine(
+                    transform.position,
+                    transform.position - new Vector3(0, 0.6f, 0),
+                    Color.red);
+
+                return;
+            }
+                
+            Debug.DrawLine(
+                transform.position, 
+                transform.position - new Vector3(0, 0.6f, 0), 
+                Color.green);
+            
+            if (Input.GetKey(KeyCode.Space))
+            {
+                _rb.AddForce(Vector2.up * jumpForce);
+            }
         }
     }
 }
