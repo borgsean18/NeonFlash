@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 16384
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -139,19 +139,19 @@ TextureImporter:
       name: GreenNinja-Run_0
       rect:
         serializedVersion: 2
-        x: 192
+        x: 0
         y: 0
-        width: 128
-        height: 144
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32ba156e601ce4aa3bc888a05b8305f4
-      internalID: -904437805
+      spriteID: 51be2fa98c90949c7a3df7295b1d3360
+      internalID: -1932043377
       vertices: []
       indices: 
       edges: []
@@ -160,19 +160,19 @@ TextureImporter:
       name: GreenNinja-Run_1
       rect:
         serializedVersion: 2
-        x: 694
+        x: 512
         y: 0
-        width: 136
-        height: 136
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fde942f93e19460995636f9e3bf7244
-      internalID: -2069616567
+      spriteID: f282fbff9634d47e688e38c023ffb074
+      internalID: -1356967290
       vertices: []
       indices: 
       edges: []
@@ -181,19 +181,19 @@ TextureImporter:
       name: GreenNinja-Run_2
       rect:
         serializedVersion: 2
-        x: 1216
+        x: 1024
         y: 0
-        width: 128
-        height: 144
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1741d6eb21cee4ebd8d8e010ed0b84f4
-      internalID: -1670547384
+      spriteID: 6e6de03d27f044e1fbfce5af70d74174
+      internalID: -1249026576
       vertices: []
       indices: 
       edges: []
@@ -202,19 +202,19 @@ TextureImporter:
       name: GreenNinja-Run_3
       rect:
         serializedVersion: 2
-        x: 1720
+        x: 1536
         y: 0
-        width: 136
-        height: 136
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2f93b596838d4ce49f623b1f0441caa
-      internalID: -1702841393
+      spriteID: 7a70c11b206eb40f2a004d7c187b9cfb
+      internalID: -1328354854
       vertices: []
       indices: 
       edges: []
@@ -230,10 +230,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GreenNinja-Run_0: -904437805
-      GreenNinja-Run_1: -2069616567
-      GreenNinja-Run_2: -1670547384
-      GreenNinja-Run_3: -1702841393
+      GreenNinja-Run_0: -1932043377
+      GreenNinja-Run_1: -1356967290
+      GreenNinja-Run_2: -1249026576
+      GreenNinja-Run_3: -1328354854
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
