@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c71ac0ade8ff14dd49259dea1d4ce38d
+guid: 8866a5e3c32e24fc5a9b471e58351946
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GreenNinja-Run_0
+      name: GreenNinja-Idle_0
       rect:
         serializedVersion: 2
-        x: 192
+        x: 160
         y: 0
-        width: 128
-        height: 144
+        width: 176
+        height: 168
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32ba156e601ce4aa3bc888a05b8305f4
-      internalID: -904437805
+      spriteID: b7aa56219f1ad4c92addff85c288ec2e
+      internalID: -904540144
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GreenNinja-Run_1
+      name: GreenNinja-Idle_1
       rect:
         serializedVersion: 2
-        x: 694
+        x: 672
         y: 0
-        width: 136
-        height: 136
+        width: 176
+        height: 168
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fde942f93e19460995636f9e3bf7244
-      internalID: -2069616567
+      spriteID: fddb17c8c947d44c692792bf24094ed2
+      internalID: -772144429
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GreenNinja-Run_2
+      name: GreenNinja-Idle_2
       rect:
         serializedVersion: 2
-        x: 1216
-        y: 0
-        width: 128
-        height: 144
+        x: 1184
+        y: 4
+        width: 176
+        height: 168
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1741d6eb21cee4ebd8d8e010ed0b84f4
-      internalID: -1670547384
+      spriteID: d9d370ceb7f264be6906356b817a5639
+      internalID: -1434264572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GreenNinja-Run_3
+      name: GreenNinja-Idle_3
       rect:
         serializedVersion: 2
-        x: 1720
+        x: 1696
         y: 0
-        width: 136
-        height: 136
+        width: 176
+        height: 160
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,8 +213,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2f93b596838d4ce49f623b1f0441caa
-      internalID: -1702841393
+      spriteID: 7d17cf87681b04fffb3869073877c5e6
+      internalID: -1647105219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenNinja-Idle_4
+      rect:
+        serializedVersion: 2
+        x: 2208
+        y: 0
+        width: 176
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11ddc63296284440da777c830c81cf8c
+      internalID: -18430155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenNinja-Idle_5
+      rect:
+        serializedVersion: 2
+        x: 2720
+        y: 0
+        width: 176
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0bc5dc2e2eb64e99a461da7ae2ca943
+      internalID: -1746920009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenNinja-Idle_6
+      rect:
+        serializedVersion: 2
+        x: 3232
+        y: 0
+        width: 176
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33aab398abff24879a63722b18c7cb2c
+      internalID: -1862745119
       vertices: []
       indices: 
       edges: []
@@ -230,10 +293,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GreenNinja-Run_0: -904437805
-      GreenNinja-Run_1: -2069616567
-      GreenNinja-Run_2: -1670547384
-      GreenNinja-Run_3: -1702841393
+      GreenNinja-Idle_0: -904540144
+      GreenNinja-Idle_1: -772144429
+      GreenNinja-Idle_2: -1434264572
+      GreenNinja-Idle_3: -1647105219
+      GreenNinja-Idle_4: -18430155
+      GreenNinja-Idle_5: -1746920009
+      GreenNinja-Idle_6: -1862745119
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
