@@ -85,8 +85,14 @@ namespace Movement
             RaycastHit2D hit = Physics2D.Raycast(
                 transform.position, 
                 -Vector2.up, 
-                0.6f, 
+                0.8f, 
                 jumpAbleLayers);
+            
+            if (!hit)
+                Debug.DrawLine(transform.position, transform.position + (Vector3.down * 0.8f), Color.red);
+            else
+                
+                Debug.DrawLine(transform.position, transform.position + (Vector3.down * 0.8f), Color.green);
             
             if (Input.GetKeyDown(KeyCode.Space) && hit) 
             {
