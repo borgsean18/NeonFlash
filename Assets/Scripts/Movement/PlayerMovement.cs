@@ -21,12 +21,15 @@ namespace Movement
         // Private Vars
         private float _currentSpeed;
         private float _timePassed;
+
+        private bool _grounded;
         
         private float _jumpTime;
         private bool _jumping;
         
         // Components
         private Rigidbody2D _rb;
+        private Animator _animator;
 
 
         private void Awake()
@@ -40,6 +43,7 @@ namespace Movement
             canMove = true;
             
             _rb = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
         }
 
 
@@ -87,13 +91,28 @@ namespace Movement
                 -Vector2.up, 
                 0.8f, 
                 jumpAbleLayers);
-            
+
             if (!hit)
+            {
                 Debug.DrawLine(transform.position, transform.position + (Vector3.down * 0.8f), Color.red);
-            else
                 
+                if (_grounded)
+                {
+                    _animator.SetBool("Jump", true);
+                    _grounded = false;
+                }
+            }
+            else
+            {
                 Debug.DrawLine(transform.position, transform.position + (Vector3.down * 0.8f), Color.green);
-            
+
+                if (!_grounded)
+                {
+                    _animator.SetBool("Jump", false);
+                    _grounded = true;
+                }
+            }
+
             if (Input.GetKeyDown(KeyCode.Space) && hit) 
             {
                 _jumping = true;
