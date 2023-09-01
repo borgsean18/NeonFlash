@@ -285,6 +285,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4746785642016978698, guid: 25cfae9e84093473a94842dbb8ad8c9a, type: 3}
+      propertyPath: maxSegmentsPerBiome
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4746785642016978698, guid: 25cfae9e84093473a94842dbb8ad8c9a, type: 3}
+      propertyPath: minSegmentsPerBiome
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

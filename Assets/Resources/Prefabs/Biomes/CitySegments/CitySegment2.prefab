@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7171691618187326546}
   - component: {fileID: 3276621639009606585}
   m_Layer: 6
-  m_Name: CitySegment
+  m_Name: CitySegment2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.13443395, g: 0.46210173, b: 0.5377358, a: 1}
+  m_Color: {r: 0.22356711, g: 0.28743944, b: 0.3018868, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

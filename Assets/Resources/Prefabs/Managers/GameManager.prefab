@@ -58,8 +58,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9523af5cac0634483a21e23afa8e91e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bufferOfDeletableUsedSegments: 3
-  activeSegments: []
-  citySegmentPrefabs:
-  - {fileID: 3448058943934026585, guid: 763096ba56f734e74ac12061431c68fe, type: 3}
-  - {fileID: 6476638700430600003, guid: 6f7353b2883c14ea0ac57a79dbe467b1, type: 3}
+  biomes:
+  - {fileID: 6475913386065234780, guid: 7962e3cc23ffb42c6a353f963cbd9321, type: 3}

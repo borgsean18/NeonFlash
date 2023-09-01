@@ -13,17 +13,26 @@ namespace Segments
     public class Segment : MonoBehaviour
     {
         // Private vars
-        private SegmentManager _segmentManagerRef;
+        private Biome _parentBiomeRef;
         
         // Components
         private Rigidbody2D _rb;
+        private SpriteRenderer _spriteRenderer;
         
-        public void Init(SegmentManager _segmentManager)
+        public void Init(Biome _parentBiome)
         {
-            _segmentManagerRef = _segmentManager;
-
+            _parentBiomeRef = _parentBiome;
+            
             _rb = GetComponent<Rigidbody2D>();
             _rb.isKinematic = true;
+
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
+
+        public float SegmentWidth()
+        {
+            return _spriteRenderer.bounds.size.x;
         }
 
 
@@ -34,7 +43,7 @@ namespace Segments
         {
             if (!_other.gameObject.CompareTag("Player")) return;
             
-            _segmentManagerRef.DeleteUsedSegments(this);
+            // Trigger Delete Method
         }
     }
 }
