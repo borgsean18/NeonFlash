@@ -12,6 +12,7 @@ namespace Camera
         [SerializeField] private float xOffsetToPlayer;
 
         [Header("Clamps")]
+        [SerializeField] private bool freezeYPos;
         [SerializeField] private float minYValue;
 
 
@@ -43,7 +44,12 @@ namespace Camera
                 return;
 
             float newX = targetPos.x;
-            float newY = Mathf.Clamp(targetPos.y, minYValue, targetPos.y);
+            float newY;
+            
+            if (freezeYPos)
+                newY = minYValue;
+            else
+                newY = Mathf.Clamp(targetPos.y, minYValue, targetPos.y);
 
             Vector3 newPos = new Vector3(newX, newY, currentPos.z);
 

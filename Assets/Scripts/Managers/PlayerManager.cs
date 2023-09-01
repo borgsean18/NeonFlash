@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Characters;
 using Unity.Mathematics;
 using UnityEngine;
@@ -28,12 +29,18 @@ namespace Managers
         {
             _init = true;
             
-            SpawnPlayer();
+            StartCoroutine(SpawnPlayer());
         }
 
 
-        private void SpawnPlayer()
+        /// <summary>
+        /// Delay spawning the player to give chance for ground beneath them to spawn first
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator SpawnPlayer()
         {
+            yield return new WaitForSeconds(0.5f);
+            
             _player = Instantiate(playerPrefab, new Vector3(0, 1, 0), quaternion.identity)
                 .GetComponent<Player>();
 
