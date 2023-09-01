@@ -160,7 +160,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.07787468, g: 0.53217995, b: 0.6603774, a: 0}
+  m_BackGroundColor: {r: 0.5484603, g: 0.78488934, b: 0.8018868, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -185,7 +185,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 3.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -210,7 +210,7 @@ Transform:
   m_GameObject: {fileID: 1856958551}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: -10}
+  m_LocalPosition: {x: 0, y: 3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -232,7 +232,7 @@ MonoBehaviour:
   maxDistToTarget: 4
   xOffsetToPlayer: 7
   freezeYPos: 1
-  minYValue: 2.5
+  minYValue: 3
 --- !u!1001 &8949822880141582456
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -284,10 +284,6 @@ PrefabInstance:
     - target: {fileID: 3192772210272541711, guid: 25cfae9e84093473a94842dbb8ad8c9a, type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 4746785642016978698, guid: 25cfae9e84093473a94842dbb8ad8c9a, type: 3}
-      propertyPath: bufferOfDeletableUsedSegments
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

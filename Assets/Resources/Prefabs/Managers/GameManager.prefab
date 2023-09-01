@@ -62,3 +62,4 @@ MonoBehaviour:
   activeSegments: []
   citySegmentPrefabs:
   - {fileID: 3448058943934026585, guid: 763096ba56f734e74ac12061431c68fe, type: 3}
+  - {fileID: 6476638700430600003, guid: 6f7353b2883c14ea0ac57a79dbe467b1, type: 3}

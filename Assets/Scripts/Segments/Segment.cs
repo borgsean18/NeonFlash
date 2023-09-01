@@ -10,15 +10,20 @@ namespace Segments
         typeof(BoxCollider2D)
         )]
     
-    public class Segment : Biome
+    public class Segment : MonoBehaviour
     {
         // Private vars
         private SegmentManager _segmentManagerRef;
         
+        // Components
+        private Rigidbody2D _rb;
         
         public void Init(SegmentManager _segmentManager)
         {
             _segmentManagerRef = _segmentManager;
+
+            _rb = GetComponent<Rigidbody2D>();
+            _rb.isKinematic = true;
         }
 
 
