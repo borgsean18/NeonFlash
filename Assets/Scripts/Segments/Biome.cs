@@ -40,7 +40,7 @@ namespace Segments
 			this._worldManager = _worldManager;
 			this._segmentsToSpawn = _segmentsToSpawn;
 
-			_spawnXPos = 0;
+			_spawnXPos = transform.position.x;
 			_spawnedSegmentsCount = 0;
 			_activeSegments = new List<Segment>();
 
@@ -50,6 +50,17 @@ namespace Segments
 
 		private void PopulateBiome(int _segmentCountToSpawn = 1)
 		{
+			// If this biome reached its given limit, start next biome
+			if (_spawnedSegmentsCount + _segmentCountToSpawn > _segmentsToSpawn)
+			{
+				Vector3 newBiomePos = new Vector3(_spawnXPos, 0);
+				
+				_worldManager.SetUpNewBiome(newBiomePos);
+				
+				return;
+			}
+			
+			// Biome is still active so spawn more segments
 			for (int i = 0; i < _segmentCountToSpawn; i++)
 			{
 				Segment newSegment = Instantiate(

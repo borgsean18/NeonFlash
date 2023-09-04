@@ -30,14 +30,14 @@ namespace Managers
 
         private void Init()
         {
-            SetUpNewBiome();
+            SetUpNewBiome(Vector3.zero);
         }
 
 
         /// <summary>
         /// Randomly Select a biome and Initialize it
         /// </summary>
-        private void SetUpNewBiome()
+        public void SetUpNewBiome(Vector3 _biomePlacement)
         {
             // Keep reference to old biome if exists
             if (_activeBiomeObject != null)
@@ -46,10 +46,10 @@ namespace Managers
             // Determine how long this biome will be
             _segmentsToSpawn = Random.Range(minSegmentsPerBiome, maxSegmentsPerBiome + 1);
             
-            // Randomly pick a biome
+            // Randomly pick a biome and Spawn it
             _activeBiomeObject = Instantiate(
                 biomePrefabs[Random.Range(0, biomePrefabs.Count)],
-                new Vector3(0, 0),
+                _biomePlacement,
                 quaternion.identity);
 
             // Reference Biome script
