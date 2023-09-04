@@ -41,7 +41,9 @@ namespace Managers
         {
             yield return new WaitForSeconds(0.5f);
             
-            _player = Instantiate(playerPrefab, new Vector3(0, 1, 0), quaternion.identity)
+            _player = Instantiate(playerPrefab, 
+                    new Vector3(0, 1, 0), 
+                    quaternion.identity)
                 .GetComponent<Player>();
 
             _player.Init();
