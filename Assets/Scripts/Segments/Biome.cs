@@ -66,5 +66,22 @@ namespace Segments
 				_spawnedSegmentsCount++;
 			}
 		}
+
+
+		public void DeleteSegments(Segment _segment)
+		{
+			int segmentIndex = _activeSegments.IndexOf(_segment);
+
+			int indexOfSegmentToDestroy = segmentIndex - deleteSegmentBuffer;
+
+			if (indexOfSegmentToDestroy < 0)
+				return;
+
+			Segment segmentToDestroy = _activeSegments[indexOfSegmentToDestroy];
+			
+			Destroy(segmentToDestroy.gameObject);
+
+			PopulateBiome();
+		}
 	}
 }

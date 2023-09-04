@@ -291,7 +291,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   minutesTillMaxSpeed: 1
   jumpForce: 12
-  buttonTime: 0.15
+  buttonTime: 0.2
   jumpAbleLayers:
     serializedVersion: 2
     m_Bits: 64

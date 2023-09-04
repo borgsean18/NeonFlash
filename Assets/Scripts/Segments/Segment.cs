@@ -29,13 +29,13 @@ namespace Segments
 		/// <summary>
 		/// When the player exits this segment
 		/// </summary>
-		private void OnCollisionExit2D(Collision2D _other)
+		private void OnTriggerExit2D(Collider2D _other)
 		{
 			// Do nothing if not the player
 			if (!_other.gameObject.CompareTag("Player"))
 				return;
 			
-			
+			_parentBiome.DeleteSegments(this);
 		}
 	}
 }
