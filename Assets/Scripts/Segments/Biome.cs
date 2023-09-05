@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Managers;
 using Obstacles;
@@ -26,17 +27,21 @@ namespace Segments
 		// TODO
 		
 		// Private Variables
+		private bool _isBiomeAlive;
+		
 		private WorldManager _worldManager;
 		
 		private float _spawnXPos;
 		private int _segmentsToSpawn;
 		private int _spawnedSegmentsCount;
 		private List<Segment> _activeSegments;
-		
+		private Coroutine _deleteBiomeCoRoutine;
 
 
 		public void Init(WorldManager _worldManager, int _segmentsToSpawn)
 		{
+			_isBiomeAlive = true;
+			
 			this._worldManager = _worldManager;
 			this._segmentsToSpawn = _segmentsToSpawn;
 
@@ -50,12 +55,21 @@ namespace Segments
 
 		private void PopulateBiome(int _segmentCountToSpawn = 1)
 		{
+			if (!_isBiomeAlive)
+			{
+				_deleteBiomeCoRoutine ??= StartCoroutine(DestroyBiome());
+				
+				return;
+			}
+			
 			// If this biome reached its given limit, start next biome
 			if (_spawnedSegmentsCount + _segmentCountToSpawn > _segmentsToSpawn)
 			{
 				Vector3 newBiomePos = new Vector3(_spawnXPos, 0);
 				
 				_worldManager.SetUpNewBiome(newBiomePos);
+
+				_isBiomeAlive = false;
 				
 				return;
 			}
@@ -93,6 +107,14 @@ namespace Segments
 			Destroy(segmentToDestroy.gameObject);
 
 			PopulateBiome();
+		}
+
+
+		private IEnumerator DestroyBiome()
+		{
+			yield return new WaitForSeconds(3f);
+
+			Destroy(gameObject);
 		}
 	}
 }
