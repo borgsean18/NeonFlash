@@ -42,7 +42,7 @@ namespace Managers
             yield return new WaitForSeconds(0.5f);
             
             _player = Instantiate(playerPrefab, 
-                    new Vector3(0, 1, 0), 
+                    transform.position, 
                     quaternion.identity)
                 .GetComponent<Player>();
 

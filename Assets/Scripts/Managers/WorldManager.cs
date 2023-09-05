@@ -17,11 +17,10 @@ namespace Managers
         // Private Vars
         private GameObject _activeBiomeObject;
         private Biome _activeBiome;
-        private GameObject _previousBiomeObject;
 
         private int _segmentsToSpawn;
 
-        
+
         private void Awake()
         {
             Init();
@@ -39,10 +38,6 @@ namespace Managers
         /// </summary>
         public void SetUpNewBiome(Vector3 _biomePlacement)
         {
-            // Keep reference to old biome if exists
-            if (_activeBiomeObject != null)
-                _previousBiomeObject = _activeBiomeObject;
-            
             // Determine how long this biome will be
             _segmentsToSpawn = Random.Range(minSegmentsPerBiome, maxSegmentsPerBiome + 1);
             

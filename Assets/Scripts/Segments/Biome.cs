@@ -31,11 +31,13 @@ namespace Segments
 		
 		private WorldManager _worldManager;
 		
-		private float _spawnXPos;
-		private int _segmentsToSpawn;
+		private int _totalToSpawn;
 		private int _spawnedSegmentsCount;
 		private List<Segment> _activeSegments;
 		private Coroutine _deleteBiomeCoRoutine;
+		
+		// Properties 
+		public List<Segment> ActiveSegments => _activeSegments;
 
 
 		public void Init(WorldManager _worldManager, int _segmentsToSpawn)
@@ -43,9 +45,8 @@ namespace Segments
 			_isBiomeAlive = true;
 			
 			this._worldManager = _worldManager;
-			this._segmentsToSpawn = _segmentsToSpawn;
+			this._totalToSpawn = _segmentsToSpawn;
 
-			_spawnXPos = transform.position.x;
 			_spawnedSegmentsCount = 0;
 			_activeSegments = new List<Segment>();
 
@@ -53,35 +54,50 @@ namespace Segments
 		}
 
 
-		private void PopulateBiome(int _segmentCountToSpawn = 1)
+		/// <summary>
+		/// Add segments to this biome and Initialize them.
+		/// </summary>
+		/// <param name="_count">Number of segments to add to this biome. Default is 1
+		/// but can be overriden to add more segments</param>
+		private void PopulateBiome(int _count = 1)
 		{
 			// Biome is still active so spawn more segments
-			for (int i = 0; i < _segmentCountToSpawn; i++)
+			for (int i = 0; i < _count; i++)
 			{
+				// Create Segment
 				Segment newSegment = Instantiate(
 					segmentTypes[Random.Range(0, segmentTypes.Count)],
-					new Vector3(_spawnXPos, 0),
+					new Vector3(0, 0),
 					quaternion.identity,
 					transform);
 
-				if (_spawnedSegmentsCount + 1 == _segmentsToSpawn)
-					newSegment.Init(this, true);
-				else
-					newSegment.Init(this);
+				// Initialize the segment
+				newSegment.Init(this);
 
-				_spawnXPos += newSegment.SegmentWidth();
-				
+				// Add the segment to list of active segments
 				_activeSegments.Add(newSegment);
+				
+				// Increment count of segments spawned so far in this biome
 				_spawnedSegmentsCount++;
 			}
 			
 			// If this biome reached its given limit, start next biome
-			if (_spawnedSegmentsCount >= _segmentsToSpawn)
+			if (_spawnedSegmentsCount >= _totalToSpawn)
 			{
-				Vector3 newBiomePos = new Vector3(_spawnXPos, 0);
+				// last created segment in this biome
+				Segment lastSegment = _activeSegments[^1];
+
+				// get XPos of last segment
+				float newBiomeX = lastSegment.transform.position.x;
 				
+				// Add half of the width of the last segment, to that XPos
+				newBiomeX += lastSegment.SegmentWidth() / 2;
+				
+				// Create the new biome at that X Coordinate
+				Vector3 newBiomePos = new Vector3(newBiomeX, 0);
 				_worldManager.SetUpNewBiome(newBiomePos);
 
+				// Set this biome as dead to stop spawning segments
 				_isBiomeAlive = false;
 			}
 		}
@@ -89,11 +105,15 @@ namespace Segments
 
 		public void DeleteSegments(Segment _segment)
 		{
-			if (_segment.IsBiomeTrigger)
+			// If last segment, destroy the biome
+			if (_segment == _activeSegments[^1])
 				Destroy(gameObject);
 			
+			// Destroy the segment
+			_activeSegments.Remove(_segment);
 			Destroy(_segment.gameObject);
 
+			// If biome is still alive, make a new segment
 			if (_isBiomeAlive)
 				PopulateBiome();
 		}
