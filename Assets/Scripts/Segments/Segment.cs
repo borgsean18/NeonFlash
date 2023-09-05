@@ -7,14 +7,19 @@ namespace Segments
 	{
 		// Private Vars
 		private Biome _parentBiome;
+		private bool _isBiomeTrigger;
 		
 		// Components
 		private BoxCollider2D _boxCollider2D;
 		
+		// Properties
+		public bool IsBiomeTrigger => _isBiomeTrigger;
+		
 
-		public void Init(Biome _parentBiome)
+		public void Init(Biome _parentBiome, bool _isBiomeTrigger = false)
 		{
 			this._parentBiome = _parentBiome;
+			this._isBiomeTrigger = _isBiomeTrigger;
 			
 			_boxCollider2D = GetComponent<BoxCollider2D>();
 		}
@@ -31,8 +36,8 @@ namespace Segments
 		/// </summary>
 		private void OnTriggerExit2D(Collider2D _other)
 		{
-			// Do nothing if not the player
-			if (!_other.gameObject.CompareTag("Player"))
+			// If the segment has exited the clean up object bounds
+			if (!_other.gameObject.CompareTag("CleanUp"))
 				return;
 			
 			_parentBiome.DeleteSegments(this);

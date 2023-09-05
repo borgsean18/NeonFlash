@@ -55,25 +55,6 @@ namespace Segments
 
 		private void PopulateBiome(int _segmentCountToSpawn = 1)
 		{
-			if (!_isBiomeAlive)
-			{
-				_deleteBiomeCoRoutine ??= StartCoroutine(DestroyBiome());
-				
-				return;
-			}
-			
-			// If this biome reached its given limit, start next biome
-			if (_spawnedSegmentsCount + _segmentCountToSpawn > _segmentsToSpawn)
-			{
-				Vector3 newBiomePos = new Vector3(_spawnXPos, 0);
-				
-				_worldManager.SetUpNewBiome(newBiomePos);
-
-				_isBiomeAlive = false;
-				
-				return;
-			}
-			
 			// Biome is still active so spawn more segments
 			for (int i = 0; i < _segmentCountToSpawn; i++)
 			{
@@ -83,38 +64,38 @@ namespace Segments
 					quaternion.identity,
 					transform);
 
-				newSegment.Init(this);
+				if (_spawnedSegmentsCount + 1 == _segmentsToSpawn)
+					newSegment.Init(this, true);
+				else
+					newSegment.Init(this);
 
 				_spawnXPos += newSegment.SegmentWidth();
 				
 				_activeSegments.Add(newSegment);
 				_spawnedSegmentsCount++;
 			}
+			
+			// If this biome reached its given limit, start next biome
+			if (_spawnedSegmentsCount >= _segmentsToSpawn)
+			{
+				Vector3 newBiomePos = new Vector3(_spawnXPos, 0);
+				
+				_worldManager.SetUpNewBiome(newBiomePos);
+
+				_isBiomeAlive = false;
+			}
 		}
 
 
 		public void DeleteSegments(Segment _segment)
 		{
-			int segmentIndex = _activeSegments.IndexOf(_segment);
-
-			int indexOfSegmentToDestroy = segmentIndex - deleteSegmentBuffer;
-
-			if (indexOfSegmentToDestroy < 0)
-				return;
-
-			Segment segmentToDestroy = _activeSegments[indexOfSegmentToDestroy];
+			if (_segment.IsBiomeTrigger)
+				Destroy(gameObject);
 			
-			Destroy(segmentToDestroy.gameObject);
+			Destroy(_segment.gameObject);
 
-			PopulateBiome();
-		}
-
-
-		private IEnumerator DestroyBiome()
-		{
-			yield return new WaitForSeconds(3f);
-
-			Destroy(gameObject);
+			if (_isBiomeAlive)
+				PopulateBiome();
 		}
 	}
 }
