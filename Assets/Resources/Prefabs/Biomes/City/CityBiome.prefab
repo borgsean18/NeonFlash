@@ -47,7 +47,7 @@ MonoBehaviour:
   initSegmentSpawnCount: 40
   deleteSegmentBuffer: 5
   segmentTypes:
-  - {fileID: 7468572595732512330, guid: 35933d7f54053403c8e0b60269199f84, type: 3}
-  - {fileID: 7468572595732512330, guid: 0ba83abf49fc54edfacd0fa93f9a0817, type: 3}
-  - {fileID: 7468572595732512330, guid: e82ffa951120f4a8b8394bc528331f08, type: 3}
+  - {fileID: 7468572595732512330, guid: ba00ac861809f481b895e8b670b5ab3c, type: 3}
+  - {fileID: 7468572595732512330, guid: 7a7c10de2c9444e70ab1a4dcca5adb90, type: 3}
+  - {fileID: 7468572595732512330, guid: b80d1d57ecf3242f69aef74f4b1ff718, type: 3}
   obstacleTypes: []
