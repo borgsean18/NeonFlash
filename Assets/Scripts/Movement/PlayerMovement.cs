@@ -113,7 +113,7 @@ namespace Movement
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && hit) 
+            if (Input.GetKeyDown(KeyCode.Space) && hit && _grounded) 
             {
                 _jumping = true;
                 _jumpTime = 0;
@@ -121,7 +121,7 @@ namespace Movement
             
             if(_jumping)
             {
-                _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+                _rb.AddForce(new Vector2(0, jumpForce));
                 _jumpTime += Time.deltaTime;
             }
             
