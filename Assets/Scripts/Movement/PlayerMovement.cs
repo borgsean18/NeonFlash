@@ -98,8 +98,7 @@ namespace Movement
                 
                 if (_grounded)
                 {
-                    _animator.SetBool("Jump", true);
-                    _grounded = false;
+                    JumpState();
                 }
             }
             else
@@ -108,8 +107,7 @@ namespace Movement
 
                 if (!_grounded)
                 {
-                    _animator.SetBool("Jump", false);
-                    _grounded = true;
+                    SprintState();
                 }
             }
 
@@ -130,5 +128,22 @@ namespace Movement
                 _jumping = false;
             }
         }
+
+
+        #region Animation States
+
+        private void SprintState()
+        {
+            _animator.SetBool("Jump", false);
+            _grounded = true;
+        }
+
+        private void JumpState()
+        {
+            _animator.SetBool("Jump", true);
+            _grounded = false;
+        }
+
+        #endregion
     }
 }

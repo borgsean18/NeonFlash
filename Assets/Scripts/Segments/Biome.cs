@@ -14,7 +14,6 @@ namespace Segments
 		// Exposed Variables
 		[Header("Settings")]
 		[SerializeField] private int initSegmentSpawnCount;
-		[SerializeField] private int deleteSegmentBuffer;
 		
 		[Header("Segments")]
 		[SerializeField] private List<Segment> segmentTypes;
