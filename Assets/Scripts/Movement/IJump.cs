@@ -2,9 +2,8 @@ using UnityEngine;
 
 namespace Movement
 {
-    public interface ISprint
+    public interface IJump
     {
-        public void Sprint();
         public void Jump();
     }
 }

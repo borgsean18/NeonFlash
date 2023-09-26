@@ -9,6 +9,9 @@ namespace Managers
     public class WorldManager : MonoBehaviour
     {
         // Exposed Vars
+        [Header("General Settings")]
+        [SerializeField] private Vector3 worldInitPoint;
+        
         [Header("Biome Settings")]
         [SerializeField, Min(150)] private int minSegmentsPerBiome;
         [SerializeField, Min(250)] private int maxSegmentsPerBiome;
@@ -34,7 +37,7 @@ namespace Managers
 
         private void Init()
         {
-            SetUpNewBiome(Vector3.zero);
+            SetUpNewBiome(worldInitPoint);
         }
 
 
