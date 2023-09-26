@@ -14,6 +14,11 @@ namespace Managers
         [SerializeField, Min(250)] private int maxSegmentsPerBiome;
         [SerializeField] private List<GameObject> biomePrefabs;
         
+        [Header("World Movement")]
+        [SerializeField] protected float maxSpeed;
+        [SerializeField] private AnimationCurve speedMultiplier;
+        [SerializeField] private float minutesTillMaxSpeed;
+        
         // Private Vars
         private GameObject _activeBiomeObject;
         private Biome _activeBiome;

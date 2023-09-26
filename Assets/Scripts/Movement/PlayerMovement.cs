@@ -15,17 +15,11 @@ namespace Movement
         
         [Header("Jumping")]
         [SerializeField] private float jumpForce;
-        public float buttonTime = 0.3f;
         [SerializeField] private LayerMask jumpAbleLayers;
         
         // Private Vars
         private float _currentSpeed;
         private float _timePassed;
-
-        private bool _grounded;
-        
-        private float _jumpTime;
-        private bool _jumping;
         
         // Components
         private Rigidbody2D _rb;
@@ -53,6 +47,10 @@ namespace Movement
 
             Sprint();
             Jump();
+
+#if UNITY_EDITOR
+            DebugChecks();
+#endif
         }
 
 
@@ -82,9 +80,9 @@ namespace Movement
             // Move the GameObject to the new position
             transform.position = newPosition;
         }
-        
-        
-        public void Jump()
+
+
+        private bool IsGrounded()
         {
             RaycastHit2D hit = Physics2D.Raycast(
                 transform.position, 
@@ -92,40 +90,33 @@ namespace Movement
                 0.8f, 
                 jumpAbleLayers);
 
-            if (!hit)
+            if (hit)
+                SprintState();
+            else
+                JumpState();
+
+            return hit;
+        }
+        
+        
+        public void Jump()
+        {
+            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+            {
+                _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
+        }
+
+
+        private void DebugChecks()
+        {
+            if (!IsGrounded())
             {
                 Debug.DrawLine(transform.position, transform.position + (Vector3.down * 0.8f), Color.red);
-                
-                if (_grounded)
-                {
-                    JumpState();
-                }
             }
             else
             {
                 Debug.DrawLine(transform.position, transform.position + (Vector3.down * 0.8f), Color.green);
-
-                if (!_grounded)
-                {
-                    SprintState();
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space) && hit && _grounded) 
-            {
-                _jumping = true;
-                _jumpTime = 0;
-            }
-            
-            if(_jumping)
-            {
-                _rb.AddForce(new Vector2(0, jumpForce));
-                _jumpTime += Time.deltaTime;
-            }
-            
-            if(Input.GetKeyUp(KeyCode.Space) || _jumpTime > buttonTime)
-            {
-                _jumping = false;
             }
         }
 
@@ -135,13 +126,11 @@ namespace Movement
         private void SprintState()
         {
             _animator.SetBool("Jump", false);
-            _grounded = true;
         }
 
         private void JumpState()
         {
             _animator.SetBool("Jump", true);
-            _grounded = false;
         }
 
         #endregion
