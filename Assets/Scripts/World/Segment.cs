@@ -1,17 +1,21 @@
 using System;
+using System.Collections.Generic;
+using System.Security.Cryptography;
 using JetBrains.Annotations;
 using UnityEngine;
+using World;
 
-namespace Segments
+namespace World
 {
 	public class Segment : MonoBehaviour
 	{
 		// Private Vars
 		private Biome _parentBiome;
+		private List<GameObject> _linkedObjects;
 		
 		// Components
 		private BoxCollider2D _boxCollider2D;
-		
+
 
 		/// <summary>
 		/// Initialize this segment
@@ -20,6 +24,8 @@ namespace Segments
 		public void Init(Biome _parentBiome)
 		{
 			this._parentBiome = _parentBiome;
+
+			_linkedObjects = new List<GameObject>();
 			
 			_boxCollider2D = GetComponent<BoxCollider2D>();
 
@@ -73,6 +79,26 @@ namespace Segments
 
 			// Move this Segment to the newly calculated position (touching the previous segment)
 			transform.position = new Vector3(newX, 0);
+		}
+
+
+		public void LinkObject(GameObject _gameObject)
+		{
+			_linkedObjects.Add(_gameObject);
+		}
+
+
+		public void DeleteSegment()
+		{
+			if (_linkedObjects.Count > 0)
+			{
+				foreach (var linkedObject in _linkedObjects)
+				{
+					Destroy(linkedObject);
+				}
+			}
+
+			Destroy(gameObject);
 		}
 
 		

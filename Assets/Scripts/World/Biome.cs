@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Managers;
 using Obstacles;
+using World;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Segments
+namespace World
 {
 	public class Biome : MonoBehaviour
 	{
@@ -17,6 +19,9 @@ namespace Segments
 		
 		[Header("Segments")]
 		[SerializeField] private List<Segment> segmentTypes;
+		
+		[Header("Decorations")]
+		[SerializeField] private List<BiomeDecorationEntry> backgroundLayers;
 
 		// Obstacle Types
 		[Header("Obstacle Settings")]
@@ -34,6 +39,8 @@ namespace Segments
 		private int _spawnedSegmentsCount;
 		private List<Segment> _activeSegments;
 		private Coroutine _deleteBiomeCoRoutine;
+		private float _lastSpawnedDecorationXPos;
+		private float _localXPos;
 		
 		// Properties 
 		public List<Segment> ActiveSegments => _activeSegments;
@@ -49,7 +56,13 @@ namespace Segments
 			_spawnedSegmentsCount = 0;
 			_activeSegments = new List<Segment>();
 
-			PopulateBiome(initSegmentSpawnCount);
+			SpawnSegments(initSegmentSpawnCount);
+		}
+
+
+		private void Update()
+		{
+			MoveBiome();
 		}
 
 
@@ -58,7 +71,7 @@ namespace Segments
 		/// </summary>
 		/// <param name="_count">Number of segments to add to this biome. Default is 1
 		/// but can be overriden to add more segments</param>
-		private void PopulateBiome(int _count = 1)
+		private void SpawnSegments(int _count = 1)
 		{
 			// Biome is still active so spawn more segments
 			for (int i = 0; i < _count; i++)
@@ -72,6 +85,8 @@ namespace Segments
 
 				// Initialize the segment
 				newSegment.Init(this);
+
+				SpawnDecoration(newSegment);
 
 				// Add the segment to list of active segments
 				_activeSegments.Add(newSegment);
@@ -102,6 +117,40 @@ namespace Segments
 		}
 
 
+		private void SpawnDecoration(Segment _segment)
+		{
+			// Do nothing if this biome has no decorations
+			if (backgroundLayers.Count == 0) return;
+
+			if (_lastSpawnedDecorationXPos == 0)
+				_lastSpawnedDecorationXPos = _segment.transform.localPosition.x;
+
+			// Dont spawn another decoration if it overlaps an existing one
+			if (_segment.transform.localPosition.x < _lastSpawnedDecorationXPos) return;
+
+			int lastDecorationListPos = 0;
+			
+			foreach (var entry in backgroundLayers)
+			{
+				// Create Decoration
+				Decoration decoration = Instantiate(
+					entry.decorationPrefab,
+					new Vector2(_segment.transform.position.x, entry.decorationTransform.position.y),
+					quaternion.identity,
+					entry.decorationTransform);
+				
+				// Tell Decoration to pick a sprite, but dont look like the previously spawned decoration
+				lastDecorationListPos = decoration.SetSprite(lastDecorationListPos);
+
+				// Add the sprite width to the variable storing the X Pos the last decoration was spawned at
+				_lastSpawnedDecorationXPos += decoration.DecorationWidth();
+
+				// Link the decoration to the segment
+				_segment.LinkObject(decoration.gameObject);
+			}
+		}
+
+
 		public void DeleteSegments(Segment _segment)
 		{
 			// If last segment, destroy the biome
@@ -110,11 +159,28 @@ namespace Segments
 			
 			// Destroy the segment
 			_activeSegments.Remove(_segment);
-			Destroy(_segment.gameObject);
+			_segment.DeleteSegment();
 
 			// If biome is still alive, make a new segment
 			if (_isBiomeAlive)
-				PopulateBiome();
+				SpawnSegments();
+		}
+
+
+		private void MoveBiome()
+		{
+			// Calculate the movement distance based on speed and time
+			float movementDistance = _worldManager.CalculateCurrentSpeed() * Time.deltaTime;
+
+			// Get the current position of the GameObject
+			Vector3 currentPosition = transform.position;
+
+			// Calculate the new position
+			Vector3 newPosition = currentPosition - new Vector3(movementDistance, 0, 0);
+
+			// Move the GameObject to the new position
+			transform.position = newPosition;
+
 		}
 	}
 }

@@ -43,9 +43,24 @@ namespace Movement
             DebugChecks();
 #endif
         }
+        
+        
+        private void DebugChecks()
+        {
+            if (!IsGrounded())
+            {
+                Debug.DrawLine(transform.position, transform.position + (Vector3.down * 0.8f), Color.red);
+            }
+            else
+            {
+                Debug.DrawLine(transform.position, transform.position + (Vector3.down * 0.8f), Color.green);
+            }
+        }
 
 
-        private bool IsGrounded()
+        #region IJump Interface
+
+        public bool IsGrounded()
         {
             RaycastHit2D hit = Physics2D.Raycast(
                 transform.position, 
@@ -70,20 +85,9 @@ namespace Movement
             }
         }
 
+        #endregion
 
-        private void DebugChecks()
-        {
-            if (!IsGrounded())
-            {
-                Debug.DrawLine(transform.position, transform.position + (Vector3.down * 0.8f), Color.red);
-            }
-            else
-            {
-                Debug.DrawLine(transform.position, transform.position + (Vector3.down * 0.8f), Color.green);
-            }
-        }
-
-
+        
         #region Animation States
 
         private void SprintState()
