@@ -6,16 +6,6 @@ using Random = UnityEngine.Random;
 
 namespace World
 {
-    /// <summary>
-    /// This is a struct used to link a Decoration prefab to a Transform in the Biome
-    /// </summary>
-    [Serializable]
-    public struct BiomeDecorationEntry
-    {
-        public Transform decorationTransform;
-        public Decoration decorationPrefab;
-    }
-    
     public class Decoration : MonoBehaviour
     {
         // Exposed Variables

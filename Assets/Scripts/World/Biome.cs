@@ -20,9 +20,6 @@ namespace World
 		
 		[Header("Segments")]
 		[SerializeField] private List<Segment> segmentTypes;
-		
-		[Header("Decorations")]
-		[SerializeField] private List<BiomeDecorationEntry> backgroundLayers;
 
 		// Obstacle Types
 		[Header("Obstacle Settings")]
@@ -85,8 +82,6 @@ namespace World
 				// Initialize the segment
 				newSegment.Init(this);
 
-				SpawnDecoration(newSegment);
-
 				// Add the segment to list of active segments
 				_activeSegments.Add(newSegment);
 				
@@ -112,37 +107,6 @@ namespace World
 
 				// Set this biome as dead to stop spawning segments
 				_isBiomeAlive = false;
-			}
-		}
-
-
-		private void SpawnDecoration(Segment _segment)
-		{
-			// Do nothing if this biome has no decorations
-			if (backgroundLayers.Count == 0) return;
-
-			if (_lastSpawnedDecorationXPos == 0)
-				_lastSpawnedDecorationXPos = _segment.transform.localPosition.x;
-
-			// Dont spawn another decoration if it overlaps an existing one
-			if (_segment.transform.localPosition.x < _lastSpawnedDecorationXPos) return;
-
-			int lastDecorationListPos = 0;
-			
-			foreach (var entry in backgroundLayers)
-			{
-				// Create Decoration
-				Decoration decoration = Instantiate(
-					entry.decorationPrefab,
-					new Vector2(_segment.transform.position.x, entry.decorationTransform.position.y),
-					quaternion.identity,
-					entry.decorationTransform);
-				
-				// Tell Decoration to pick a sprite, but dont look like the previously spawned decoration
-				lastDecorationListPos = decoration.SetSprite(lastDecorationListPos);
-
-				// Add the sprite width to the variable storing the X Pos the last decoration was spawned at
-				_lastSpawnedDecorationXPos += decoration.DecorationWidth();
 			}
 		}
 
