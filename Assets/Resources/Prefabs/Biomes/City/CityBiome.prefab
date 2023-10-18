@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3888137967201363194}
+  - component: {fileID: 7096935669180060092}
   m_Layer: 0
   m_Name: BackgroundLayer1
   m_TagString: Untagged
@@ -31,6 +32,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7355395924407670261}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7096935669180060092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2901584558064578185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8192c09812e054cc29d57a00b49d0e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundImagePrefab: {fileID: 567638546137613095, guid: a7b37e45affcc413cbb4dba78f127bec, type: 3}
+  backgroundSprites:
+  - {fileID: 21300000, guid: 2bb22f99e156d46d1a7fb016ea7fa0a7, type: 3}
+  - {fileID: 21300000, guid: 328131d7801a04f4e8bce9e2f3a321c1, type: 3}
+  - {fileID: 21300000, guid: b6d33643dcd3e487fa8cbc2aaf12143a, type: 3}
+  - {fileID: 21300000, guid: 5fd932e30177d4380afbc25187b3192d, type: 3}
+  - {fileID: 21300000, guid: d1e6e9fff876a48ef8bf57077bc0ec9a, type: 3}
+  - {fileID: 21300000, guid: ee94dfad1e2934881822fa593acb7ba5, type: 3}
+  - {fileID: 21300000, guid: 50403e731a25b4f11856c275043c95a2, type: 3}
+  - {fileID: 21300000, guid: df7a249bf1b0b4a509db5584473d8eb2, type: 3}
 --- !u!1 &7105106406661769187
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,10 +100,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d95eb9dd10b49bc8aecf6d55de12da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initSegmentSpawnCount: 50
+  initSegmentSpawnCount: 60
   segmentTypes:
   - {fileID: 7468572595732512330, guid: ba00ac861809f481b895e8b670b5ab3c, type: 3}
   obstacleTypes: []
+  backgroundLayers:
+  - {fileID: 7096935669180060092}
 --- !u!114 &3541257612292450679
 MonoBehaviour:
   m_ObjectHideFlags: 0

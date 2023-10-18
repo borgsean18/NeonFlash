@@ -4,7 +4,7 @@ using World;
 
 namespace CleanUp
 {
-	public class SegmentCleanUo : CleanUp
+	public class SegmentCleanUp : CleanUp
 	{
 		private Segment _segment;
 
@@ -21,9 +21,6 @@ namespace CleanUp
 		}
 		
 		
-		/// <summary>
-		/// When the player exits this segment
-		/// </summary>
 		protected override void OnTriggerExit2D(Collider2D _other)
 		{
 			// If the segment has exited the clean up object bounds

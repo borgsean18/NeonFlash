@@ -24,6 +24,9 @@ namespace World
 		// Obstacle Types
 		[Header("Obstacle Settings")]
 		[SerializeField] private List<Obstacle> obstacleTypes;
+		
+		[Header("Background Settings")]
+		[SerializeField] private List<BackgroundLayer> backgroundLayers;
 
 		// Enemy Types
 		// TODO
@@ -38,7 +41,6 @@ namespace World
 		private List<Segment> _activeSegments;
 		private Coroutine _deleteBiomeCoRoutine;
 		private float _lastSpawnedDecorationXPos;
-		private float _localXPos;
 		
 		// Properties 
 		public WorldManager WorldManager => _worldManager;
@@ -57,7 +59,6 @@ namespace World
 
 			_spawnedSegmentsCount = 0;
 			_activeSegments = new List<Segment>();
-
 			SpawnSegments(initSegmentSpawnCount);
 		}
 
@@ -88,26 +89,41 @@ namespace World
 				// Increment count of segments spawned so far in this biome
 				_spawnedSegmentsCount++;
 			}
+
+			UpdateBackgroundLayers();
 			
 			// If this biome reached its given limit, start next biome
 			if (_spawnedSegmentsCount >= _totalToSpawn)
+				StartNextBiome();
+		}
+
+
+		private void UpdateBackgroundLayers()
+		{
+			foreach (var layer in backgroundLayers)
 			{
-				// last created segment in this biome
-				Segment lastSegment = _activeSegments[^1];
-
-				// get XPos of last segment
-				float newBiomeX = lastSegment.transform.position.x;
-				
-				// Add half of the width of the last segment, to that XPos
-				newBiomeX += lastSegment.SegmentWidth() / 2;
-				
-				// Create the new biome at that X Coordinate
-				Vector3 newBiomePos = new Vector3(newBiomeX, 0);
-				_worldManager.SetUpNewBiome(newBiomePos);
-
-				// Set this biome as dead to stop spawning segments
-				_isBiomeAlive = false;
+				layer.UpdateBiomeEndPos(_activeSegments[^1].transform.localPosition.x);
 			}
+		}
+
+
+		private void StartNextBiome()
+		{
+			// last created segment in this biome
+			Segment lastSegment = _activeSegments[^1];
+
+			// get XPos of last segment
+			float newBiomeX = lastSegment.transform.position.x;
+				
+			// Add half of the width of the last segment, to that XPos
+			newBiomeX += lastSegment.SegmentWidth() / 2;
+				
+			// Create the new biome at that X Coordinate
+			Vector3 newBiomePos = new Vector3(newBiomeX, 0);
+			_worldManager.SetUpNewBiome(newBiomePos);
+
+			// Set this biome as dead to stop spawning segments
+			_isBiomeAlive = false;
 		}
 
 
