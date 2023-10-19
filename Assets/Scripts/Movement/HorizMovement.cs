@@ -6,7 +6,7 @@ namespace Movement
     {
         // Exposed Variables
         [Header("Settings")]
-        [SerializeField] private float movementSpeed;
+        [SerializeField] protected float movementSpeed;
         [SerializeField] private bool moveLeft;
         
         

@@ -13,7 +13,6 @@ namespace World
         [SerializeField] private List<Sprite> backgroundSprites;
         
         // Private Variables
-        private Biome _biome;
         private float _currentBGImgPos;
         private float _biomeEndPos;
 
@@ -30,8 +29,6 @@ namespace World
         {
             _currentBGImgPos = 0;
             _activeBgImages = new List<GameObject>();
-            
-            _biome = GetComponentInParent<Biome>();
         }
 
 
@@ -45,6 +42,8 @@ namespace World
 
         private void SpawnBgImages()
         {
+            if (_currentBGImgPos > _biomeEndPos) return;
+            
             Vector3 newBgImgPos = new Vector3(_currentBGImgPos, transform.position.y, 0);
             GameObject newBgImage = Instantiate(backgroundImagePrefab,
                 newBgImgPos,

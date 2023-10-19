@@ -24,15 +24,14 @@ namespace World
         private void Init()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
+
+            SetSprite();
         }
         
 
-        public int SetSprite(int _spriteToRemoveFromList)
+        private int SetSprite()
         {
             int decorationListPos = Random.Range(0, spriteVariations.Count);
-            
-            while(decorationListPos == _spriteToRemoveFromList)
-                decorationListPos = Random.Range(0, spriteVariations.Count);
             
             _spriteRenderer.sprite = spriteVariations[decorationListPos];
 

@@ -23,17 +23,17 @@ namespace World
 
 		// Obstacle Types
 		[Header("Obstacle Settings")]
-		[SerializeField] private List<Obstacle> obstacleTypes;
-		
-		[Header("Background Settings")]
-		[SerializeField] private List<BackgroundLayer> backgroundLayers;
+		[SerializeField] private List<Obstacle> biomeObstacles;
+
+		// Obstacle Types
+		[Header("Decoration Settings")]
+		[SerializeField] private List<GameObject> biomeBackgroundPrefabs;
 
 		// Enemy Types
 		// TODO
 		
 		// Private Variables
 		private bool _isBiomeAlive;
-		private BiomeMovement _biomeMovement;
 		private WorldManager _worldManager;
 		
 		private int _totalToSpawn;
@@ -41,6 +41,8 @@ namespace World
 		private List<Segment> _activeSegments;
 		private Coroutine _deleteBiomeCoRoutine;
 		private float _lastSpawnedDecorationXPos;
+
+		private List<BiomeBackground> _activeBgReferences;
 		
 		// Properties 
 		public WorldManager WorldManager => _worldManager;
@@ -50,16 +52,44 @@ namespace World
 		public void Init(WorldManager _worldManager, int _segmentsToSpawn)
 		{
 			_isBiomeAlive = true;
-			
+
 			this._worldManager = _worldManager;
 			this._totalToSpawn = _segmentsToSpawn;
-
-			_biomeMovement = GetComponent<BiomeMovement>();
-			_biomeMovement.Init(this._worldManager);
+			
+			InitializeBiomeBackground();
 
 			_spawnedSegmentsCount = 0;
 			_activeSegments = new List<Segment>();
 			SpawnSegments(initSegmentSpawnCount);
+		}
+
+
+		private void InitializeBiomeBackground()
+		{
+			if (biomeBackgroundPrefabs.Count == 0) return;
+			
+			_activeBgReferences = new List<BiomeBackground>();
+			
+			foreach (var t in biomeBackgroundPrefabs)
+			{
+				BiomeBackground biomeBackground = Instantiate(t, transform.position, quaternion.identity)
+					.GetComponent<BiomeBackground>();
+			
+				biomeBackground.Init(this);
+				
+				_activeBgReferences.Add(biomeBackground);
+			}
+		}
+
+
+		private void PopulateBiomeBackgrounds()
+		{
+			if (_activeBgReferences == null || _activeBgReferences.Count == 0) return; 
+			
+			foreach (var t in _activeBgReferences)
+			{
+				t.GetComponent<BiomeBackground>().SpawnBackgroundObjects();
+			}
 		}
 
 
@@ -90,20 +120,11 @@ namespace World
 				_spawnedSegmentsCount++;
 			}
 
-			UpdateBackgroundLayers();
+			PopulateBiomeBackgrounds();
 			
 			// If this biome reached its given limit, start next biome
 			if (_spawnedSegmentsCount >= _totalToSpawn)
 				StartNextBiome();
-		}
-
-
-		private void UpdateBackgroundLayers()
-		{
-			foreach (var layer in backgroundLayers)
-			{
-				layer.UpdateBiomeEndPos(_activeSegments[^1].transform.localPosition.x);
-			}
 		}
 
 

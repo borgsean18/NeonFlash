@@ -17,6 +17,8 @@ namespace World
 		
 		// Properties
 		public Biome ParentBiome => _parentBiome;
+		public float XPos => transform.position.x;
+		public float XLocalPos => transform.localPosition.x;
 
 
 		/// <summary>
@@ -66,7 +68,7 @@ namespace World
 			}
 
 			// Get the XPos of the previous segment
-			float prevX = _prevSegment.transform.position.x;
+			float prevX = _prevSegment.XPos;
 			
 			// Get the Width of the previous segment
 			float prevWidth = _prevSegment.SegmentWidth();

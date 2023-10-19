@@ -44,12 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9523af5cac0634483a21e23afa8e91e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldInitPoint: {x: -7, y: 0, z: 0}
   minSegmentsPerBiome: 150
   maxSegmentsPerBiome: 250
   biomePrefabs:
   - {fileID: 7105106406661769187, guid: 5de753406a2b7430d9bdbde3668a6966, type: 3}
   - {fileID: 7105106406661769187, guid: c8a8fa960164b4c4ea0492ddd498cfa3, type: 3}
-  maxSpeed: 15
+  maxSpeed: 20
   speedMultiplier:
     serializedVersion: 2
     m_Curve:

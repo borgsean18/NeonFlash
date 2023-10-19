@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7355395924407670261}
   - component: {fileID: 6467845407750648229}
+  - component: {fileID: 2015128081025706452}
   m_Layer: 0
   m_Name: ForestBiome
   m_TagString: Untagged
@@ -45,9 +46,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initSegmentSpawnCount: 40
-  deleteSegmentBuffer: 5
   segmentTypes:
   - {fileID: 7468572595732512330, guid: 35933d7f54053403c8e0b60269199f84, type: 3}
   - {fileID: 7468572595732512330, guid: 0ba83abf49fc54edfacd0fa93f9a0817, type: 3}
   - {fileID: 7468572595732512330, guid: e82ffa951120f4a8b8394bc528331f08, type: 3}
-  obstacleTypes: []
+  biomeObstacles: []
+  biomeBackgroundPrefabs: []
+--- !u!114 &2015128081025706452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7105106406661769187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02919d9c3766641a79fe8588a09bd7f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 0
+  moveLeft: 0
+  _bufferSpeed: 0
