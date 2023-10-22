@@ -366,14 +366,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4218113588272578260, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
-      propertyPath: maxDifficulty
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4218113588272578260, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
-      propertyPath: minutesTillMaxDifficulty
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 7670753064721814381, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: m_Name
       value: WorldManager

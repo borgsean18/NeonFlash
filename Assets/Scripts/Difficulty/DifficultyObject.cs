@@ -5,6 +5,6 @@ namespace Difficulty
 	public class DifficultyObject : MonoBehaviour
 	{
 		// Exposed Variables
-		[SerializeField] private int difficultyLevel;
+		[SerializeField, Min(1)] private int difficultyLevel;
 	}
 }

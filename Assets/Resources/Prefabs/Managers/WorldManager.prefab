@@ -57,30 +57,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: -0.0066100955
-      inSlope: 40.66101
-      outSlope: 40.66101
+      value: 0
+      inSlope: 1
+      outSlope: 1
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.01
-      value: 0.4
-      inSlope: 1.1258669
-      outSlope: 1.1258669
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.057977896
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0.6060606
-      outSlope: 0.6060606
+      inSlope: 1
+      outSlope: 1
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -98,8 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7491df09632524ae1a827ccf8abfb481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDifficulty: 5
-  minutesTillMaxDifficulty: 0.5
+  maxDifficulty: 10
+  minutesTillMaxDifficulty: 3
   difficultyCurveOverTime:
     serializedVersion: 2
     m_Curve:
