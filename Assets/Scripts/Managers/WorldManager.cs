@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using World;
+using ProjectTime;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -28,9 +29,11 @@ namespace Managers
         private Biome _activeBiome;
 
         private float _currentSpeed;
-        private float _timePassed;
 
         private int _segmentsToSpawn;
+        
+        // Properties
+        public float CurrentSpeed => _currentSpeed;
 
 
         private void Awake()
@@ -76,18 +79,14 @@ namespace Managers
         /// <summary>
         /// Calculate the speed the world should be moving at
         /// </summary>
-        public float CalculateCurrentSpeed()
+        private void CalculateCurrentSpeed()
         {
             // If reached max speed, return max speed value
             if (_currentSpeed >= maxSpeed) 
-                return maxSpeed;
-            
-            _timePassed += Time.deltaTime;
+                _currentSpeed = maxSpeed;
 
             // Current speed is Max Speed * point in the animation curve reached since the run started
-            _currentSpeed = maxSpeed * speedMultiplier.Evaluate(_timePassed / (minutesTillMaxSpeed * 60));
-
-            return _currentSpeed;
+            _currentSpeed = maxSpeed * speedMultiplier.Evaluate(TimeManager.Singleton.TimePassed / (minutesTillMaxSpeed * 60));
         }
     }
 }

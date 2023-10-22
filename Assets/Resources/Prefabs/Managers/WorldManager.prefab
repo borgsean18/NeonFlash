@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3285524995403224056}
   - component: {fileID: 2180113981751118403}
+  - component: {fileID: 4218113588272578260}
+  - component: {fileID: 2942654252123249383}
   m_Layer: 0
   m_Name: WorldManager
   m_TagString: Untagged
@@ -49,7 +51,6 @@ MonoBehaviour:
   maxSegmentsPerBiome: 250
   biomePrefabs:
   - {fileID: 7105106406661769187, guid: 5de753406a2b7430d9bdbde3668a6966, type: 3}
-  - {fileID: 7105106406661769187, guid: c8a8fa960164b4c4ea0492ddd498cfa3, type: 3}
   maxSpeed: 20
   speedMultiplier:
     serializedVersion: 2
@@ -85,3 +86,53 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   minutesTillMaxSpeed: 1
+--- !u!114 &4218113588272578260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7670753064721814381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7491df09632524ae1a827ccf8abfb481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDifficulty: 5
+  minutesTillMaxDifficulty: 0.5
+  difficultyCurveOverTime:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2942654252123249383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7670753064721814381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54653a4d83ae4d9fa9e84e818370d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

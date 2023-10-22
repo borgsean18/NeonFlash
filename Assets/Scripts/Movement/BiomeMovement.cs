@@ -32,7 +32,7 @@ namespace Movement
 
 	    private float MovementSpeed()
 	    {
-		    movementSpeed = _worldManager.CalculateCurrentSpeed() * Time.deltaTime;
+		    movementSpeed = _worldManager.CurrentSpeed * Time.deltaTime;
 
 		    if (_bufferSpeed > 1)
 			    movementSpeed /= _bufferSpeed;

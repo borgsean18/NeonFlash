@@ -23,7 +23,7 @@ namespace World
 
 		// Obstacle Types
 		[Header("Obstacle Settings")]
-		[SerializeField] private List<Obstacle> biomeObstacles;
+		[SerializeField] private List<GameObject> biomeObstacles;
 
 		// Obstacle Types
 		[Header("Decoration Settings")]

@@ -48,7 +48,8 @@ MonoBehaviour:
   initSegmentSpawnCount: 40
   segmentTypes:
   - {fileID: 7468572595732512330, guid: ba00ac861809f481b895e8b670b5ab3c, type: 3}
-  biomeObstacles: []
+  biomeObstacles:
+  - {fileID: 3358127638774406812, guid: a63148c0ceb8b49b0b7c7ac8743fce5f, type: 3}
   biomeBackgroundPrefabs:
   - {fileID: 707812390513423879, guid: 6fe74caaac8ff449ebba961b5dbeac88, type: 3}
   - {fileID: 707812390513423879, guid: 43d5bc315117b461f987ad15b6290907, type: 3}
