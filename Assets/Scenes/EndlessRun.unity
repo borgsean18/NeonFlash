@@ -123,6 +123,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &589773661 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7670753064721814381, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+  m_PrefabInstance: {fileID: 1760203484866687546}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &589773666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589773661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e98667dfd85ed45976e6064a76384b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBetweenSpawns: 0
 --- !u!1 &1120140669
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,6 +344,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: speedMultiplier.m_Curve.Array.data[0].value
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: speedMultiplier.m_Curve.Array.data[0].inSlope
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: speedMultiplier.m_Curve.Array.data[1].inSlope
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: speedMultiplier.m_Curve.Array.data[0].outSlope
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: speedMultiplier.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: speedMultiplier.m_Curve.Array.data[1].outSlope
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: speedMultiplier.m_Curve.Array.data[0].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
     - target: {fileID: 3285524995403224056, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -366,6 +412,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4218113588272578260, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: minutesTillMaxDifficulty
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218113588272578260, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: difficultyCurveOverTime.m_Curve.Array.data[0].value
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7670753064721814381, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: m_Name
       value: WorldManager
@@ -373,7 +427,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7670753064721814381, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 589773666}
   m_SourcePrefab: {fileID: 100100000, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
 --- !u!1001 &8949822880141582456
 PrefabInstance:

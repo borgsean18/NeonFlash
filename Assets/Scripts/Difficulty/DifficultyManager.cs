@@ -7,7 +7,7 @@ namespace Difficulty
 	public class DifficultyManager : MonoBehaviour
 	{
 		// Exposed Variables
-		[SerializeField] private float maxDifficulty;
+		[SerializeField] private int maxDifficulty;
 		[SerializeField] private float minutesTillMaxDifficulty;
 		[SerializeField] private AnimationCurve difficultyCurveOverTime;
 		
@@ -15,19 +15,20 @@ namespace Difficulty
 		private float _currentDifficulty;
 		
 		// Properties
+		public float MaxDifficulty => maxDifficulty;
 		public float CurrentDifficulty => _currentDifficulty;
 
 
 		private void Update()
 		{
-			CalculateCurrentSpeed();
+			CalculateDifficulty();
 		}
 
 
 		/// <summary>
 		/// Calculate the difficulty level the game has reached at given time
 		/// </summary>
-		private void CalculateCurrentSpeed()
+		private void CalculateDifficulty()
 		{
 			// If reached max speed, return max speed value
 			if (_currentDifficulty >= maxDifficulty) 
