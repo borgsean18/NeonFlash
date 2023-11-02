@@ -72,13 +72,11 @@ namespace Spawning
                 return;
             
             // Pick what to spawn based on allowance
-            
-            // Spawn something in the currently active biome
             Biome activeBiome = worldManager.ActiveBiome;
+            
+            GameObject toSpawn = SelectWhatToSpawn(activeBiome.gameObject, _spawnAllowance);
 
-            List<GameObject> biomeObstacles = activeBiome.BiomeObstacles;
-
-            GameObject spawnedObject = Instantiate(biomeObstacles[0], obstacleSpawnPoint.position, Quaternion.identity);
+            GameObject spawnedObject = Instantiate(toSpawn, obstacleSpawnPoint.position, Quaternion.identity);
             
             SpwanedObject spawnedObjComponent = spawnedObject.GetComponent<SpwanedObject>();
 
@@ -87,6 +85,24 @@ namespace Spawning
             spawnedObjects.Add(spawnedObjComponent);
             
             StartCoroutine(SpawnCoolDown(timeBetweenSpawns));
+        }
+
+
+        private GameObject SelectWhatToSpawn(GameObject _spawnablesHaver, int _spawnAllowance)
+        {
+            SpawnsList list = _spawnablesHaver.GetComponent<SpawnsList>();
+            
+            GameObject toSpawn = list.GetRandomObstacle();
+
+            DifficultyObject difficultyObject = toSpawn.GetComponent<DifficultyObject>();
+
+            while (difficultyObject.DifficultyLevel > _spawnAllowance || difficultyObject == null)
+            {
+                toSpawn = list.GetRandomObstacle();
+                difficultyObject = toSpawn.GetComponent<DifficultyObject>();
+            }
+            
+            return toSpawn;
         }
 
 

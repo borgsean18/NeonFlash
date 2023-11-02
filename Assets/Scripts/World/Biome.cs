@@ -21,11 +21,6 @@ namespace World
 		[Header("Segments")]
 		[SerializeField] private List<Segment> segmentTypes;
 
-		// Obstacle Types
-		[Header("Obstacle Settings")]
-		[SerializeField] private List<GameObject> biomeObstacles;
-
-		// Obstacle Types
 		[Header("Decoration Settings")]
 		[SerializeField] private List<GameObject> biomeBackgroundPrefabs;
 
@@ -47,7 +42,6 @@ namespace World
 		// Properties 
 		public WorldManager WorldManager => _worldManager;
 		public List<Segment> ActiveSegments => _activeSegments;
-		public List<GameObject> BiomeObstacles => biomeObstacles;
 
 
 		public void Init(WorldManager _worldManager, int _segmentsToSpawn)

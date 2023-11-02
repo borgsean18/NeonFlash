@@ -26,7 +26,7 @@ namespace Movement
 	    }
 
 
-	    protected override float MovementSpeed()
+	    protected override float CalcMovementDistance()
 	    {
 		    movementSpeed = worldManager.CurrentSpeed * Time.deltaTime;
 

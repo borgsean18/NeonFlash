@@ -39,16 +39,21 @@ namespace Movement
         }
         
         
-        protected virtual float MovementSpeed()
+        protected virtual float CalcMovementDistance()
         {
+            float movementDistance;
             if (moveWithWorld)
             {
                 movementSpeed = worldManager.CurrentSpeed * Time.deltaTime;
 
-                movementSpeed *= -1;
+                movementDistance = movementSpeed * -1;
+            }
+            else
+            {
+                movementDistance = movementSpeed * Time.deltaTime;
             }
 		    
-            return movementSpeed;
+            return movementDistance;
         }
 
         
@@ -62,7 +67,7 @@ namespace Movement
             if (movementSpeed == 0 && !moveWithWorld) return;
             
             // Calculate the movement distance based on speed and time
-            float movementDistance = MovementSpeed();
+            float movementDistance = CalcMovementDistance();
 
             // Get the current position of the GameObject
             Vector3 currentPosition = transform.position;

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7355395924407670261}
   - component: {fileID: 6467845407750648229}
+  - component: {fileID: 1482991932048575836}
   - component: {fileID: 3541257612292450679}
   m_Layer: 0
   m_Name: CityBiome
@@ -48,12 +49,25 @@ MonoBehaviour:
   initSegmentSpawnCount: 40
   segmentTypes:
   - {fileID: 7468572595732512330, guid: ba00ac861809f481b895e8b670b5ab3c, type: 3}
-  biomeObstacles:
-  - {fileID: 3358127638774406812, guid: a63148c0ceb8b49b0b7c7ac8743fce5f, type: 3}
   biomeBackgroundPrefabs:
   - {fileID: 707812390513423879, guid: 6fe74caaac8ff449ebba961b5dbeac88, type: 3}
   - {fileID: 707812390513423879, guid: 43d5bc315117b461f987ad15b6290907, type: 3}
   - {fileID: 707812390513423879, guid: 05ed3f46bfa8b4cadbd8135cb335e6a3, type: 3}
+--- !u!114 &1482991932048575836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7105106406661769187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a018b2510b12dd47b6c1c75d6609308, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacles:
+  - {fileID: 3358127638774406812, guid: a63148c0ceb8b49b0b7c7ac8743fce5f, type: 3}
+  - {fileID: 3358127638774406812, guid: 4b084303dc4aabf47a38c0958d62acbc, type: 3}
 --- !u!114 &3541257612292450679
 MonoBehaviour:
   m_ObjectHideFlags: 0
