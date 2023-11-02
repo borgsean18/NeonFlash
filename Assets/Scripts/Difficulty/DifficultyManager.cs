@@ -15,7 +15,7 @@ namespace Difficulty
 		private float _currentDifficulty;
 		
 		// Properties
-		public float MaxDifficulty => maxDifficulty;
+		public int MaxDifficulty => maxDifficulty;
 		public float CurrentDifficulty => _currentDifficulty;
 
 

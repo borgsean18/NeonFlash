@@ -1,12 +1,11 @@
-using System;
 using System.Collections.Generic;
-using World;
 using ProjectTime;
 using Unity.Mathematics;
 using UnityEngine;
+using World;
 using Random = UnityEngine.Random;
 
-namespace Managers
+namespace MainManagers
 {
     public class WorldManager : MonoBehaviour
     {
@@ -34,6 +33,7 @@ namespace Managers
         
         // Properties
         public float CurrentSpeed => _currentSpeed;
+        public Biome ActiveBiome => _activeBiome;
 
 
         private void Awake()

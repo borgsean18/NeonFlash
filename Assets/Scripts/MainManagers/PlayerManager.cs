@@ -1,10 +1,9 @@
-using System;
 using System.Collections;
 using Characters;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Managers
+namespace MainManagers
 {
     public class PlayerManager : MonoBehaviour
     {

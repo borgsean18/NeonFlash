@@ -6,5 +6,8 @@ namespace Difficulty
 	{
 		// Exposed Variables
 		[SerializeField, Min(1)] private int difficultyLevel;
+		
+		// Properties
+		public int DifficultyLevel => difficultyLevel;
 	}
 }

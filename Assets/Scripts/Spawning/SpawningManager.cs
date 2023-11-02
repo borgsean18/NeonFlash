@@ -1,22 +1,24 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Difficulty;
-using Unity.VisualScripting;
+using MainManagers;
 using UnityEngine;
+using World;
 
 namespace Spawning
 {
-    [RequireComponent(typeof(DifficultyManager))]
+    [RequireComponent(typeof(WorldManager), typeof(DifficultyManager))]
     public class SpawningManager : MonoBehaviour
     {
         // Exposed Variables
+        [SerializeField] private float initSpawnCooldown;
         [SerializeField] private float timeBetweenSpawns;
         
         // Private Variables
+        private WorldManager worldManager;
         private DifficultyManager difficultyManager;
         private List<SpwanedObject> spawnedObjects;
-        private bool spawnCoolDownActive;
+        private bool canSpawn;
 
 
         private void Awake()
@@ -27,43 +29,57 @@ namespace Spawning
 
         private void Init()
         {
+            worldManager = GetComponent<WorldManager>();
             difficultyManager = GetComponent<DifficultyManager>();
 
             spawnedObjects = new List<SpwanedObject>();
+            
+            StartCoroutine(SpawnCoolDown(initSpawnCooldown));
         }
 
 
         private void Update()
         {
-            if (CanSpawn())
-                Spawn();
+            if (canSpawn)
+                Spawn(CanSpawn());
         }
         
         
         // Determine when to spawn something based on the current difficulty
-        private bool CanSpawn()
+        private int CanSpawn()
         {
-            if (spawnedObjects.Count <= 1 && !spawnCoolDownActive)
-                return true;
+            int totalSpawnedDifficulty = 0;
             
-            return false;
+            foreach (var obj in spawnedObjects)
+            {
+                totalSpawnedDifficulty += obj.DifficultyObject.DifficultyLevel;
+            }
+            
+            return difficultyManager.MaxDifficulty - totalSpawnedDifficulty;
         }
 
 
         // Spawn an enemy or obstacle depending on the difficulty level
-        private void Spawn()
+        private void Spawn(int _spawnAllowance)
         {
-            StartCoroutine(SpawnCoolDown());
+            // Cant spawn anything
+            if (_spawnAllowance == 0)
+                return;
+            
+            // Spawn something in the currently active biome
+            Biome activeBiome = worldManager.ActiveBiome;
+            
+            StartCoroutine(SpawnCoolDown(timeBetweenSpawns));
         }
 
 
-        private IEnumerator SpawnCoolDown()
+        private IEnumerator SpawnCoolDown(float _coolDown)
         {
-            spawnCoolDownActive = true;
+            canSpawn = false;
             
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(_coolDown);
             
-            spawnCoolDownActive = false;
+            canSpawn = true;
         }
     }
 }

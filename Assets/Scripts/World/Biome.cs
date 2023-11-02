@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Managers;
+using MainManagers;
 using Movement;
 using Obstacles;
 using World;
@@ -47,6 +47,7 @@ namespace World
 		// Properties 
 		public WorldManager WorldManager => _worldManager;
 		public List<Segment> ActiveSegments => _activeSegments;
+		public List<GameObject> BiomeObstacles => biomeObstacles;
 
 
 		public void Init(WorldManager _worldManager, int _segmentsToSpawn)
@@ -88,7 +89,8 @@ namespace World
 			
 			foreach (var t in _activeBgReferences)
 			{
-				t.GetComponent<BiomeBackground>().SpawnBackgroundObjects();
+				if (t != null)
+					t.GetComponent<BiomeBackground>().SpawnBackgroundObjects();
 			}
 		}
 
