@@ -128,7 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e98667dfd85ed45976e6064a76384b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenSpawns: 0
+  initSpawnCooldown: 5
+  timeBetweenSpawns: 1
 --- !u!114 &2942654252123249383
 MonoBehaviour:
   m_ObjectHideFlags: 0
