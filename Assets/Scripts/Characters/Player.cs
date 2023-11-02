@@ -10,7 +10,6 @@ namespace Characters
         // Exposed Variables
         [Header("Settings")]
         [SerializeField] private CustomCamera playerCamera;
-        [SerializeField] private bool isImmortal;
         
         // Private Variables
         private WorldManager worldManager;
@@ -35,8 +34,6 @@ namespace Characters
 
         private void Lose()
         {
-            if (isImmortal) return;
-            
             playerMovement.CanMove = false;
         }
     }

@@ -15,6 +15,9 @@ namespace MainManagers
         [SerializeField] private GameStates gameState;
         [SerializeField] private Vector3 worldInitPoint;
         
+        [Header("Debug Settings")]
+        [SerializeField] private bool immortalDebugRun;
+        
         [Header("Biome Settings")]
         [SerializeField, Min(150)] private int minSegmentsPerBiome;
         [SerializeField, Min(250)] private int maxSegmentsPerBiome;
@@ -71,6 +74,9 @@ namespace MainManagers
 
         private void Update()
         {
+            if (immortalDebugRun)
+                LoseGame.RemoveAllListeners();
+            
             switch (gameState)
             {
                 case GameStates.Play:

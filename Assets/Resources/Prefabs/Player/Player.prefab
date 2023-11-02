@@ -252,6 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 0}
+  isImmortal: 1
 --- !u!114 &582456680469215911
 MonoBehaviour:
   m_ObjectHideFlags: 0
