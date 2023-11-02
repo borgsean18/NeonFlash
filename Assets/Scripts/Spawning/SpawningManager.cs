@@ -42,7 +42,8 @@ namespace Spawning
 
         private void Update()
         {
-            if (canSpawn)
+            // If the spawn cooldown is over and the game is still playing
+            if (canSpawn && worldManager.GameState == WorldManager.GameStates.Play)
                 Spawn(CanSpawn());
         }
         
@@ -72,10 +73,9 @@ namespace Spawning
                 return;
             
             // Pick what to spawn based on allowance
-            Biome activeBiome = worldManager.ActiveBiome;
-            
-            GameObject toSpawn = SelectWhatToSpawn(activeBiome.gameObject, _spawnAllowance);
+            GameObject toSpawn = SelectWhatToSpawn(worldManager.ActiveBiome.gameObject, _spawnAllowance);
 
+            // SPAWN THE OBJECT
             GameObject spawnedObject = Instantiate(toSpawn, obstacleSpawnPoint.position, Quaternion.identity);
             
             SpwanedObject spawnedObjComponent = spawnedObject.GetComponent<SpwanedObject>();
@@ -110,9 +110,9 @@ namespace Spawning
         {
             canSpawn = false;
             
-            yield return new WaitForSeconds(_coolDown);
+            yield return new WaitForSeconds(Random.Range(_coolDown / 2, _coolDown));
             
-             canSpawn = true;
+            canSpawn = true;
         }
     }
 }

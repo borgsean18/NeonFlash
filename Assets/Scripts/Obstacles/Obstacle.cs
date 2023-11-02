@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using Difficulty;
+using MainManagers;
 
 namespace Obstacles
 {
@@ -9,6 +8,7 @@ namespace Obstacles
 	public class Obstacle : MonoBehaviour
 	{
 		// Components
+		private WorldManager worldManager;
 		private DifficultyObject difficultySettings;
 		private SpriteRenderer spriteRenderer;
 		private BoxCollider2D boxCollider2D;
@@ -22,19 +22,23 @@ namespace Obstacles
 
 		private void Init()
 		{
+			worldManager = FindObjectOfType<WorldManager>();
+			
 			difficultySettings = GetComponent<DifficultyObject>();
 			spriteRenderer = GetComponent<SpriteRenderer>();
 			
 			boxCollider2D = GetComponent<BoxCollider2D>();
 			boxCollider2D.size = spriteRenderer.bounds.size;
-
 		}
 
 
-		// private void OnCollisionEnter2D(Collision2D _col)
-		// {
-		// 	if(_col.gameObject.CompareTag("Player"))
-		// 		Destroy(_col.gameObject);
-		// }
+		private void OnTriggerEnter2D(Collider2D _other)
+		{
+			// If the obstacle hit the player
+			if (_other.gameObject.CompareTag("Player"))
+			{
+				worldManager.LoseGame.Invoke();
+			}
+		}
 	}
 }

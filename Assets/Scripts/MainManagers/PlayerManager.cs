@@ -15,6 +15,10 @@ namespace MainManagers
         // Private Variables
         private bool _init;
         private Player _player;
+        private WorldManager _worldManager;
+        
+        // Components
+        public WorldManager WorldManager => _worldManager;
 
 
         private void Awake()
@@ -27,6 +31,8 @@ namespace MainManagers
         private void Init()
         {
             _init = true;
+
+            _worldManager = FindObjectOfType<WorldManager>();
             
             StartCoroutine(SpawnPlayer());
         }
@@ -45,7 +51,7 @@ namespace MainManagers
                     quaternion.identity)
                 .GetComponent<Player>();
 
-            _player.Init();
+            _player.Init(this);
         }
     }
 }

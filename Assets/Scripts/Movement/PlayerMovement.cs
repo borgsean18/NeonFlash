@@ -19,6 +19,12 @@ namespace Movement
         private Rigidbody2D _rb;
         private Animator _animator;
 
+        public bool CanMove
+        {
+            get => canMove;
+            set => canMove = value;
+        }
+
 
         private void Awake()
         {
@@ -37,6 +43,8 @@ namespace Movement
 
         private void Update()
         {
+            if (!canMove) return;
+            
             Jump();
 
 #if UNITY_EDITOR

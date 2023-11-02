@@ -1,4 +1,6 @@
 using Camera;
+using MainManagers;
+using Movement;
 using UnityEngine;
 
 namespace Characters
@@ -8,14 +10,34 @@ namespace Characters
         // Exposed Variables
         [Header("Settings")]
         [SerializeField] private CustomCamera playerCamera;
+        [SerializeField] private bool isImmortal;
+        
+        // Private Variables
+        private WorldManager worldManager;
+        private PlayerManager playerManager;
+        private PlayerMovement playerMovement;
 
 
-        public void Init()
+        public void Init(PlayerManager _playerManager)
         {
             if (playerCamera == null)
                 playerCamera = FindObjectOfType<CustomCamera>();
             
             playerCamera.SetCameraTarget(transform);
+
+            playerManager = _playerManager;
+            worldManager = playerManager.WorldManager;
+            playerMovement = GetComponent<PlayerMovement>();
+
+            worldManager.LoseGame.AddListener(Lose);
+        }
+
+
+        private void Lose()
+        {
+            if (isImmortal) return;
+            
+            playerMovement.CanMove = false;
         }
     }
 }
