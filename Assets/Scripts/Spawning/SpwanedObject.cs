@@ -8,20 +8,16 @@ namespace Spawning
     public class SpwanedObject : MonoBehaviour
     {
         // Private Vars
+        SpawningManager spawningManager;
         DifficultyObject difficultyObject;
         
         // Components
         public DifficultyObject DifficultyObject => difficultyObject;
-        
 
-        void Awake()
-        {
-            Init();
-        }
-        
 
-        private void Init()
+        public void Init(SpawningManager _spawningManager)
         {
+            spawningManager = _spawningManager;
             difficultyObject = GetComponent<DifficultyObject>();
         }
     }

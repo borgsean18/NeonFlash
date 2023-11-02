@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0
-  moveLeft: 0
+  moveWithWorld: 1
   _bufferSpeed: 4
 --- !u!114 &-2346502192852171934
 MonoBehaviour:

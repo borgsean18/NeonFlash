@@ -13,6 +13,8 @@ namespace Spawning
         // Exposed Variables
         [SerializeField] private float initSpawnCooldown;
         [SerializeField] private float timeBetweenSpawns;
+        [SerializeField] private Transform obstacleSpawnPoint;
+
         
         // Private Variables
         private WorldManager worldManager;
@@ -50,12 +52,15 @@ namespace Spawning
         {
             int totalSpawnedDifficulty = 0;
             
+            // Remove the Deleted objects from the list
+            spawnedObjects.RemoveAll(item => item == null);
+            
             foreach (var obj in spawnedObjects)
             {
                 totalSpawnedDifficulty += obj.DifficultyObject.DifficultyLevel;
             }
             
-            return difficultyManager.MaxDifficulty - totalSpawnedDifficulty;
+            return (int)difficultyManager.CurrentDifficulty - totalSpawnedDifficulty;
         }
 
 
@@ -66,8 +71,20 @@ namespace Spawning
             if (_spawnAllowance == 0)
                 return;
             
+            // Pick what to spawn based on allowance
+            
             // Spawn something in the currently active biome
             Biome activeBiome = worldManager.ActiveBiome;
+
+            List<GameObject> biomeObstacles = activeBiome.BiomeObstacles;
+
+            GameObject spawnedObject = Instantiate(biomeObstacles[0], obstacleSpawnPoint.position, Quaternion.identity);
+            
+            SpwanedObject spawnedObjComponent = spawnedObject.GetComponent<SpwanedObject>();
+
+            spawnedObjComponent.Init(this);
+
+            spawnedObjects.Add(spawnedObjComponent);
             
             StartCoroutine(SpawnCoolDown(timeBetweenSpawns));
         }
@@ -79,7 +96,7 @@ namespace Spawning
             
             yield return new WaitForSeconds(_coolDown);
             
-            canSpawn = true;
+             canSpawn = true;
         }
     }
 }

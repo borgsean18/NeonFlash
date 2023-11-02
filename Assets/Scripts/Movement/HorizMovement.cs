@@ -1,3 +1,5 @@
+using System;
+using MainManagers;
 using UnityEngine;
 
 namespace Movement
@@ -7,34 +9,66 @@ namespace Movement
         // Exposed Variables
         [Header("Settings")]
         [SerializeField] protected float movementSpeed;
-        [SerializeField] private bool moveLeft;
+        [SerializeField] protected bool moveWithWorld;
         
-        
+        // Private Variables
+        protected WorldManager worldManager;
+        private bool init;
+
+
+        protected virtual void Awake()
+        {
+            Init();
+        }
+
+
+        private void Init()
+        {
+            if (moveWithWorld)
+                worldManager = FindObjectOfType<WorldManager>();
+
+            init = true;
+        }
+
+
         // Update is called once per frame
         void Update()
         {
-            SideScroll();
+            if (init)
+                SideScroll();
+        }
+        
+        
+        protected virtual float MovementSpeed()
+        {
+            if (moveWithWorld)
+            {
+                movementSpeed = worldManager.CurrentSpeed * Time.deltaTime;
+
+                movementSpeed *= -1;
+            }
+		    
+            return movementSpeed;
         }
 
         
         /// <summary>
-        /// Virtual method used to move objects sideways only in the world,
-        /// depending on if moveLeft is true or false, objects will move in
-        /// that direction.
+        /// Virtual method used to move objects sideways only in the world.
+        /// Positive MovementSpeed will move the objects right, negative movement
+        /// speed will move them left.
         /// </summary>
-        protected virtual void SideScroll()
+        private void SideScroll()
         {
+            if (movementSpeed == 0 && !moveWithWorld) return;
+            
             // Calculate the movement distance based on speed and time
-            float movementDistance = movementSpeed * Time.deltaTime;
+            float movementDistance = MovementSpeed();
 
             // Get the current position of the GameObject
             Vector3 currentPosition = transform.position;
 
             // Calculate the new position
             Vector3 newPosition = currentPosition + new Vector3(movementDistance, 0, 0);
-
-            if (moveLeft)
-                newPosition.x *= -1;
 
             // Move the GameObject to the new position
             transform.position = newPosition;

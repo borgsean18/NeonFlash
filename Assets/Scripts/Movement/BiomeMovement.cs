@@ -8,54 +8,32 @@ namespace Movement
     public class BiomeMovement : HorizMovement
     {
 	    // Exposed Variables
+	    [Header("Biome Movement Variables")]
 	    [SerializeField] private float _bufferSpeed;
-	    
-	    
-	    // Private Variables
-	    private bool _init;
-	    private WorldManager _worldManager;
 
 
-	    private void Awake()
+	    protected override void Awake()
 	    {
+		    base.Awake();
+		    
 		    Init();
 	    }
 
 
 	    private void Init()
 	    {
-		    _worldManager = FindObjectOfType<WorldManager>();
-
-		    _init = true;
+		    moveWithWorld = true;
 	    }
 
 
-	    private float MovementSpeed()
+	    protected override float MovementSpeed()
 	    {
-		    movementSpeed = _worldManager.CurrentSpeed * Time.deltaTime;
+		    movementSpeed = worldManager.CurrentSpeed * Time.deltaTime;
 
 		    if (_bufferSpeed > 1)
 			    movementSpeed /= _bufferSpeed;
 		    
-		    return movementSpeed;
+		    return movementSpeed *= -1;
 	    }
-	    
-	    
-        protected override void SideScroll()
-        {
-	        if (!_init) return;
-	        
-            //Calculate the movement distance based on speed and time
-            float movementDistance = MovementSpeed();
-	        
-	        // Get the current position of the GameObject
-	        Vector3 currentPosition = transform.position;
-            
-	        // Calculate the new position
-	        Vector3 newPosition = currentPosition - new Vector3(movementDistance, 0, 0);
-            
-	        // Move the GameObject to the new position
-	        transform.position = newPosition;
-        }
     }
 }

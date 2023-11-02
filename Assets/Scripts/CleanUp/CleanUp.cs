@@ -6,6 +6,8 @@ namespace CleanUp
 {
     public class CleanUp : MonoBehaviour
     {
+        // Exposed Variables
+        [SerializeField] private bool hasCleanUpParent;
         [SerializeField] private UnityEvent cleanUpEvent;
         
         
@@ -21,10 +23,11 @@ namespace CleanUp
 
         private void Init()
         {
-            cleanParent = transform.parent.GetComponent<CleanParent>();
-
-            if (cleanParent != null)
+            if (hasCleanUpParent)
+            {
+                cleanParent = transform.parent.GetComponent<CleanParent>();
                 cleanUpEvent.AddListener(cleanParent.DestroySelf);
+            }
         }
         
 

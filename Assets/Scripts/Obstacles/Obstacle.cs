@@ -10,8 +10,8 @@ namespace Obstacles
 	{
 		// Components
 		private DifficultyObject difficultySettings;
-		private BoxCollider2D boxCollider2D;
 		private SpriteRenderer spriteRenderer;
+		private BoxCollider2D boxCollider2D;
 
 
 		private void Awake()
@@ -23,18 +23,18 @@ namespace Obstacles
 		private void Init()
 		{
 			difficultySettings = GetComponent<DifficultyObject>();
+			spriteRenderer = GetComponent<SpriteRenderer>();
 			
 			boxCollider2D = GetComponent<BoxCollider2D>();
 			boxCollider2D.size = spriteRenderer.bounds.size;
 
-			spriteRenderer = GetComponent<SpriteRenderer>();
 		}
 
 
-		private void OnCollisionEnter2D(Collision2D _col)
-		{
-			if(_col.gameObject.CompareTag("Player"))
-				Destroy(_col.gameObject);
-		}
+		// private void OnCollisionEnter2D(Collision2D _col)
+		// {
+		// 	if(_col.gameObject.CompareTag("Player"))
+		// 		Destroy(_col.gameObject);
+		// }
 	}
 }
