@@ -1,6 +1,5 @@
-using System;
-using System.Text;
-using Unity.VisualScripting;
+using Characters;
+using MainManagers;
 using UnityEngine;
 
 namespace Movement
@@ -15,24 +14,26 @@ namespace Movement
         [SerializeField] private float jumpForce;
         [SerializeField] private LayerMask jumpAbleLayers;
         
+        
         // Components
+        private Player player;
+        private GameManagerScript gameManagerScript;
         private Rigidbody2D _rb;
         private Animator _animator;
-        static readonly int Idle = Animator.StringToHash("Idle");
 
 
-        private void Awake()
-        {
-            Init();
-        }
-
-
-        private void Init()
+        public void Init(Player _player)
         {
             canMove = false;
+
+            player = _player;
+            gameManagerScript = player.GameManagerScript;
             
             _rb = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
+            
+            gameManagerScript.StartGame.AddListener(Run);
+            gameManagerScript.LoseGame.AddListener(Fall);
         }
 
 
@@ -56,7 +57,7 @@ namespace Movement
         }
 
 
-        public void Lose()
+        public void Fall()
         {
             canMove = false;
             
