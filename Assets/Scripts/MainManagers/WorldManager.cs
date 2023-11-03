@@ -106,7 +106,7 @@ namespace MainManagers
         }
 
 
-        public void PlayeGame()
+        public void PlayGame()
         {
             gameState = GameStates.Play;
             
