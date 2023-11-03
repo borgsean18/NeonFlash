@@ -41,7 +41,8 @@ namespace Characters
 
         private void EndRun()
         {
-            
+            if (gameManager.ImmortalDebugRun)
+                return;
         }
     }
 }

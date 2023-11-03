@@ -102,6 +102,13 @@ namespace MainManagers
         }
 
 
+        private void DebugImmortality()
+        {
+            if (immortalDebugRun)
+                loseGame.RemoveAllListeners();
+        }
+
+
         protected abstract void CalculateCurrentSpeed();
 
 

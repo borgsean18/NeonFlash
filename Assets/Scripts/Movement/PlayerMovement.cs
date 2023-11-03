@@ -49,7 +49,7 @@ namespace Movement
         }
 
 
-        public void Run()
+        private void Run()
         {
             canMove = true;
             
@@ -57,8 +57,11 @@ namespace Movement
         }
 
 
-        public void Fall()
+        private void Fall()
         {
+            if (gameManagerScript.ImmortalDebugRun)
+                return;
+            
             canMove = false;
             
             // set to hurt animation
