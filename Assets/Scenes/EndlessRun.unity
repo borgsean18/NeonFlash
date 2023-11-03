@@ -371,35 +371,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1287782931 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7670753064721814381, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
-  m_PrefabInstance: {fileID: 1760203484866687546}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1287782935 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
   m_PrefabInstance: {fileID: 1760203484866687546}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287782931}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9523af5cac0634483a21e23afa8e91e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1287782937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287782931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bebb5bd3c6f7ca64abb44e930672dec1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 2028041040}
 --- !u!1 &1499859217
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,10 +950,6 @@ PrefabInstance:
       propertyPath: startGameButton
       value: 
       objectReference: {fileID: 1046231875}
-    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
-      propertyPath: immortalDebugRun
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3285524995403224056, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1012,6 +990,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6102675502552726176, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 2028041040}
     - target: {fileID: 7670753064721814381, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: m_Name
       value: WorldManager
@@ -1019,10 +1001,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7670753064721814381, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1287782937}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
 --- !u!1001 &8949822880141582456
 PrefabInstance:

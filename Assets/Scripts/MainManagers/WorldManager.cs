@@ -8,15 +8,6 @@ using Random = UnityEngine.Random;
 
 namespace MainManagers
 {
-    public enum GameStates
-    {
-        Idle,
-        Play,
-        Pause,
-        Lose,
-        None
-    }
-    
     public class WorldManager : MonoBehaviour
     {
         // Exposed Vars
