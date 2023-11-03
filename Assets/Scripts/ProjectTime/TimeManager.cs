@@ -1,4 +1,5 @@
 using System;
+using MainManagers;
 using UnityEngine;
 
 namespace ProjectTime
@@ -9,13 +10,19 @@ namespace ProjectTime
         public static TimeManager Singleton;
 
         // Private Variables
+        private WorldManager worldManager;
         private float _timePassed;
-        private bool _paused;
-
+        
         // Properties
         public float TimePassed => _timePassed;
 
-        
+        public WorldManager WorldManager
+        {
+            get => worldManager;
+            set => worldManager = value;
+        }
+
+
         private void Awake()
         {
             Singleton = this;
@@ -24,7 +31,7 @@ namespace ProjectTime
 
         private void Update()
         {
-            if (!_paused)
+            if (worldManager.GameState == GameStates.Play)
                 _timePassed += Time.deltaTime;
         }
     }

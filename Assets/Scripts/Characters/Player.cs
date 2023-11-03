@@ -28,13 +28,23 @@ namespace Characters
             worldManager = playerManager.WorldManager;
             playerMovement = GetComponent<PlayerMovement>();
 
+            worldManager.StartGame.AddListener(StartGame);
             worldManager.LoseGame.AddListener(Lose);
+        }
+
+
+        private void StartGame()
+        {
+            playerMovement.Run();
         }
 
 
         private void Lose()
         {
-            playerMovement.CanMove = false;
+            if (worldManager.ImmortalDebugRun)
+                return;
+            
+            playerMovement.Lose();
         }
     }
 }

@@ -8,6 +8,15 @@ using Random = UnityEngine.Random;
 
 namespace MainManagers
 {
+    public enum GameStates
+    {
+        Idle,
+        Play,
+        Pause,
+        Lose,
+        None
+    }
+    
     public class WorldManager : MonoBehaviour
     {
         // Exposed Vars
@@ -28,7 +37,11 @@ namespace MainManagers
         [SerializeField] private AnimationCurve speedMultiplier;
         [SerializeField] private float minutesTillMaxSpeed;
         
+        [Header("UI")]
+        [SerializeField] private GameObject startGameButton;
+        
         [Header("Events")]
+        [SerializeField] private UnityEvent startGame;
         [SerializeField] private UnityEvent loseGame;
         
         // Private Vars
@@ -41,18 +54,12 @@ namespace MainManagers
         
         // Properties
         public float CurrentSpeed => _currentSpeed;
+        public bool ImmortalDebugRun => immortalDebugRun;
         public Biome ActiveBiome => _activeBiome;
+        public UnityEvent StartGame => startGame;
         public UnityEvent LoseGame => loseGame;
         public GameStates GameState => gameState;
         
-        // Enums
-        public enum GameStates
-        {
-            Play,
-            Pause,
-            Lose,
-            None
-        }
 
 
         private void Awake()
@@ -63,22 +70,25 @@ namespace MainManagers
 
         private void Init()
         {
-            gameState = GameStates.Play;
+            gameState = GameStates.Idle;
             
             // Add Lose method to the list of methods to be executed by the WorldManagers LoseGame event
             loseGame.AddListener(Lose);
             
             SetUpNewBiome(worldInitPoint);
+
+            TimeManager.Singleton.WorldManager = this;
         }
 
 
         private void Update()
         {
-            if (immortalDebugRun)
-                LoseGame.RemoveAllListeners();
-            
             switch (gameState)
             {
+                case GameStates.Idle:
+                    // Wait for player to start the run
+                    break;
+                
                 case GameStates.Play:
                     CalculateCurrentSpeed();
                     break;
@@ -93,6 +103,16 @@ namespace MainManagers
                 default:
                     break;
             }
+        }
+
+
+        public void PlayeGame()
+        {
+            gameState = GameStates.Play;
+            
+            startGameButton.gameObject.SetActive(false);
+            
+            startGame.Invoke();
         }
 
 
@@ -151,6 +171,9 @@ namespace MainManagers
 
         private void Lose()
         {
+            if (immortalDebugRun)
+                return;
+            
             // Set Lose state
             gameState = GameStates.Lose;
             

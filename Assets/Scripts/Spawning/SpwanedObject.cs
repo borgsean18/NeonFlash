@@ -7,6 +7,9 @@ namespace Spawning
     [RequireComponent(typeof(DifficultyObject))]
     public class SpwanedObject : MonoBehaviour
     {
+        // Exposed Variables
+        [SerializeField] private Vector3 startPosition; 
+        
         // Private Vars
         SpawningManager spawningManager;
         DifficultyObject difficultyObject;
@@ -19,6 +22,14 @@ namespace Spawning
         {
             spawningManager = _spawningManager;
             difficultyObject = GetComponent<DifficultyObject>();
+
+            PositionObstacle();
+        }
+
+
+        private void PositionObstacle()
+        {
+            transform.position = startPosition;
         }
     }
 }

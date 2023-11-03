@@ -43,7 +43,7 @@ namespace Spawning
         private void Update()
         {
             // If the spawn cooldown is over and the game is still playing
-            if (canSpawn && worldManager.GameState == WorldManager.GameStates.Play)
+            if (canSpawn && worldManager.GameState == GameStates.Play)
                 Spawn(CanSpawn());
         }
         

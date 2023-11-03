@@ -18,12 +18,7 @@ namespace Movement
         // Components
         private Rigidbody2D _rb;
         private Animator _animator;
-
-        public bool CanMove
-        {
-            get => canMove;
-            set => canMove = value;
-        }
+        static readonly int Idle = Animator.StringToHash("Idle");
 
 
         private void Awake()
@@ -34,7 +29,7 @@ namespace Movement
 
         private void Init()
         {
-            canMove = true;
+            canMove = false;
             
             _rb = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
@@ -50,6 +45,23 @@ namespace Movement
 #if UNITY_EDITOR
             DebugChecks();
 #endif
+        }
+
+
+        public void Run()
+        {
+            canMove = true;
+            
+            SprintState();
+        }
+
+
+        public void Lose()
+        {
+            canMove = false;
+            
+            // set to hurt animation
+            IdleState();
         }
         
         
@@ -100,12 +112,23 @@ namespace Movement
 
         private void SprintState()
         {
+            _animator.SetBool("Run", true);
             _animator.SetBool("Jump", false);
+            _animator.SetBool("Idle", false);
         }
 
         private void JumpState()
         {
             _animator.SetBool("Jump", true);
+            _animator.SetBool("Run", false);
+            _animator.SetBool("Idle", false);
+        }
+
+        private void IdleState()
+        {
+            _animator.SetBool("Idle", true);
+            _animator.SetBool("Jump", false);
+            _animator.SetBool("Run", false);
         }
 
         #endregion
