@@ -30,6 +30,9 @@ namespace Difficulty
 		/// </summary>
 		private void CalculateDifficulty()
 		{
+			// Uses the time passed to calculate difficulty
+			if (!TimeManager.Singleton.IsInit) return;
+			
 			// If reached max speed, return max speed value
 			if (_currentDifficulty >= maxDifficulty) 
 				_currentDifficulty = maxDifficulty;

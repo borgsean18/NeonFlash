@@ -697,6 +697,37 @@ MonoBehaviour:
   xOffsetToPlayer: 7.5
   freezeYPos: 1
   minYValue: 4
+--- !u!1 &1917055222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3192772210272541711, guid: 25cfae9e84093473a94842dbb8ad8c9a, type: 3}
+  m_PrefabInstance: {fileID: 8949822880141582456}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1917055223 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8303748757399620799, guid: 25cfae9e84093473a94842dbb8ad8c9a, type: 3}
+  m_PrefabInstance: {fileID: 8949822880141582456}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917055222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1bbdfdecc15b4ea69f6c6879f871996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1917055225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917055222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a499e25c729260449ef06b0f3498cd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldManager: {fileID: 1287782935}
+  gameManager: {fileID: 0}
+  playerManager: {fileID: 1917055223}
 --- !u!1 &2028041038
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,11 +1025,20 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 2028041040}
+    - target: {fileID: 6631349936392761968, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631349936392761968, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: worldManager
+      value: 
+      objectReference: {fileID: 1287782935}
     - target: {fileID: 7670753064721814381, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: m_Name
       value: WorldManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8949676686019810890, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1074,7 +1114,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3192772210272541711, guid: 25cfae9e84093473a94842dbb8ad8c9a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1917055225}
   m_SourcePrefab: {fileID: 100100000, guid: 25cfae9e84093473a94842dbb8ad8c9a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

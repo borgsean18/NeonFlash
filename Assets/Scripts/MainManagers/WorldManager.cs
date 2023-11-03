@@ -8,15 +8,11 @@ using Random = UnityEngine.Random;
 
 namespace MainManagers
 {
-    public class WorldManager : MonoBehaviour
+    public class WorldManager : GameManagerScript
     {
         // Exposed Vars
         [Header("General Settings")]
-        [SerializeField] private GameStates gameState;
         [SerializeField] private Vector3 worldInitPoint;
-        
-        [Header("Debug Settings")]
-        [SerializeField] private bool immortalDebugRun;
         
         [Header("Biome Settings")]
         [SerializeField, Min(150)] private int minSegmentsPerBiome;
@@ -28,82 +24,22 @@ namespace MainManagers
         [SerializeField] private AnimationCurve speedMultiplier;
         [SerializeField] private float minutesTillMaxSpeed;
         
-        [Header("UI")]
-        [SerializeField] private GameObject startGameButton;
-        
-        [Header("Events")]
-        [SerializeField] private UnityEvent startGame;
-        [SerializeField] private UnityEvent loseGame;
-        
         // Private Vars
         private GameObject _activeBiomeObject;
         private Biome _activeBiome;
-
         private float _currentSpeed;
-
         private int _segmentsToSpawn;
         
         // Properties
         public float CurrentSpeed => _currentSpeed;
-        public bool ImmortalDebugRun => immortalDebugRun;
         public Biome ActiveBiome => _activeBiome;
-        public UnityEvent StartGame => startGame;
-        public UnityEvent LoseGame => loseGame;
-        public GameStates GameState => gameState;
-        
 
 
-        private void Awake()
+        protected override void Init()
         {
-            Init();
-        }
-
-
-        private void Init()
-        {
-            gameState = GameStates.Idle;
-            
-            // Add Lose method to the list of methods to be executed by the WorldManagers LoseGame event
-            loseGame.AddListener(Lose);
+            base.Init();
             
             SetUpNewBiome(worldInitPoint);
-
-            TimeManager.Singleton.WorldManager = this;
-        }
-
-
-        private void Update()
-        {
-            switch (gameState)
-            {
-                case GameStates.Idle:
-                    // Wait for player to start the run
-                    break;
-                
-                case GameStates.Play:
-                    CalculateCurrentSpeed();
-                    break;
-                case GameStates.Pause:
-                    
-                    break;
-                case GameStates.Lose:
-                    SlowToHalt();
-                    break;
-                case GameStates.None:
-                    break;
-                default:
-                    break;
-            }
-        }
-
-
-        public void PlayGame()
-        {
-            gameState = GameStates.Play;
-            
-            startGameButton.gameObject.SetActive(false);
-            
-            startGame.Invoke();
         }
 
 
@@ -132,7 +68,7 @@ namespace MainManagers
         /// <summary>
         /// Calculate the speed the world should be moving at
         /// </summary>
-        private void CalculateCurrentSpeed()
+        protected override void CalculateCurrentSpeed()
         {
             // If reached max speed, return max speed value
             if (_currentSpeed >= maxSpeed) 
@@ -146,7 +82,7 @@ namespace MainManagers
         /// <summary>
         /// Gradually but Quickly stop the World Speed
         /// </summary>
-        private void SlowToHalt()
+        protected override void SlowToHalt()
         {
             // If reached max speed, return max speed value
             if (_currentSpeed < 0.5f)
@@ -157,18 +93,6 @@ namespace MainManagers
 
             // Current speed is Max Speed * point in the animation curve reached since the run started
             _currentSpeed -= (_currentSpeed / 2) * (Time.deltaTime * 4);
-        }
-
-
-        private void Lose()
-        {
-            if (immortalDebugRun)
-                return;
-            
-            // Set Lose state
-            gameState = GameStates.Lose;
-            
-            // Do score related things
         }
     }
 }

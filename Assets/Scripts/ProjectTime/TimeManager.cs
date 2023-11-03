@@ -10,28 +10,32 @@ namespace ProjectTime
         public static TimeManager Singleton;
 
         // Private Variables
-        private WorldManager worldManager;
+        private GameManagerScript gameManager;
         private float _timePassed;
+        private bool _init;
         
         // Properties
+        public bool IsInit => _init;
         public float TimePassed => _timePassed;
 
-        public WorldManager WorldManager
-        {
-            get => worldManager;
-            set => worldManager = value;
-        }
 
-
-        private void Awake()
+        void Awake()
         {
             Singleton = this;
         }
 
 
+        public void Init(GameManagerScript _gameManagerScript)
+        {
+            gameManager = _gameManagerScript;
+            
+            _init = true;
+        }
+
+
         private void Update()
         {
-            if (worldManager.GameState == GameStates.Play)
+            if (_init && gameManager.GameState == GameStates.Play)
                 _timePassed += Time.deltaTime;
         }
     }
