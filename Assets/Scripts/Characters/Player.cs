@@ -7,11 +7,8 @@ namespace Characters
 {
     public class Player : MonoBehaviour
     {
-        // Exposed Variables
-        [Header("Settings")]
-        [SerializeField] private CustomCamera playerCamera;
-        
         // Private Variables
+        private GameManagerScript gameManager;
         private WorldManager worldManager;
         private PlayerManager playerManager;
         private PlayerMovement playerMovement;
@@ -19,17 +16,16 @@ namespace Characters
 
         public void Init(PlayerManager _playerManager)
         {
-            if (playerCamera == null)
-                playerCamera = FindObjectOfType<CustomCamera>();
-            
-            playerCamera.SetCameraTarget(transform);
-
             playerManager = _playerManager;
-            worldManager = playerManager.WorldManager;
             playerMovement = GetComponent<PlayerMovement>();
+            
+            playerManager.PlayerCamera.SetCameraTarget(transform);
 
-            worldManager.StartGame.AddListener(StartGame);
-            worldManager.LoseGame.AddListener(Lose);
+            gameManager = playerManager.WorldManager;
+            worldManager = playerManager.WorldManager;
+
+            gameManager.StartGame.AddListener(StartGame);
+            gameManager.LoseGame.AddListener(Lose);
         }
 
 
@@ -41,7 +37,7 @@ namespace Characters
 
         private void Lose()
         {
-            if (worldManager.ImmortalDebugRun)
+            if (gameManager.ImmortalDebugRun)
                 return;
             
             playerMovement.Lose();

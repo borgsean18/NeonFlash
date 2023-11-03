@@ -17,6 +17,7 @@ namespace Spawning
 
         
         // Private Variables
+        private GameManagerScript gameManager;
         private WorldManager worldManager;
         private DifficultyManager difficultyManager;
         private List<SpwanedObject> spawnedObjects;
@@ -31,6 +32,7 @@ namespace Spawning
 
         private void Init()
         {
+            gameManager = GetComponent<GameManagerScript>();
             worldManager = GetComponent<WorldManager>();
             difficultyManager = GetComponent<DifficultyManager>();
 
@@ -43,7 +45,7 @@ namespace Spawning
         private void Update()
         {
             // If the spawn cooldown is over and the game is still playing
-            if (canSpawn && worldManager.GameState == GameStates.Play)
+            if (canSpawn && gameManager.GameState == GameStates.Play)
                 Spawn(CanSpawn());
         }
         

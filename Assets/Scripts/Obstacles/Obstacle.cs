@@ -8,7 +8,7 @@ namespace Obstacles
 	public class Obstacle : MonoBehaviour
 	{
 		// Components
-		private WorldManager worldManager;
+		private GameManagerScript gameManager;
 		private DifficultyObject difficultySettings;
 		private SpriteRenderer spriteRenderer;
 		private BoxCollider2D boxCollider2D;
@@ -22,7 +22,7 @@ namespace Obstacles
 
 		private void Init()
 		{
-			worldManager = FindObjectOfType<WorldManager>();
+			gameManager = FindObjectOfType<GameManagerScript>();
 			
 			difficultySettings = GetComponent<DifficultyObject>();
 			spriteRenderer = GetComponent<SpriteRenderer>();
@@ -37,7 +37,7 @@ namespace Obstacles
 			// If the obstacle hit the player
 			if (_other.gameObject.CompareTag("Player"))
 			{
-				worldManager.LoseGame.Invoke();
+				gameManager.LoseGame.Invoke();
 			}
 		}
 	}

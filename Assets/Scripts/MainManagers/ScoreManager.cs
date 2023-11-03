@@ -10,7 +10,7 @@ namespace MainManagers
         [SerializeField] private TextMeshProUGUI scoreText;
         
         // Private Variables
-        private WorldManager worldManager;
+        private GameManagerScript gameManager;
         private float score;
 
 
@@ -22,15 +22,15 @@ namespace MainManagers
 
         private void Init()
         {
-            worldManager = GetComponent<WorldManager>();
+            gameManager = GetComponent<GameManagerScript>();
             
-            worldManager.LoseGame.AddListener(Lose);
+            gameManager.LoseGame.AddListener(Lose);
         }
 
 
         void Update()
         {
-            if (worldManager.GameState == GameStates.Play)
+            if (gameManager.GameState == GameStates.Play)
             {
                 score += Time.deltaTime;
 

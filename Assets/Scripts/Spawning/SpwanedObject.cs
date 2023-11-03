@@ -8,11 +8,13 @@ namespace Spawning
     public class SpwanedObject : MonoBehaviour
     {
         // Exposed Variables
-        [SerializeField] private Vector3 startPosition; 
+        [SerializeField] private Vector3 startPosition;
+        
         
         // Private Vars
         SpawningManager spawningManager;
         DifficultyObject difficultyObject;
+        
         
         // Components
         public DifficultyObject DifficultyObject => difficultyObject;
