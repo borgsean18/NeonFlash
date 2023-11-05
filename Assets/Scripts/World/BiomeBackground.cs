@@ -10,6 +10,7 @@ namespace World
     {
         // Exposed Variables
         [SerializeField] private GameObject bgObjectPrefab;
+        [SerializeField] private Vector2 spawnPos;
         
         // Private Variables
         private Biome attachedBiome;
@@ -38,7 +39,7 @@ namespace World
             biomeEndXPos = attachedBiome.ActiveSegments[^1].XPos;
 
             // Create a Vector 3 for the spawn point of the next BG Image
-            Vector3 spawnPoint = new Vector3(0, 2.1f);
+            Vector3 spawnPoint = spawnPos;
 
             // If there are bg images attached to this biome, spawn the next bg image at the end of the last existing one
             if (activeBackgroundObjects.Count > 0)

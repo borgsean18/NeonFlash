@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgObjectPrefab: {fileID: 6929397873514694936, guid: a1ca5c2f7c4264cb5b9d8c57c736679e, type: 3}
+  spawnPos: {x: 0, y: 4.94}
 --- !u!114 &7964921963516797252
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -81,7 +81,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5.76, y: 3.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -100,14 +100,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteVariations:
-  - {fileID: 21300000, guid: 33cc73d21437c41d0abb3d38c94d4dc7, type: 3}
-  - {fileID: 21300000, guid: ec04c7f0a4c4240d483e2ee6b05e53fb, type: 3}
-  - {fileID: 21300000, guid: 9d99990f1d22744d3ac34792933a848e, type: 3}
-  - {fileID: 21300000, guid: 9484208977f5d469abc77055769e21cc, type: 3}
-  - {fileID: 21300000, guid: fcf8a6ed2bd71498ba5b57102351f8b4, type: 3}
-  - {fileID: 21300000, guid: fb051984f23ab44b6aaa13b0a0ba1a21, type: 3}
-  - {fileID: 21300000, guid: aa9b6398c6639486890369f96bc280ea, type: 3}
-  - {fileID: 21300000, guid: c9f4a391d2f8e4e85990cbf8287cfcbb, type: 3}
+  - {fileID: 21300000, guid: c286bf4e6d1f943d1b316cda09096220, type: 3}
+  - {fileID: 21300000, guid: 0255d37f645284241b3946bda0459b11, type: 3}
+  - {fileID: 21300000, guid: 68a97685137964a54a0135e01f0045e4, type: 3}
+  - {fileID: 21300000, guid: 2d2b48faf8e1b4838b7f707af1ed6871, type: 3}
+  - {fileID: 21300000, guid: 119525be2642a4e0fa36255603e89fe8, type: 3}
+  - {fileID: 21300000, guid: fb25c6c4a1472446981817c354538eee, type: 3}
+  - {fileID: 21300000, guid: 4929f967d573644e0accf8c666335b6f, type: 3}
+  - {fileID: 21300000, guid: 2a393da6089294b849e80fb7368cf909, type: 3}
 --- !u!61 &4107465518165896733
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -145,7 +145,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 5.76, y: 3.24}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 5.76, y: 3.24}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

@@ -319,7 +319,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5.76, y: 3.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -702,17 +702,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3192772210272541711, guid: 25cfae9e84093473a94842dbb8ad8c9a, type: 3}
   m_PrefabInstance: {fileID: 8949822880141582456}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1917055223 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8303748757399620799, guid: 25cfae9e84093473a94842dbb8ad8c9a, type: 3}
-  m_PrefabInstance: {fileID: 8949822880141582456}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1917055222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1bbdfdecc15b4ea69f6c6879f871996, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1917055225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,9 +714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a499e25c729260449ef06b0f3498cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldManager: {fileID: 1287782935}
-  gameManager: {fileID: 0}
-  playerManager: {fileID: 1917055223}
 --- !u!1 &2028041038
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,6 +967,14 @@ PrefabInstance:
       propertyPath: startGameButton
       value: 
       objectReference: {fileID: 1046231875}
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: immortalDebugRun
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: worldInitPoint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3285524995403224056, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
