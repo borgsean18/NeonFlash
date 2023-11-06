@@ -1,6 +1,8 @@
+using System.Collections;
 using ProjectTime;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 namespace MainManagers
 {
@@ -26,6 +28,8 @@ namespace MainManagers
         
         [Header("UI")]
         [SerializeField] private GameObject startGameButton;
+        [SerializeField] private float gameLoadTime;
+        [SerializeField] private Image gameLoaderBackGround;
         
         
         // Private Variables
@@ -106,5 +110,12 @@ namespace MainManagers
 
 
         protected abstract void SlowToHalt();
+
+
+        private IEnumerator LoadGameCoRoutine()
+        {
+            yield return new WaitForSeconds(gameLoadTime);
+            // gameLoaderBackGround.colo
+        }
     }
 }
