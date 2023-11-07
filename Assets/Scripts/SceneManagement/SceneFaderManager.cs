@@ -1,4 +1,5 @@
 using System.Collections;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,16 +14,7 @@ namespace SceneManagement
         
         
         // Private Variables
-        private Image faderImage;
-        private FaderState faderState;
-        
-        
-        // Enum
-        private enum FaderState
-        {
-            None,
-            Fade
-        }
+        private Animator _animator;
 
 
 
@@ -37,34 +29,37 @@ namespace SceneManagement
             // Keep this object in all scenes
             DontDestroyOnLoad(gameObject);
 
-            faderImage = faderObject.GetComponent<Image>();
-        }
-
-
-        private void Update()
-        {
-            switch (faderState)
-            {
-                case FaderState.Fade:
-                    break;
-                
-                case FaderState.None:
-                    break;
-            }
+            _animator = GetComponent<Animator>();
         }
 
 
         public void TransitionToScene(string _sceneName)
         {
-            //SceneManager.LoadScene(_sceneName, LoadSceneMode.Single);
+            StartCoroutine(FadeIn(_sceneName));
         }
 
 
-        private IEnumerator Fade()
+        private IEnumerator FadeIn([CanBeNull] string _sceneName)
         {
-            faderState = FaderState.Fade;
-            
+            _animator.SetTrigger("FadeIn");
+
+            if (_sceneName == "")
+                yield return null;
+
             yield return new WaitForSeconds(fadeTime);
+                ChangeScene(_sceneName);
+        }
+
+
+        private void FadeOut()
+        {
+            
+        }
+
+
+        private void ChangeScene(string _sceneName)
+        {
+            SceneManager.LoadScene(_sceneName);
         }
     }
 }

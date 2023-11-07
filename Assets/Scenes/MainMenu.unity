@@ -884,6 +884,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2079745883}
   - component: {fileID: 2079745884}
+  - component: {fileID: 2079745885}
   m_Layer: 0
   m_Name: SceneFader
   m_TagString: Untagged
@@ -921,6 +922,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faderObject: {fileID: 997236100}
   fadeTime: 0.3
+--- !u!95 &2079745885
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079745882}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b2738dd08c8bf104bba235042e7d74ff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

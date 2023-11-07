@@ -23,6 +23,7 @@ namespace SceneManagement
 
         public void PlayGame()
         {
+            // Fade to scene through 
             sceneFaderManager.TransitionToScene("EndlessRun");
         }
     }
