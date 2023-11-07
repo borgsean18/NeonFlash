@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SceneManagement
 {
-    public class MainMenuManager : MonoBehaviour
+    public class MainMenuManager : SceneScript
     {
         // Private Variables
         private SceneFaderManager sceneFaderManager;
