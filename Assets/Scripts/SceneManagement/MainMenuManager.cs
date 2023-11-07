@@ -1,13 +1,29 @@
+using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace SceneManagement
 {
     public class MainMenuManager : MonoBehaviour
     {
+        // Private Variables
+        private SceneFaderManager sceneFaderManager;
+
+
+        private void Awake()
+        {
+            Init();
+        }
+
+
+        private void Init()
+        {
+            sceneFaderManager = FindObjectOfType<SceneFaderManager>();
+        }
+
+
         public void PlayGame()
         {
-            SceneManager.LoadScene("EndlessRun", LoadSceneMode.Single);
+            sceneFaderManager.TransitionToScene("EndlessRun");
         }
     }
 }
