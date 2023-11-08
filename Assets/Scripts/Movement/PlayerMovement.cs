@@ -103,10 +103,12 @@ namespace Movement
         
         public void Jump()
         {
+#if UNITY_WEBGL
             if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
             {
                 _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             }
+#endif
         }
 
         #endregion
