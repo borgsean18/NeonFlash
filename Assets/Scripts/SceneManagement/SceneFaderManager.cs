@@ -2,7 +2,6 @@ using System.Collections;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace SceneManagement
 {
@@ -15,12 +14,14 @@ namespace SceneManagement
         
         // Private Variables
         private Animator _animator;
+        private bool init;
 
 
 
         private void Awake()
         {
-            Init();
+            if (!init)
+                Init();
         }
 
 
@@ -30,6 +31,8 @@ namespace SceneManagement
             DontDestroyOnLoad(gameObject);
 
             _animator = GetComponent<Animator>();
+
+            init = true;
         }
 
 
@@ -41,7 +44,7 @@ namespace SceneManagement
 
         private IEnumerator FadeIn([CanBeNull] string _sceneName)
         {
-            _animator.SetTrigger("FadeIn");
+            _animator.SetBool("FadeIn", true);
 
             if (_sceneName == "")
                 yield return null;
@@ -51,9 +54,27 @@ namespace SceneManagement
         }
 
 
-        private void FadeOut()
+        public void CompleteSceneTransition()
         {
+            StartCoroutine(FadeOut());
+        }
+
+
+        private IEnumerator FadeOut()
+        {
+            if (!init)
+                Init();
             
+            if (!_animator.GetBool("FadeIn"))
+                yield return null;
+            
+            yield return new WaitForSeconds(1f);
+            
+            if(_animator.GetBool("FadeIn"))
+            {
+                _animator.SetBool("FadeOut", true);
+                _animator.SetBool("FadeIn", false);
+            }
         }
 
 

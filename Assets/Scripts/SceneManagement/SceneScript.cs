@@ -1,19 +1,24 @@
-using System;
 using UnityEngine;
 
 namespace SceneManagement
 {
     public class SceneScript : MonoBehaviour
     {
-        void OnEnable()
+        // Private Variables
+        protected SceneFaderManager sceneFaderManager;
+
+
+        private void Awake()
         {
-            
+            Init();
         }
 
 
-        void OnDisable()
+        protected virtual void Init()
         {
+            sceneFaderManager = FindObjectOfType<SceneFaderManager>();
             
+            sceneFaderManager.CompleteSceneTransition();
         }
     }
 }
