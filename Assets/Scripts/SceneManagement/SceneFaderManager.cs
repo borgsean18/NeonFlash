@@ -66,7 +66,7 @@ namespace SceneManagement
                 Init();
             
             if (!_animator.GetBool("FadeIn"))
-                yield return null;
+                yield break;
             
             yield return new WaitForSeconds(1f);
             
