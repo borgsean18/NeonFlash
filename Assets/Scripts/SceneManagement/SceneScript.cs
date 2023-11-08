@@ -18,7 +18,8 @@ namespace SceneManagement
         {
             sceneFaderManager = FindObjectOfType<SceneFaderManager>();
             
-            sceneFaderManager.CompleteSceneTransition();
+            if (sceneFaderManager != null)
+                sceneFaderManager.CompleteSceneTransition();
         }
     }
 }
