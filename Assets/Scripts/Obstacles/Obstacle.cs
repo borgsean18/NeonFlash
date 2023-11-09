@@ -4,14 +4,10 @@ using MainManagers;
 
 namespace Obstacles
 {
-	[RequireComponent(typeof(DifficultyObject))]
 	public class Obstacle : MonoBehaviour
 	{
 		// Components
 		private GameManagerScript gameManager;
-		private DifficultyObject difficultySettings;
-		private SpriteRenderer spriteRenderer;
-		private BoxCollider2D boxCollider2D;
 
 
 		private void Awake()
@@ -23,12 +19,6 @@ namespace Obstacles
 		private void Init()
 		{
 			gameManager = FindObjectOfType<GameManagerScript>();
-			
-			difficultySettings = GetComponent<DifficultyObject>();
-			spriteRenderer = GetComponent<SpriteRenderer>();
-			
-			boxCollider2D = GetComponent<BoxCollider2D>();
-			boxCollider2D.size = spriteRenderer.bounds.size;
 		}
 
 
