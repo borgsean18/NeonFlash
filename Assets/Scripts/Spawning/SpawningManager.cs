@@ -25,7 +25,7 @@ namespace Spawning
         private WorldManager worldManager;
         private DifficultyManager difficultyManager;
         private List<SpwanedObject> spawnedObjects;
-        private bool canSpawn;
+        private bool spawnCooldownActive;
 
 
         private void Awake()
@@ -49,7 +49,7 @@ namespace Spawning
         private void Update()
         {
             // If the spawn cooldown is over and the game is still playing
-            if (canSpawn && gameManager.GameState == GameStates.Play)
+            if (!spawnCooldownActive && gameManager.GameState == GameStates.Play)
                 Spawn(CanSpawn());
         }
         
@@ -116,11 +116,11 @@ namespace Spawning
 
         private IEnumerator SpawnCoolDown(float _coolDown)
         {
-            canSpawn = false;
+            spawnCooldownActive = true;
             
             yield return new WaitForSeconds(Random.Range(_coolDown / 2.5f, _coolDown));
             
-            canSpawn = true;
+            spawnCooldownActive = false;
         }
 
 
