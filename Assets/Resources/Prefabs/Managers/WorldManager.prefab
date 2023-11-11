@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3285524995403224056}
-  - component: {fileID: 8949676686019810890}
   - component: {fileID: 2180113981751118403}
   - component: {fileID: 4218113588272578260}
   - component: {fileID: 274122551491125627}
@@ -37,18 +36,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8949676686019810890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7670753064721814381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee7c7c1027f669644a2c38c4ea94ab03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2180113981751118403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,9 +48,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9523af5cac0634483a21e23afa8e91e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameState: 0
+  startGame:
+    m_PersistentCalls:
+      m_Calls: []
+  pauseGame:
+    m_PersistentCalls:
+      m_Calls: []
+  loseGame:
+    m_PersistentCalls:
+      m_Calls: []
+  immortalDebugRun: 1
+  startGameButton: {fileID: 0}
+  gameLoadTime: 0
   worldInitPoint: {x: -7, y: 0, z: 0}
-  immortalDebugRun: 0
   minSegmentsPerBiome: 150
   maxSegmentsPerBiome: 250
   biomePrefabs:
@@ -94,13 +91,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   minutesTillMaxSpeed: 1
-  startGameButton: {fileID: 0}
-  startGame:
-    m_PersistentCalls:
-      m_Calls: []
-  loseGame:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &4218113588272578260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDifficulty: 10
-  minutesTillMaxDifficulty: 5
+  minutesTillMaxDifficulty: 1.5
   difficultyCurveOverTime:
     serializedVersion: 2
     m_Curve:
@@ -154,6 +144,7 @@ MonoBehaviour:
   initSpawnCooldown: 5
   timeBetweenSpawns: 1
   obstacleSpawnPoint: {fileID: 0}
+  minDistanceBetweenSpawns: 5
 --- !u!114 &2942654252123249383
 MonoBehaviour:
   m_ObjectHideFlags: 0

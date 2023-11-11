@@ -11,9 +11,13 @@ namespace Spawning
     public class SpawningManager : MonoBehaviour
     {
         // Exposed Variables
+        [Header("Timers")]
         [SerializeField] private float initSpawnCooldown;
         [SerializeField] private float timeBetweenSpawns;
+        
+        [Header("Positioning")]
         [SerializeField] private Transform obstacleSpawnPoint;
+        [SerializeField] private float minDistanceBetweenSpawns;
 
         
         // Private Variables
@@ -85,6 +89,8 @@ namespace Spawning
             spawnedObjComponent.Init(this);
 
             spawnedObjects.Add(spawnedObjComponent);
+
+            DistanceSpawns();
             
             StartCoroutine(SpawnCoolDown(timeBetweenSpawns));
         }
@@ -112,9 +118,41 @@ namespace Spawning
         {
             canSpawn = false;
             
-            yield return new WaitForSeconds(Random.Range(_coolDown / 2, _coolDown));
+            yield return new WaitForSeconds(Random.Range(_coolDown / 2.5f, _coolDown));
             
             canSpawn = true;
+        }
+
+
+        /// <summary>
+        /// Purpose of this method is to space out spawned objects to never have any spawns
+        /// be too close to each other
+        /// </summary>
+        private void DistanceSpawns()
+        {
+            // Do nothing if theres just 1 or less spawns
+            if (spawnedObjects.Count <= 1) return;
+
+            // Get the last 2 spawned objects
+            var lastSpawned = spawnedObjects[^1];
+            var secondLastSpawned = spawnedObjects[^2];
+
+            // Get a reference to their transforms
+            Transform lastSpawnedTransform = lastSpawned.transform;
+            Transform secondLastSpawnedTransform = secondLastSpawned.transform;
+
+            // Check the distance between them
+            float distance = Vector2.Distance(lastSpawnedTransform.position, 
+                secondLastSpawnedTransform.position);
+
+            // Do nothing if the last 2 spawns are already spaced enough
+            if (distance >= minDistanceBetweenSpawns)
+                return;
+
+            // Space them out to the minimum allowed spacing
+            Vector2 newPos = lastSpawnedTransform.position;
+            newPos.x = secondLastSpawnedTransform.position.x + minDistanceBetweenSpawns;
+            lastSpawnedTransform.position = newPos;
         }
     }
 }
