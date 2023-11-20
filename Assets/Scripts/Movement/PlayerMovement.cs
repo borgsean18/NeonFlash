@@ -1,4 +1,5 @@
 using Characters;
+using General;
 using MainManagers;
 using UnityEngine;
 
@@ -15,9 +16,13 @@ namespace Movement
         [SerializeField] private LayerMask jumpAbleLayers;
         
         
-        // Components
+        // Private Vars
         private Player player;
+        private TouchDetector touchDetector;
         private GameManagerScript gameManagerScript;
+        
+        
+        // Components
         private Rigidbody2D _rb;
         private Animator _animator;
 
@@ -34,18 +39,19 @@ namespace Movement
             
             gameManagerScript.StartGame.AddListener(Run);
             gameManagerScript.LoseGame.AddListener(Fall);
+
+            touchDetector = FindObjectOfType<TouchDetector>();
+            touchDetector.AddPlayTouchBehaviour(Jump);
         }
 
 
         private void Update()
         {
-            if (!canMove) return;
-            
-            Jump();
 
 #if UNITY_EDITOR
             DebugChecks();
 #endif
+            
         }
 
 
@@ -92,7 +98,7 @@ namespace Movement
                 0.8f, 
                 jumpAbleLayers);
 
-            if (hit)
+            if (hit && canMove)
                 SprintState();
             else
                 JumpState();
@@ -103,9 +109,9 @@ namespace Movement
         
         public void Jump()
         {
-            
+            if (!IsGrounded()) return;
 #if UNITY_WEBGL
-            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             }
@@ -114,7 +120,7 @@ namespace Movement
 #if UNITY_ANDROID
             
             // Do nothing if attack cool down is active, or if theres no touches
-            if (Input.touchCount > 0 && IsGrounded())
+            if (Input.touchCount > 0)
             {
                 for (int i = 0; i < Input.touchCount; ++i)
                 {

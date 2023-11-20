@@ -1,23 +1,44 @@
+using System;
 using System.Collections;
+using General;
 using UnityEngine;
 
 namespace Combat
 {
     public class GreenNinjaCombat : CombatScript, IMele
     {
+        // Private Variables
+        TouchDetector touchDetector;
+
+        protected override void Init()
+        {
+            base.Init();
+
+            touchDetector = FindObjectOfType<TouchDetector>();
+            touchDetector.AddPlayTouchBehaviour(MobileAttack);
+        }
+
         protected override void Update()
         {
             base.Update();
             
 #if UNITY_WEBGL
+            PcAttack()
+#endif
+        }
+
+
+        private void PcAttack()
+        {
             if (Input.GetKeyDown(KeyCode.Mouse0) && !attackCoolDownActive)
             {
                 Attack();
             }
-#endif
-            
-#if UNITY_ANDROID
-            
+        }
+
+
+        private void MobileAttack()
+        {
             // Do nothing if attack cool down is active, or if theres no touches
             if (attackCoolDownActive || Input.touchCount <= 0) return; 
             
@@ -35,8 +56,6 @@ namespace Combat
                     }
                 }
             }
-            
-#endif
         }
 
 

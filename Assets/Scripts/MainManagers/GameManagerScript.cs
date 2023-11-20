@@ -8,7 +8,6 @@ namespace MainManagers
 {
     public enum GameStates
     {
-        Idle,
         Play,
         Pause,
         Lose,
@@ -52,7 +51,7 @@ namespace MainManagers
 
         protected virtual void Init()
         {
-            gameState = GameStates.Idle;
+            gameState = GameStates.Pause;
             
             TimeManager.Singleton.Init(this);
             
@@ -65,10 +64,6 @@ namespace MainManagers
         {
             switch (gameState)
             {
-                case GameStates.Idle:
-                    // Wait for player to start the run
-                    break;
-                
                 case GameStates.Play:
                     CalculateCurrentSpeed();
                     break;
