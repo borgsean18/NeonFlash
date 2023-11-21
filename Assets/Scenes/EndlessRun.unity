@@ -1345,10 +1345,50 @@ PrefabInstance:
       propertyPath: obstacleSpawnPoint
       value: 
       objectReference: {fileID: 1167571903}
+    - target: {fileID: 274122551491125627, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: minDistanceBetweenSpawns
+      value: 5.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: startGameButton
       value: 
       objectReference: {fileID: 1046231875}
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: speedMultiplier.m_Curve.Array.data[0].value
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: speedMultiplier.m_Curve.Array.data[0].inSlope
+      value: 0.16339466
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: speedMultiplier.m_Curve.Array.data[1].inSlope
+      value: 1.3152723
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: speedMultiplier.m_Curve.Array.data[0].outSlope
+      value: 0.16339466
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: speedMultiplier.m_Curve.Array.data[1].inWeight
+      value: 0.06813997
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: speedMultiplier.m_Curve.Array.data[1].outSlope
+      value: 1.3152723
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: speedMultiplier.m_Curve.Array.data[0].outWeight
+      value: 0.106814
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: speedMultiplier.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: speedMultiplier.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3285524995403224056, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1388,6 +1428,26 @@ PrefabInstance:
     - target: {fileID: 3285524995403224056, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218113588272578260, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: difficultyCurveOverTime.m_Curve.Array.data[0].value
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218113588272578260, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: difficultyCurveOverTime.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218113588272578260, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: difficultyCurveOverTime.m_Curve.Array.data[1].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218113588272578260, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: difficultyCurveOverTime.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218113588272578260, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: difficultyCurveOverTime.m_Curve.Array.data[1].outSlope
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6102675502552726176, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: scoreText
