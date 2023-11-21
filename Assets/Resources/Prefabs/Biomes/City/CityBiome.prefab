@@ -66,8 +66,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacles:
-  - {fileID: 3358127638774406812, guid: a63148c0ceb8b49b0b7c7ac8743fce5f, type: 3}
-  - {fileID: 3358127638774406812, guid: 4b084303dc4aabf47a38c0958d62acbc, type: 3}
+  - {fileID: 3358127638774406812, guid: 89016a343e155f2479163e1b029a15a0, type: 3}
+  - {fileID: 3358127638774406812, guid: 77ed3d196bfc05a41a4426a8d37fd017, type: 3}
+  - {fileID: 3358127638774406812, guid: 9672ab4a02e41e94382501e2fa129178, type: 3}
+  - {fileID: 3358127638774406812, guid: 05599aef564fe7447883f8c7b03d8502, type: 3}
 --- !u!114 &3541257612292450679
 MonoBehaviour:
   m_ObjectHideFlags: 0
