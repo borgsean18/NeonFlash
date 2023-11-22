@@ -25,7 +25,7 @@ namespace Enemies.Drone
 
         private void EnterScene()
         {
-            animator.SetTrigger("WorldEnter");
+            animator.SetTrigger("MoveLeft");
         }
     }
 }
