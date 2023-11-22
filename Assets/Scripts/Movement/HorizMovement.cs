@@ -24,8 +24,7 @@ namespace Movement
 
         private void Init()
         {
-            if (moveWithWorld)
-                worldManager = FindObjectOfType<WorldManager>();
+            worldManager = FindObjectOfType<WorldManager>();
 
             init = true;
         }

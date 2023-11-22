@@ -1342,8 +1342,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 274122551491125627, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: testObject
+      value: 
+      objectReference: {fileID: 659242079803337281, guid: 69887a89ae0f14c4998f199d59b8c819, type: 3}
+    - target: {fileID: 274122551491125627, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: initSpawnCooldown
-      value: 100000
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 274122551491125627, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: obstacleSpawnPoint

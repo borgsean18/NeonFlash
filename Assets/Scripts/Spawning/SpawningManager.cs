@@ -19,6 +19,10 @@ namespace Spawning
         [SerializeField] private Transform obstacleSpawnPoint;
         [SerializeField] private float minDistanceBetweenSpawns;
 
+        [Header("Testing Settings")]
+        [SerializeField] bool spawnTestObject;
+        [SerializeField] GameObject testObject;
+
         
         // Private Variables
         private GameManagerScript gameManager;
@@ -51,6 +55,9 @@ namespace Spawning
             // If the spawn cooldown is over and the game is still playing
             if (!spawnCooldownActive && gameManager.GameState == GameStates.Play)
                 Spawn(CanSpawn());
+
+            if (spawnTestObject && testObject != null)
+                DebugSpawn(testObject);
         }
         
         
@@ -84,15 +91,31 @@ namespace Spawning
             // SPAWN THE OBJECT
             GameObject spawnedObject = Instantiate(toSpawn, obstacleSpawnPoint.position, Quaternion.identity);
             
-            SpwanedObject spawnedObjComponent = spawnedObject.GetComponent<SpwanedObject>();
-
-            spawnedObjComponent.Init(this);
-
-            spawnedObjects.Add(spawnedObjComponent);
+            InitialiseSpawnedObject(spawnedObject);
 
             DistanceSpawns();
             
             StartCoroutine(SpawnCoolDown(timeBetweenSpawns));
+        }
+
+
+        private void DebugSpawn(GameObject _gameObject)
+        {
+            spawnTestObject = false;
+            
+            GameObject spawnedObject = Instantiate(_gameObject, obstacleSpawnPoint.position, Quaternion.identity);
+
+            InitialiseSpawnedObject(spawnedObject);
+        }
+
+
+        private void InitialiseSpawnedObject(GameObject _spawnedObj)
+        {
+            SpwanedObject spawnedObjComponent = _spawnedObj.GetComponent<SpwanedObject>();
+            
+            spawnedObjComponent.Init(this);
+            
+            spawnedObjects.Add(spawnedObjComponent);
         }
 
 
