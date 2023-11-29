@@ -920,7 +920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faderObject: {fileID: 997236100}
-  fadeTime: 0.3
+  fadeTime: 0.5
 --- !u!95 &2079745885
 Animator:
   serializedVersion: 5
