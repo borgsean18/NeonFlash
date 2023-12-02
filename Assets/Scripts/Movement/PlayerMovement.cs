@@ -38,7 +38,7 @@ namespace Movement
             _animator = GetComponent<Animator>();
             
             gameManagerScript.StartGame.AddListener(Run);
-            gameManagerScript.LoseGame.AddListener(Fall);
+            gameManagerScript.LoseGame.AddListener(FallOver);
 
             touchDetector = FindObjectOfType<TouchDetector>();
             touchDetector.AddPlayTouchBehaviour(Jump);
@@ -63,15 +63,15 @@ namespace Movement
         }
 
 
-        private void Fall()
+        private void FallOver()
         {
             if (gameManagerScript.ImmortalDebugRun)
                 return;
             
             canMove = false;
             
-            // set to hurt animation
-            IdleState();
+            // set to downed animation
+            DownedState();
         }
         
         
@@ -92,13 +92,15 @@ namespace Movement
 
         public bool IsGrounded()
         {
+            if (!canMove) return false;
+            
             RaycastHit2D hit = Physics2D.Raycast(
                 transform.position, 
                 -Vector2.up, 
                 0.8f, 
                 jumpAbleLayers);
 
-            if (hit && canMove)
+            if (hit)
                 SprintState();
             else
                 JumpState();
@@ -162,6 +164,13 @@ namespace Movement
         }
 
         private void IdleState()
+        {
+            _animator.SetBool("Idle", true);
+            _animator.SetBool("Jump", false);
+            _animator.SetBool("Run", false);
+        }
+
+        private void DownedState()
         {
             _animator.SetBool("Idle", true);
             _animator.SetBool("Jump", false);
