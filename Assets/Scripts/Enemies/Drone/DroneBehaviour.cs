@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,6 +14,9 @@ namespace Enemies.Drone
         [SerializeField] private float maxTimeTillNextMovement;
         [SerializeField] private List<Vector3> droneAvailablePositions;
 
+        [Header("Shooting Settings")]
+        [SerializeField] private float reloadTime;
+
 
         // Components
         private Animator _animator;
@@ -25,15 +26,25 @@ namespace Enemies.Drone
         private Vector3 _currentPos;
         private Vector3 _targetPos;
         private bool _travel;
-        private DroneStates _droneStates;
+        private DroneMovementStates _droneMovementStates;
+        private DroneFiringStates _droneFiringStates;
 
 
-        private enum DroneStates
+        private enum DroneMovementStates
         {
             None,
             Idle,
             Firing,
             Moving
+        }
+
+
+        private enum DroneFiringStates
+        {
+            None,
+            Reloading,
+            Ready,
+            Firing
         }
 
 
@@ -48,26 +59,31 @@ namespace Enemies.Drone
             _animator = GetComponentInChildren<Animator>();
             _targetPos = RandomPosition();
 
-            _droneStates = DroneStates.Moving;
+            _droneMovementStates = DroneMovementStates.Moving;
+            _droneFiringStates = DroneFiringStates.Reloading;
         }
 
 
         private void Update()
         {
             MoveToPosition();
+
+            DroneFiringHandler();
         }
 
-        
+
+        #region Movement
+
         private void MoveToPosition()
         {
             // If the drone more or less arrived at its destination
             if (Vector2.Distance(transform.position, _targetPos) < 0.2f)
             {
                 // If drone is in moving state
-                if (_droneStates == DroneStates.Moving)
+                if (_droneMovementStates == DroneMovementStates.Moving)
                 {
                     // Set drone to idle
-                    _droneStates = DroneStates.Idle;
+                    _droneMovementStates = DroneMovementStates.Idle;
 
                     // Pick a new target position after a timer expires
                     StartCoroutine(PickNewPosition());
@@ -82,7 +98,7 @@ namespace Enemies.Drone
                 transform.position, 
                 _targetPos, 
                 Time.deltaTime * droneSpeed
-                );
+            );
         }
 
 
@@ -94,7 +110,7 @@ namespace Enemies.Drone
 
             _targetPos = RandomPosition();
 
-            _droneStates = DroneStates.Moving;
+            _droneMovementStates = DroneMovementStates.Moving;
         }
 
 
@@ -102,5 +118,53 @@ namespace Enemies.Drone
         {
             return droneAvailablePositions[Random.Range(0, droneAvailablePositions.Count)];
         }
+
+        #endregion
+        
+        
+        #region Firing
+
+        private void DroneFiringHandler()
+        {
+            switch (_droneFiringStates)
+            {
+                case DroneFiringStates.Reloading:
+                    StartCoroutine(Reload());
+                    break;
+                
+                case DroneFiringStates.Ready:
+                    FireWhenReady();
+                    break;
+            }
+        }
+
+
+        /// <summary>
+        /// Wait for a timer till drone can shoot another bullet
+        /// </summary>
+        private IEnumerator Reload()
+        {
+            _droneFiringStates = DroneFiringStates.None;
+            
+            yield return new WaitForSeconds(reloadTime);
+
+            _droneFiringStates = DroneFiringStates.Ready;
+        }
+
+
+        /// <summary>
+        /// Fire bullet when drone movement next idles
+        /// </summary>
+        private void FireWhenReady()
+        {
+            if (_droneMovementStates != DroneMovementStates.Idle)
+                return;
+            
+            Debug.Log("FIRE BULLET");
+
+            _droneFiringStates = DroneFiringStates.Reloading;
+        }
+        
+        #endregion
     }
 }
