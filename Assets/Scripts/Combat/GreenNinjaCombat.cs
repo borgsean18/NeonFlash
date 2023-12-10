@@ -50,7 +50,7 @@ namespace Combat
                     Vector2 pos = Input.GetTouch(i).position;
 
                     // If player touched the lower half of the screen
-                    if (pos.y <= Screen.height / 2)
+                    if (pos.y <= Screen.height / 2 && pos.x <= Screen.width / 2)
                     {
                         Attack();
                     }

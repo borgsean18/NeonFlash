@@ -2,20 +2,27 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Enemies.Drone
 {
     public class DroneBehaviour : MonoBehaviour
     {
         // Exposed Variables
-        [Header("Settings")]
-        [SerializeField] float minTimeTillNextMovement;
-        [SerializeField] float maxTimeTillNextMovement;
+        [Header("Movement Settings")]
+        [SerializeField] private float minTimeTillNextMovement;
+        [SerializeField] private float maxTimeTillNextMovement;
+        [SerializeField] private List<Vector3> droneAvailablePositions;
         
 
         // Components
-        private Animator animator;
-
+        private Animator _animator;
+        private Vector3 _targetPos;
+        
+        
+        // Private Variables
+        private bool _travel;
+        
 
         private void Awake()
         {
@@ -25,15 +32,25 @@ namespace Enemies.Drone
 
         private void Init()
         {
-            animator = GetComponentInChildren<Animator>();
-
-            EnterScene();
+            _animator = GetComponentInChildren<Animator>();
         }
 
 
-        private void EnterScene()
+        private void Update()
         {
-            animator.SetTrigger("MoveToStart");
+            MoveToPosition();
+        }
+
+
+        private void MoveToPosition()
+        {
+            _targetPos = RandomPosition();
+        }
+
+
+        private Vector3 RandomPosition()
+        {
+            return droneAvailablePositions[Random.Range(0, droneAvailablePositions.Count)];
         }
     }
 }
