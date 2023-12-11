@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Characters;
 using UnityEngine;
+using Weapons;
 using Random = UnityEngine.Random;
 
 namespace Enemies.Drone
@@ -19,7 +20,6 @@ namespace Enemies.Drone
         [SerializeField] private float reloadTime;
         [SerializeField] Transform firingTransform;
         [SerializeField] GameObject projectilePrefab;
-        [SerializeField] private Transform targetTransform;
 
 
         // Components
@@ -168,6 +168,9 @@ namespace Enemies.Drone
                 playerTransform = FindObjectOfType<Player>().transform;
             
             GameObject bullet = Instantiate(projectilePrefab, firingTransform.position, Quaternion.identity);
+
+            DirectProjectile projectile = bullet.GetComponent<DirectProjectile>();
+            projectile.Init(playerTransform);
 
             _droneFiringStates = DroneFiringStates.Reloading;
         }
