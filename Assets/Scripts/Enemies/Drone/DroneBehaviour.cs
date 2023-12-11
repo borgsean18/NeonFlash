@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Characters;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,6 +17,9 @@ namespace Enemies.Drone
 
         [Header("Shooting Settings")]
         [SerializeField] private float reloadTime;
+        [SerializeField] Transform firingTransform;
+        [SerializeField] GameObject projectilePrefab;
+        [SerializeField] private Transform targetTransform;
 
 
         // Components
@@ -24,10 +28,10 @@ namespace Enemies.Drone
 
         // Private Variables
         private Vector3 _currentPos;
-        private Vector3 _targetPos;
-        private bool _travel;
+        private Vector3 _targetMovementPosition;
         private DroneMovementStates _droneMovementStates;
         private DroneFiringStates _droneFiringStates;
+        private Transform playerTransform;
 
 
         private enum DroneMovementStates
@@ -57,7 +61,7 @@ namespace Enemies.Drone
         private void Init()
         {
             _animator = GetComponentInChildren<Animator>();
-            _targetPos = RandomPosition();
+            _targetMovementPosition = RandomPosition();
 
             _droneMovementStates = DroneMovementStates.Moving;
             _droneFiringStates = DroneFiringStates.Reloading;
@@ -77,7 +81,7 @@ namespace Enemies.Drone
         private void MoveToPosition()
         {
             // If the drone more or less arrived at its destination
-            if (Vector2.Distance(transform.position, _targetPos) < 0.2f)
+            if (Vector2.Distance(transform.position, _targetMovementPosition) < 0.2f)
             {
                 // If drone is in moving state
                 if (_droneMovementStates == DroneMovementStates.Moving)
@@ -96,7 +100,7 @@ namespace Enemies.Drone
             // Move to target position
             transform.position = Vector2.MoveTowards(
                 transform.position, 
-                _targetPos, 
+                _targetMovementPosition, 
                 Time.deltaTime * droneSpeed
             );
         }
@@ -108,7 +112,7 @@ namespace Enemies.Drone
             
             yield return new WaitForSeconds(timeToWait);
 
-            _targetPos = RandomPosition();
+            _targetMovementPosition = RandomPosition();
 
             _droneMovementStates = DroneMovementStates.Moving;
         }
@@ -159,8 +163,11 @@ namespace Enemies.Drone
         {
             if (_droneMovementStates != DroneMovementStates.Idle)
                 return;
+
+            if (playerTransform == null)
+                playerTransform = FindObjectOfType<Player>().transform;
             
-            Debug.Log("FIRE BULLET");
+            GameObject bullet = Instantiate(projectilePrefab, firingTransform.position, Quaternion.identity);
 
             _droneFiringStates = DroneFiringStates.Reloading;
         }

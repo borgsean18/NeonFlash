@@ -142,6 +142,9 @@ MonoBehaviour:
   - {x: 10, y: 4, z: 0}
   - {x: 7.5, y: 6, z: 0}
   reloadTime: 4
+  firingTransform: {fileID: 2236471706928838194}
+  projectilePrefab: {fileID: 8332192170649719034, guid: c70d3907f7f3848fa8a42fad3b5d8def, type: 3}
+  targetTransform: {fileID: 0}
 --- !u!61 &1726446547644408786
 BoxCollider2D:
   m_ObjectHideFlags: 0
