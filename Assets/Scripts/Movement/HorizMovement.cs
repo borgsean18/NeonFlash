@@ -36,6 +36,15 @@ namespace Movement
             if (init)
                 SideScroll();
         }
+
+
+        /// <summary>
+        /// Used to make objects move with the world when they die
+        /// </summary>
+        public void MoveWithWorld()
+        {
+            moveWithWorld = true;
+        }
         
         
         protected virtual float CalcMovementDistance()

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4224028378142933545}
   - component: {fileID: 6092098015015729752}
   - component: {fileID: 2746239831308877500}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackCollisions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 582456680469215911}
   - component: {fileID: 852249324870471135}
   - component: {fileID: 6373999296516410683}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}

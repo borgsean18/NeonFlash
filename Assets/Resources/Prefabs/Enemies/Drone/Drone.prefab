@@ -144,7 +144,6 @@ MonoBehaviour:
   reloadTime: 4
   firingTransform: {fileID: 2236471706928838194}
   projectilePrefab: {fileID: 8332192170649719034, guid: c70d3907f7f3848fa8a42fad3b5d8def, type: 3}
-  targetTransform: {fileID: 0}
 --- !u!61 &1726446547644408786
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -174,7 +173,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

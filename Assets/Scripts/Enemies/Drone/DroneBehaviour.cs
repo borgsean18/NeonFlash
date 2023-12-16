@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Characters;
+using Movement;
 using UnityEngine;
 using Weapons;
 using Random = UnityEngine.Random;
@@ -24,6 +25,7 @@ namespace Enemies.Drone
 
         // Components
         private Animator _animator;
+        private HorizMovement _horizMovement;
 
 
         // Private Variables
@@ -62,6 +64,7 @@ namespace Enemies.Drone
         {
             _animator = GetComponentInChildren<Animator>();
             _targetMovementPosition = RandomPosition();
+            _horizMovement = GetComponent<HorizMovement>();
 
             _droneMovementStates = DroneMovementStates.Moving;
             _droneFiringStates = DroneFiringStates.Reloading;
@@ -73,6 +76,14 @@ namespace Enemies.Drone
             MoveToPosition();
 
             DroneFiringHandler();
+        }
+
+
+        private void Die()
+        {
+            droneSpeed = 0;
+            
+            _horizMovement.MoveWithWorld();
         }
 
 
@@ -170,7 +181,7 @@ namespace Enemies.Drone
             GameObject bullet = Instantiate(projectilePrefab, firingTransform.position, Quaternion.identity);
 
             DirectProjectile projectile = bullet.GetComponent<DirectProjectile>();
-            projectile.Init(playerTransform);
+            projectile.Init(playerTransform, gameObject);
 
             _droneFiringStates = DroneFiringStates.Reloading;
         }
