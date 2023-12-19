@@ -7,14 +7,19 @@ namespace Weapons
 {
     public class Projectile : MonoBehaviour
     {
+        // Exposed Variables
+        [SerializeField] private float _speed;
+
+        
         // Private Variables
         private Transform _target;
         private Vector3 _targetPos;
         private GameObject _firer;
-        private float _speed;
+
 
         // Components
         private DirectProjectile _directProjectile;
+
 
         // Properties
         public Transform Target => _target;
