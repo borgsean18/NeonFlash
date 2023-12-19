@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Weapons
 {
-    public class DirectProjectile : MonoBehaviour
+    public class Projectile : MonoBehaviour
     {
         // Private Variables
         private Transform _target;
