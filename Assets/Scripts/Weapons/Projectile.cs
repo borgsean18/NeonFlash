@@ -13,6 +13,9 @@ namespace Weapons
         private GameObject _firer;
         private float _speed;
 
+        // Components
+        private DirectProjectile _directProjectile;
+
         // Properties
         public Transform Target => _target;
         public GameObject Firer => _firer;
@@ -24,6 +27,9 @@ namespace Weapons
             _target = target;
             _targetPos = _target.position;
             _firer = firer;
+
+            _directProjectile = GetComponent<DirectProjectile>();
+            _directProjectile.LookAtTarget(_target);
         }
     }
 }
