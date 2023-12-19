@@ -20,12 +20,6 @@ namespace Weapons
             // Look at target
             transform.right = _target.position - transform.position;
 
-            Travel();
-        }
-
-
-        private void Travel()
-        {
             canTravel = true;
         }
 
