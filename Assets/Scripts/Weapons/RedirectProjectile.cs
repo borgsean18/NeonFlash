@@ -10,8 +10,6 @@ namespace Weapons
     {
         public void RedirectProjectile(Projectile _projectile)
         {
-            speed += 2f;
-
             float randomRotation = Random.Range(160f, 180f);
             
             _projectile.transform.rotation = Quaternion.Euler(0f, 0f, randomRotation);
