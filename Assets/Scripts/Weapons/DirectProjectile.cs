@@ -51,22 +51,12 @@ namespace Weapons
 
             float destroyProjectileTime = 0;
             
-            // If collided with another layer, travel perpendicular to collision
-            if (other.gameObject.layer == 7)
+            // If collided with an object that can redirect projectiles
+            if (other.gameObject.GetComponent<RedirectProjectile>() != null)
             {
-                speed += 2f;
+                other.gameObject.GetComponent<RedirectProjectile>().RedirectProjectile(transform);
                 
-                // Get the direction of the trigger collision
-                Vector3 triggerDirection = other.transform.position - transform.position;
-
-                // Calculate the angle in radians from the trigger direction
-                float angle = Mathf.Atan2(triggerDirection.y, triggerDirection.x);
-                angle *= Mathf.Rad2Deg; // Convert radians to degrees
-
-                // Set the rotation to face the trigger direction
-                transform.rotation = Quaternion.Euler(0f, 0f, angle);
-                
-                destroyProjectileTime += 6f;
+                destroyProjectileTime += 5f;
             }
 
             // Start timer to destroy this projectile
