@@ -11,5 +11,6 @@ namespace Weapons
         private Transform _target;
         private Vector3 _targetPos;
         private GameObject _firer;
+        private float _speed;
     }
 }
