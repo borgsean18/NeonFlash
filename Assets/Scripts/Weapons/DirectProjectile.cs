@@ -9,10 +9,13 @@ namespace Weapons
     public class DirectProjectile : MonoBehaviour
     {
         // Private Variables
+        private float speed;
         private bool canTravel;
         
-        public void LookAtTarget(Transform _target)
+        public void SetUpMovement(Transform _target, float _speed)
         {
+            speed = _speed;
+            
             // Look at target
             transform.right = _target.position - transform.position;
 
