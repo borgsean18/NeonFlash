@@ -8,31 +8,28 @@ namespace Weapons
 {
     public class DirectProjectile : MonoBehaviour
     {
-        // Exposed Variables
-        [Header("Settings")]
-        [SerializeField] private float speed;
-        
-        
         // Private Variables
-        Transform _target;
-        Vector3 _targetPos;
-        GameObject _firer;
+        private bool canTravel;
         
-        
-        public void Init(Transform target, GameObject firer)
+        public void LookAtTarget(Transform _target)
         {
-            _target = target;
-            _targetPos = _target.position;
-            _firer = firer;
-            
             // Look at target
-            transform.right = _targetPos - transform.position;
+            transform.right = _target.position - transform.position;
+
+            Travel();
+        }
+
+
+        private void Travel()
+        {
+            canTravel = true;
         }
 
 
         void Update()
         {
-            if (_target == null) Destroy(gameObject);
+            if (!canTravel)
+                return;
             
             TravelToTarget();
         }
