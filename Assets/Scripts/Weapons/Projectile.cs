@@ -8,7 +8,7 @@ namespace Weapons
     public class Projectile : MonoBehaviour
     {
         // Exposed Variables
-        [SerializeField] private float _speed;
+        [SerializeField] private float _speed = 5f;
 
         
         // Private Variables
