@@ -11,6 +11,7 @@ namespace Weapons
         // Private Variables
         private float speed;
         private bool canTravel;
+
         
         public void SetUpMovement(Transform _target, float _speed)
         {
