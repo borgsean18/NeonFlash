@@ -34,7 +34,7 @@ namespace Weapons
             _firer = firer;
 
             _directProjectile = GetComponent<DirectProjectile>();
-            _directProjectile.LookAtTarget(_target);
+            _directProjectile.SetUpMovement(_target, _speed);
         }
     }
 }
