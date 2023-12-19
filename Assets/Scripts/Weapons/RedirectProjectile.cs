@@ -8,7 +8,7 @@ namespace Weapons
 {
     public class RedirectProjectile : MonoBehaviour
     {
-        public void RedirectProjectile(GameObject _projectile)
+        public void RedirectProjectile(Projectile _projectile)
         {
             speed += 2f;
 
