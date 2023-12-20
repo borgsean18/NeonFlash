@@ -13,12 +13,18 @@ namespace Weapons
         [SerializeField] private GameObject projectileNewOwner;
         
         
+        // Private Variables
+        private bool _canRedirect = true;
+        
+        
         public void Redirect(Transform _projectile)
         {
-            Quaternion rotation = _projectile.transform.rotation;
-            rotation.z *= -2;
+            if (!_canRedirect) return;
+
+            // Safety check so projectiles can only be redirected max of 1 time
+            _canRedirect = true;
             
-            _projectile.transform.rotation = rotation;
+            _projectile.transform.Rotate(Vector3.forward, 180, Space.World);
 
             Projectile proj = _projectile.gameObject.GetComponent<Projectile>();
 
