@@ -11,16 +11,25 @@ namespace Weapons
         // Private Variables
         private float speed;
         private bool canTravel;
+        private GameObject owner;
+        
 
         
-        public void SetUpMovement(Transform _target, float _speed)
+        public void SetUpMovement(Transform _target, float _speed, GameObject _owner)
         {
             speed = _speed;
+            owner = _owner;
             
             // Look at target
             transform.right = _target.position - transform.position;
 
             canTravel = true;
+        }
+
+
+        public void UpdateOwner(GameObject _newOwner)
+        {
+            owner = _newOwner;
         }
 
 
@@ -41,7 +50,7 @@ namespace Weapons
 
         void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject == _firer)
+            if (other.gameObject == owner)
                 return;
 
             float destroyProjectileTime = 0;
@@ -49,7 +58,7 @@ namespace Weapons
             // If collided with an object that can redirect projectiles
             if (other.gameObject.GetComponent<RedirectProjectile>() != null)
             {
-                other.gameObject.GetComponent<RedirectProjectile>().RedirectProjectile(transform);
+                other.gameObject.GetComponent<RedirectProjectile>().Redirect(transform);
                 
                 destroyProjectileTime += 5f;
             }

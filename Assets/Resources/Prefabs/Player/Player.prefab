@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4224028378142933545}
   - component: {fileID: 6092098015015729752}
   - component: {fileID: 2746239831308877500}
+  - component: {fileID: 3013396151643780665}
   m_Layer: 7
   m_Name: AttackCollisions
   m_TagString: Untagged
@@ -90,6 +91,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f31fba54e27134680592ca5ececedb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3013396151643780665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7761817968688990298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaf6158f97aa40f3b8d4e205df8fc79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileNewOwner: {fileID: 8999071723236834869}
 --- !u!1 &8999071723236834869
 GameObject:
   m_ObjectHideFlags: 0

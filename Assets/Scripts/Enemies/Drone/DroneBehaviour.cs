@@ -180,7 +180,7 @@ namespace Enemies.Drone
             
             GameObject bullet = Instantiate(projectilePrefab, firingTransform.position, Quaternion.identity);
 
-            DirectProjectile projectile = bullet.GetComponent<Projectile>();
+            Projectile projectile = bullet.GetComponent<Projectile>();
             projectile.Init(playerTransform, gameObject);
 
             _droneFiringStates = DroneFiringStates.Reloading;

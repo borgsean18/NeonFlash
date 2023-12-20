@@ -2,17 +2,28 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 using Vector2 = System.Numerics.Vector2;
 
 namespace Weapons
 {
     public class RedirectProjectile : MonoBehaviour
     {
-        public void RedirectProjectile(Projectile _projectile)
+        // Exposed Variables
+        [SerializeField] private GameObject projectileNewOwner;
+        
+        
+        public void Redirect(Transform _projectile)
         {
-            float randomRotation = Random.Range(160f, 180f);
+            Quaternion rotation = _projectile.transform.rotation;
+            rotation.z *= -2;
             
-            _projectile.transform.rotation = Quaternion.Euler(0f, 0f, randomRotation);
+            _projectile.transform.rotation = rotation;
+
+            Projectile proj = _projectile.gameObject.GetComponent<Projectile>();
+
+            if (proj != null && projectileNewOwner != null)
+                proj.ChangeOwner(projectileNewOwner);
         }
     }
 }
