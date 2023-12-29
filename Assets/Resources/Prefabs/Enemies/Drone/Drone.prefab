@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 8109563417549038971}
   - component: {fileID: 2072179642613998656}
   - component: {fileID: 1841810228855297287}
-  - component: {fileID: 1726446547644408786}
   m_Layer: 10
   m_Name: Drone
   m_TagString: Untagged
@@ -141,54 +140,10 @@ MonoBehaviour:
   - {x: 9, y: 6.5, z: 0}
   - {x: 10, y: 4, z: 0}
   - {x: 7.5, y: 6, z: 0}
+  projectileOwner: {fileID: 8645859365257027383}
   reloadTime: 4
   firingTransform: {fileID: 2236471706928838194}
   projectilePrefab: {fileID: 8332192170649719034, guid: c70d3907f7f3848fa8a42fad3b5d8def, type: 3}
---- !u!61 &1726446547644408786
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659242079803337281}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &1051190529113872743
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +188,8 @@ GameObject:
   - component: {fileID: 7079506866091979550}
   - component: {fileID: 3442381197267109543}
   - component: {fileID: 6447129908168738607}
-  m_Layer: 0
+  - component: {fileID: 1609086614869520234}
+  m_Layer: 10
   m_Name: Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,3 +357,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1609086614869520234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8645859365257027383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1d7410b1cd759944b84309cf674d663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints: 3

@@ -7,6 +7,7 @@ namespace Weapons
     public class Projectile : MonoBehaviour
     {
         // Exposed Variables
+        [SerializeField] private int _damage = 1;
         [SerializeField] private float _speed = 5f;
 
         
@@ -18,6 +19,12 @@ namespace Weapons
 
         // Components
         private DirectProjectile _directProjectile;
+        
+        
+        // Properties
+        public GameObject Owner => _owner;
+        public float Speed => _speed;
+        public int Damage => _damage;
 
 
         public void Init(Transform target, GameObject owner)
@@ -27,15 +34,13 @@ namespace Weapons
             _owner = owner;
 
             _directProjectile = GetComponent<DirectProjectile>();
-            _directProjectile.SetUpMovement(_target, _speed, _owner);
+            _directProjectile.SetUpMovement(_target, this);
         }
 
 
         public void ChangeOwner(GameObject _newOwner)
         {
             _owner = _newOwner;
-
-            _directProjectile.UpdateOwner(_owner);
         }
     }
 }

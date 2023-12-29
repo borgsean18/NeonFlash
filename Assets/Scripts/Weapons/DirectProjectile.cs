@@ -1,35 +1,31 @@
 using System;
 using System.Collections;
+using Combat;
 using Unity.VisualScripting;
 using UnityEngine;
 using Vector2 = System.Numerics.Vector2;
 
 namespace Weapons
 {
+    [RequireComponent(typeof(Projectile))]
     public class DirectProjectile : MonoBehaviour
     {
         // Private Variables
         private float speed;
         private bool canTravel;
-        private GameObject owner;
+        private Projectile projectile;
         
 
         
-        public void SetUpMovement(Transform _target, float _speed, GameObject _owner)
+        public void SetUpMovement(Transform _target, Projectile _projectile)
         {
-            speed = _speed;
-            owner = _owner;
+            projectile = _projectile;
+            speed = projectile.Speed;
             
             // Look at target
             transform.right = _target.position - transform.position;
 
             canTravel = true;
-        }
-
-
-        public void UpdateOwner(GameObject _newOwner)
-        {
-            owner = _newOwner;
         }
 
 
@@ -50,9 +46,17 @@ namespace Weapons
 
         void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject == owner)
+            if (other.gameObject == projectile.Owner)
                 return;
 
+            TakeDamage td = other.gameObject.GetComponent<TakeDamage>();
+            
+            if (td != null)
+            {
+                td.TakeDamageMethod(projectile.Damage);
+            }
+
+            // How long the delay would be for this projectile to be deleted
             float destroyProjectileTime = 0;
             
             // If collided with an object that can redirect projectiles

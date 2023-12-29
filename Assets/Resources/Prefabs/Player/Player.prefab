@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aaf6158f97aa40f3b8d4e205df8fc79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileNewOwner: {fileID: 8999071723236834869}
+  projectileNewOwner: {fileID: 7761817968688990298}
 --- !u!1 &8999071723236834869
 GameObject:
   m_ObjectHideFlags: 0

@@ -148,8 +148,7 @@ namespace Spawning
 
 
         /// <summary>
-        /// Purpose of this method is to space out spawned objects to never have any spawns
-        /// be too close to each other
+        /// Space out spawned objects to never have any spawns be too close to each other
         /// </summary>
         private void DistanceSpawns()
         {

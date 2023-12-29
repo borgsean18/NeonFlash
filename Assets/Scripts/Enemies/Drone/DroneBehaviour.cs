@@ -18,9 +18,10 @@ namespace Enemies.Drone
         [SerializeField] private List<Vector3> droneAvailablePositions;
 
         [Header("Shooting Settings")]
+        [SerializeField] private GameObject projectileOwner;
         [SerializeField] private float reloadTime;
-        [SerializeField] Transform firingTransform;
-        [SerializeField] GameObject projectilePrefab;
+        [SerializeField] private Transform firingTransform;
+        [SerializeField] private GameObject projectilePrefab;
 
 
         // Components
@@ -181,7 +182,7 @@ namespace Enemies.Drone
             GameObject bullet = Instantiate(projectilePrefab, firingTransform.position, Quaternion.identity);
 
             Projectile projectile = bullet.GetComponent<Projectile>();
-            projectile.Init(playerTransform, gameObject);
+            projectile.Init(playerTransform, projectileOwner);
 
             _droneFiringStates = DroneFiringStates.Reloading;
         }
