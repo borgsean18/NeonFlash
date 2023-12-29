@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Combat
 {
-    public class TakeDamage : MonoBehaviour
+    public abstract class TakeDamage : MonoBehaviour
     {
         // Exposed Variables
         [SerializeField] protected int hitPoints;
@@ -12,14 +12,11 @@ namespace Combat
         {
             hitPoints -= _damageAmount;
 
-            if (hitPoints == 0)
+            if (hitPoints <= 0)
                 Die();
         }
-        
-        
-        protected virtual void Die()
-        {
-            Destroy(gameObject);
-        }
+
+
+        protected abstract void Die();
     }
 }

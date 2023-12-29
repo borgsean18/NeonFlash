@@ -52,9 +52,7 @@ namespace Weapons
             TakeDamage td = other.gameObject.GetComponent<TakeDamage>();
             
             if (td != null)
-            {
                 td.TakeDamageMethod(projectile.Damage);
-            }
 
             // How long the delay would be for this projectile to be deleted
             float destroyProjectileTime = 0;

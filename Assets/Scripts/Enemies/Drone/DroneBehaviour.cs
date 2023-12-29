@@ -42,7 +42,8 @@ namespace Enemies.Drone
             None,
             Idle,
             Firing,
-            Moving
+            Moving,
+            ChangePosition
         }
 
 
@@ -67,45 +68,54 @@ namespace Enemies.Drone
             _targetMovementPosition = RandomPosition();
             _horizMovement = GetComponent<HorizMovement>();
 
-            _droneMovementStates = DroneMovementStates.Moving;
+            _droneMovementStates = DroneMovementStates.ChangePosition;
             _droneFiringStates = DroneFiringStates.Reloading;
         }
 
 
         private void Update()
         {
-            MoveToPosition();
+            HandleMovement();
 
             DroneFiringHandler();
         }
 
 
-        private void Die()
+        public void Die()
         {
-            droneSpeed = 0;
+            StopMovement();
             
-            _horizMovement.MoveWithWorld();
+            //_horizMovement.MoveWithWorld();
         }
 
 
         #region Movement
+
+        private void HandleMovement()
+        {
+            switch (_droneMovementStates)
+            {
+                case DroneMovementStates.Moving:
+                    MoveToPosition();
+                    break;
+                
+                case DroneMovementStates.ChangePosition:
+                    StartCoroutine(PickNewPosition());
+                    _droneMovementStates = DroneMovementStates.Idle;
+                    break;
+                
+                case DroneMovementStates.Idle:
+                    break;
+            }
+        }
 
         private void MoveToPosition()
         {
             // If the drone more or less arrived at its destination
             if (Vector2.Distance(transform.position, _targetMovementPosition) < 0.2f)
             {
-                // If drone is in moving state
-                if (_droneMovementStates == DroneMovementStates.Moving)
-                {
-                    // Set drone to idle
-                    _droneMovementStates = DroneMovementStates.Idle;
-
-                    // Pick a new target position after a timer expires
-                    StartCoroutine(PickNewPosition());
-                }
+                _droneMovementStates = DroneMovementStates.ChangePosition;
                 
-                // Do nothing more (Still if drone is at its target position)
                 return;
             }
             
@@ -133,6 +143,16 @@ namespace Enemies.Drone
         private Vector3 RandomPosition()
         {
             return droneAvailablePositions[Random.Range(0, droneAvailablePositions.Count)];
+        }
+
+
+        private void StopMovement()
+        {
+            _droneMovementStates = DroneMovementStates.Idle;
+
+            droneSpeed = 0;
+            
+            _horizMovement.MoveWithWorld();
         }
 
         #endregion
