@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8109563417549038971}
   - component: {fileID: 2072179642613998656}
   - component: {fileID: 1841810228855297287}
+  - component: {fileID: 2404277218852115271}
   m_Layer: 10
   m_Name: Drone
   m_TagString: Untagged
@@ -144,6 +145,18 @@ MonoBehaviour:
   reloadTime: 4
   firingTransform: {fileID: 2236471706928838194}
   projectilePrefab: {fileID: 8332192170649719034, guid: c70d3907f7f3848fa8a42fad3b5d8def, type: 3}
+--- !u!114 &2404277218852115271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659242079803337281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8197c751fa99a42c3a2ccc3f03c9cc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1051190529113872743
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,6 +202,7 @@ GameObject:
   - component: {fileID: 3442381197267109543}
   - component: {fileID: 6447129908168738607}
   - component: {fileID: 1609086614869520234}
+  - component: {fileID: 9208747968614171271}
   m_Layer: 10
   m_Name: Object
   m_TagString: Untagged
@@ -338,14 +352,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8645859365257027383}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -371,3 +385,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 3
   droneBehaviour: {fileID: 1841810228855297287}
+--- !u!114 &9208747968614171271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8645859365257027383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0252c9cffb34f9e905b50c5cdac599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasCleanUpParent: 1
+  cleanUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
