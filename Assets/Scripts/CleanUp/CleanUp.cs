@@ -1,17 +1,18 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace CleanUp
 {
     public class CleanUp : MonoBehaviour
     {
         // Exposed Variables
-        [SerializeField] private bool hasCleanUpParent;
+        [SerializeField] private bool hasNestedClean;
         [SerializeField] private UnityEvent cleanUpEvent;
         
         
         // Private Variables
-        private CleanParent cleanParent;
+        private NestedClean cleanParent;
         
 
         private void Awake()
@@ -22,9 +23,9 @@ namespace CleanUp
 
         private void Init()
         {
-            if (hasCleanUpParent)
+            if (hasNestedClean)
             {
-                cleanParent = transform.parent.GetComponent<CleanParent>();
+                cleanParent = transform.parent.GetComponent<NestedClean>();
                 cleanUpEvent.AddListener(cleanParent.DestroySelf);
             }
         }

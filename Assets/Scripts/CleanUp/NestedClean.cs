@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace CleanUp
 {
-	public class CleanParent : MonoBehaviour
+	public class NestedClean : MonoBehaviour
 	{
 		public void DestroySelf()
 		{
