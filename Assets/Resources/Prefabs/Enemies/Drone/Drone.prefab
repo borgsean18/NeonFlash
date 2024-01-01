@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 8109563417549038971}
   - component: {fileID: 1841810228855297287}
   - component: {fileID: 2404277218852115271}
-  - component: {fileID: 6563597270008179577}
   m_Layer: 10
   m_Name: Drone
   m_TagString: Untagged
@@ -76,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb1fc6f54a1ef4e7789b89a725cad8fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficultyLevel: 0
+  difficultyLevel: 4
 --- !u!114 &5498200372262249498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,18 +138,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8197c751fa99a42c3a2ccc3f03c9cc97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6563597270008179577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659242079803337281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed807ed509c9c49668de86bea0878491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1051190529113872743
@@ -393,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0252c9cffb34f9e905b50c5cdac599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasNestedClean: 0
+  hasNestedClean: 1
   cleanUpEvent:
     m_PersistentCalls:
       m_Calls: []

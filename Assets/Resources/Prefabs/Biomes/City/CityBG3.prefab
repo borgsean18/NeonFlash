@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0252c9cffb34f9e905b50c5cdac599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasCleanUpParent: 1
+  hasNestedClean: 1
   cleanUpEvent:
     m_PersistentCalls:
       m_Calls: []
