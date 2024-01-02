@@ -1350,6 +1350,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 274122551491125627, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: timeBetweenSpawns
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 274122551491125627, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: obstacleSpawnPoint
       value: 
       objectReference: {fileID: 1167571903}

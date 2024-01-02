@@ -37,13 +37,13 @@ namespace Difficulty
 			// Current speed is Max Speed * point in the animation curve reached since the run started
 			_currentDifficulty = maxDifficulty * difficultyCurveOverTime.Evaluate(TimeManager.Singleton.TimePassed / (minutesTillMaxDifficulty * 60));
 
-			// If something is reducing overall difficulty, do so
-			if (_difficultyDampener != null && _currentDifficulty >= 3)
+			// If the difficulty should be dampened, set it to the dampened level
+			if (_difficultyDampener != null)
 			{
 				_currentDifficulty /= 2;
 
-				if (_currentDifficulty > 4)
-					_currentDifficulty = 4;
+				if (_currentDifficulty > _difficultyDampener.MaxDifficultySetting)
+					_currentDifficulty = _difficultyDampener.MaxDifficultySetting;
 			}
 		}
 

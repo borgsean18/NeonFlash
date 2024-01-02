@@ -17,5 +17,15 @@ namespace Spawning
         {
             return obstacles[Random.Range(0, obstacles.Count)];
         }
+        
+        
+        // public GameObject GetRandomObstacle(List<string> _cooldownObjects)
+        // {
+        //     List<GameObject> newObstaclesList = obstacles;
+        //     
+        //     
+        //     
+        //     return newObstaclesList[Random.Range(0, newObstaclesList.Count)];
+        // }
     }
 }

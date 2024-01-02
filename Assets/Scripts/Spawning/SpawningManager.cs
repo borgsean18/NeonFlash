@@ -73,8 +73,13 @@ namespace Spawning
             {
                 totalSpawnedDifficulty += obj.DifficultyObject.DifficultyLevel;
             }
+
+            int spawnAllowance = (int)difficultyManager.CurrentDifficulty - totalSpawnedDifficulty;
+
+            if (spawnAllowance < 0)
+                spawnAllowance = 0;
             
-            return (int)difficultyManager.CurrentDifficulty - totalSpawnedDifficulty;
+            return spawnAllowance;
         }
 
 
@@ -122,8 +127,10 @@ namespace Spawning
         private GameObject SelectWhatToSpawn(GameObject _spawnablesHaver, int _spawnAllowance)
         {
             SpawnsList list = _spawnablesHaver.GetComponent<SpawnsList>();
+
+            GameObject toSpawn;
             
-            GameObject toSpawn = list.GetRandomObstacle();
+            toSpawn = list.GetRandomObstacle();
 
             DifficultyObject difficultyObject = toSpawn.GetComponent<DifficultyObject>();
 
@@ -141,7 +148,7 @@ namespace Spawning
         {
             spawnCooldownActive = true;
             
-            yield return new WaitForSeconds(Random.Range(_coolDown / 2.5f, _coolDown));
+            yield return new WaitForSeconds(Random.Range(_coolDown / 2f, _coolDown));
             
             spawnCooldownActive = false;
         }
