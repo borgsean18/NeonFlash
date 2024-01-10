@@ -50,7 +50,8 @@ namespace SceneManagement
                 yield return null;
 
             yield return new WaitForSeconds(fadeTime);
-                ChangeScene(_sceneName);
+
+            ChangeScene(_sceneName);
         }
 
 
