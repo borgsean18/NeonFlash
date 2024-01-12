@@ -134,15 +134,7 @@ namespace Spawning
 
             GameObject toSpawn;
             
-            toSpawn = list.GetRandomObstacle(coolDownGUIDs);
-
-            DifficultyObject difficultyObject = toSpawn.GetComponent<DifficultyObject>();
-
-            while (difficultyObject.DifficultyLevel > _spawnAllowance || difficultyObject == null)
-            {
-                toSpawn = list.GetRandomObstacle(coolDownGUIDs);
-                difficultyObject = toSpawn.GetComponent<DifficultyObject>();
-            }
+            toSpawn = list.GetRandomObstacle(_spawnAllowance, coolDownGUIDs);
             
             return toSpawn;
         }

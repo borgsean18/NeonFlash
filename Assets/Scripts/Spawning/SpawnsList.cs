@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Difficulty;
 using Unity.Collections;
 using UnityEngine;
 
@@ -9,50 +10,34 @@ namespace Spawning
     {
         // Exposed Variables
         [SerializeField] private List<GameObject> obstacles;
-        
-        
-        // Private Variables
-        private List<GameObject> filteredList;
 
 
         // Properties
         public List<GameObject> Obstacles => obstacles;
 
 
-        private void Awake()
+        public GameObject GetRandomObstacle(int spawnAllowance, List<string> _coolDownObjects)
         {
-            Init();
-        }
+            List<GameObject> affordableObstacles = new List<GameObject>();
 
-
-        private void Init()
-        {
-            filteredList = new List<GameObject>();
-        }
-
-
-        public GameObject GetRandomObstacle(List<string> _coolDownObjects)
-        {
-            if (_coolDownObjects.Count <= 0)
+            foreach(GameObject obst in obstacles)
             {
-                if (filteredList != null)
-                    filteredList.Clear();
+                DifficultyObject difficultyObject = obst.GetComponent<DifficultyObject>();
 
-                return obstacles[Random.Range(0, obstacles.Count)];
+                if (difficultyObject == null || difficultyObject.DifficultyLevel > spawnAllowance)
+                    continue;
+
+                if (_coolDownObjects.Count() > 0)
+                {
+                    SpwanedObject spawnableObj = obst.GetComponent<SpwanedObject>();
+                    if (_coolDownObjects.Contains(spawnableObj.SpawnableGUID))
+                        continue;
+                }
+
+                affordableObstacles.Add(obst);
             }
 
-            filteredList = new List<GameObject>();
-
-            // Filter out obstacles that have an active cooldown going
-            foreach (GameObject obj in obstacles)
-            {
-                SpwanedObject spawnableObj = obj.GetComponent<SpwanedObject>();
-
-                if (spawnableObj.SpawnableGUID == null || !_coolDownObjects.Contains(spawnableObj.SpawnableGUID))
-                    filteredList.Add(obj);
-            }
-
-            return filteredList[Random.Range(0, filteredList.Count)];
+            return affordableObstacles[Random.Range(0, affordableObstacles.Count)];
         }
     }
 }
