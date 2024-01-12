@@ -90,7 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPosition: {x: 16, y: 5, z: 0}
-  spawnCooldown: 120
+  spawnableGUID: aa048b334da8431d89be6508aa4e008e
+  coolDownLength: 10
 --- !u!114 &8109563417549038971
 MonoBehaviour:
   m_ObjectHideFlags: 0

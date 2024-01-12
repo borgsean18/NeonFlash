@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Difficulty;
 using MainManagers;
+using Unity.VisualScripting;
 using UnityEngine;
 using World;
 
@@ -29,6 +31,7 @@ namespace Spawning
         private WorldManager worldManager;
         private DifficultyManager difficultyManager;
         private List<SpwanedObject> spawnedObjects;
+        private List<string> coolDownGUIDs; 
         private bool spawnCooldownActive;
 
 
@@ -45,8 +48,9 @@ namespace Spawning
             difficultyManager = GetComponent<DifficultyManager>();
 
             spawnedObjects = new List<SpwanedObject>();
+            coolDownGUIDs = new List<string>();
             
-            StartCoroutine(SpawnCoolDown(initSpawnCooldown));
+            StartCoroutine(SpawningCoolDown(initSpawnCooldown));
         }
 
 
@@ -100,7 +104,7 @@ namespace Spawning
 
             DistanceSpawns();
             
-            StartCoroutine(SpawnCoolDown(timeBetweenSpawns));
+            StartCoroutine(SpawningCoolDown(timeBetweenSpawns));
         }
 
 
@@ -130,13 +134,13 @@ namespace Spawning
 
             GameObject toSpawn;
             
-            toSpawn = list.GetRandomObstacle();
+            toSpawn = list.GetRandomObstacle(coolDownGUIDs);
 
             DifficultyObject difficultyObject = toSpawn.GetComponent<DifficultyObject>();
 
             while (difficultyObject.DifficultyLevel > _spawnAllowance || difficultyObject == null)
             {
-                toSpawn = list.GetRandomObstacle();
+                toSpawn = list.GetRandomObstacle(coolDownGUIDs);
                 difficultyObject = toSpawn.GetComponent<DifficultyObject>();
             }
             
@@ -144,11 +148,11 @@ namespace Spawning
         }
 
 
-        private IEnumerator SpawnCoolDown(float _coolDown)
+        private IEnumerator SpawningCoolDown(float _coolDown)
         {
             spawnCooldownActive = true;
             
-            yield return new WaitForSeconds(Random.Range(_coolDown / 2f, _coolDown));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(_coolDown / 2f, _coolDown));
             
             spawnCooldownActive = false;
         }
@@ -182,6 +186,31 @@ namespace Spawning
             Vector2 newPos = lastSpawnedTransform.position;
             newPos.x = secondLastSpawnedTransform.position.x + minDistanceBetweenSpawns;
             lastSpawnedTransform.position = newPos;
+        }
+
+
+        /// <summary>
+        /// Using GUIDs limit how often an enemy can be spawned in a row. GUIDs have to be used
+        /// because stopping an enemy being spawned in a biome doesnt stop that enemy being spawned
+        /// in a different biome
+        /// </summary>
+        public void CoolDownSpecificSpawn(string spawnGUID, float coolDown)
+        {
+            StartCoroutine(CoolDownSpecificSpawnCoRt(spawnGUID, coolDown));
+        }
+
+
+        private IEnumerator CoolDownSpecificSpawnCoRt(string spawnGUID, float coolDown)
+        {
+            if (!coolDownGUIDs.Contains(spawnGUID))
+                coolDownGUIDs.Add(spawnGUID);
+            else
+                yield break;
+
+            yield return new WaitForSeconds(coolDown);
+
+            if (coolDownGUIDs.Contains(spawnGUID))
+                coolDownGUIDs.Remove(spawnGUID);
         }
     }
 }
