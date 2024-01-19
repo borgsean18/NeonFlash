@@ -35,6 +35,7 @@ namespace Enemies.Drone
         private DroneMovementStates _droneMovementStates;
         private DroneFiringStates _droneFiringStates;
         private Transform playerTransform;
+        private Coroutine _firingCoroutine;
 
 
         private enum DroneMovementStates
@@ -81,11 +82,14 @@ namespace Enemies.Drone
         }
 
 
+        /// <summary>
+        /// The list of methods that should happen when the drone is killed
+        /// </summary>
         public void Die()
         {
             StopMovement();
-            
-            //_horizMovement.MoveWithWorld();
+
+            StopFiring();
         }
 
 
@@ -108,6 +112,7 @@ namespace Enemies.Drone
                     break;
             }
         }
+
 
         private void MoveToPosition()
         {
@@ -152,6 +157,21 @@ namespace Enemies.Drone
 
             droneSpeed = 0;
             
+            StartCoroutine(MoveWithWorld(
+                _animator.GetCurrentAnimatorStateInfo(0).length
+                ));
+        }
+
+
+        /// <summary>
+        /// Delay till the drone starts moving past the player with 
+        /// rest of world objects. The intention is to let animations
+        /// play out first
+        /// <summary>
+        IEnumerator MoveWithWorld(float _timeTillMoveWithWorld)
+        {
+            yield return new WaitForSeconds(_timeTillMoveWithWorld);
+
             _horizMovement.MoveWithWorld();
         }
 
@@ -165,11 +185,14 @@ namespace Enemies.Drone
             switch (_droneFiringStates)
             {
                 case DroneFiringStates.Reloading:
-                    StartCoroutine(Reload());
+                    _firingCoroutine = StartCoroutine(Reload());
                     break;
                 
                 case DroneFiringStates.Ready:
                     FireWhenReady();
+                    break;
+
+                case DroneFiringStates.None:
                     break;
             }
         }
@@ -205,6 +228,14 @@ namespace Enemies.Drone
             projectile.Init(playerTransform, projectileOwner);
 
             _droneFiringStates = DroneFiringStates.Reloading;
+        }
+
+
+        private void StopFiring()
+        {
+            _droneFiringStates = DroneFiringStates.None;
+
+            StopCoroutine(_firingCoroutine);
         }
         
         #endregion
