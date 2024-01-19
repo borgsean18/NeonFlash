@@ -30,7 +30,6 @@ namespace Enemies.Drone
 
 
         // Private Variables
-        private Vector3 _currentPos;
         private Vector3 _targetMovementPosition;
         private DroneMovementStates _droneMovementStates;
         private DroneFiringStates _droneFiringStates;
@@ -101,9 +100,12 @@ namespace Enemies.Drone
             {
                 case DroneMovementStates.Moving:
                     MoveToPosition();
+
+                    MovingAnimation();
                     break;
                 
                 case DroneMovementStates.ChangePosition:
+                    IdleAnimation();
                     StartCoroutine(PickNewPosition());
                     _droneMovementStates = DroneMovementStates.Idle;
                     break;
@@ -222,7 +224,27 @@ namespace Enemies.Drone
 
             StopCoroutine(_firingCoroutine);
         }
-        
+
+        #endregion
+
+
+        #region Animation
+
+        private void MovingAnimation()
+        {
+            if (transform.position.x > _targetMovementPosition.x)
+            {
+                _animator.SetBool("Forward", true);
+                _animator.SetBool("Idle", false);
+            }
+        }
+
+        private void IdleAnimation()
+        {
+            _animator.SetBool("Forward", false);
+            _animator.SetBool("Idle", true);
+        }
+
         #endregion
     }
 }
