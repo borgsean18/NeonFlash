@@ -48,21 +48,9 @@ namespace Enemies.Drone
             // Kill the drone
             droneBehaviour.Die();
 
-            StartCoroutine(DisableAnimatorAfterDeath());
-        }
-
-
-        IEnumerator DisableAnimatorAfterDeath()
-        {
-            yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
-            // yield return new WaitForSeconds(0);
-
-            // Disable animator
-            anim.enabled = false;
-
             // Enable Rigidbody gravity
-            rb.isKinematic = false;
             rb.gravityScale = 1.0f;
+            rb.isKinematic = false;
         }
     }
 }

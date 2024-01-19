@@ -156,21 +156,6 @@ namespace Enemies.Drone
             _droneMovementStates = DroneMovementStates.Idle;
 
             droneSpeed = 0;
-            
-            StartCoroutine(MoveWithWorld(
-                _animator.GetCurrentAnimatorStateInfo(0).length
-                ));
-        }
-
-
-        /// <summary>
-        /// Delay till the drone starts moving past the player with 
-        /// rest of world objects. The intention is to let animations
-        /// play out first
-        /// <summary>
-        IEnumerator MoveWithWorld(float _timeTillMoveWithWorld)
-        {
-            yield return new WaitForSeconds(_timeTillMoveWithWorld);
 
             _horizMovement.MoveWithWorld();
         }
