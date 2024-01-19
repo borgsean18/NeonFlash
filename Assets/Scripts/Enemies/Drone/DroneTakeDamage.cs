@@ -32,11 +32,13 @@ namespace Enemies.Drone
 
         void Update()
         {
-            if (die)
-            {
-                die = false;
-                Die();
-            }
+
+#if UNITY_EDITOR
+
+            DebugDeath();
+
+#endif
+
         }
 
 
@@ -52,5 +54,18 @@ namespace Enemies.Drone
             rb.gravityScale = 1.0f;
             rb.isKinematic = false;
         }
+
+
+        #region Debug Methods
+        private void DebugDeath()
+        {
+            if (die)
+            {
+                die = false;
+                Die();
+            }
+        }
+
+        #endregion
     }
 }
