@@ -16,7 +16,6 @@ namespace Weapons
         private Projectile projectile;
         
 
-        
         public void SetUpMovement(Transform _target, Projectile _projectile)
         {
             projectile = _projectile;
@@ -29,7 +28,7 @@ namespace Weapons
         }
 
 
-        void Update()
+        private void Update()
         {
             if (!canTravel)
                 return;
@@ -44,37 +43,19 @@ namespace Weapons
         }
 
 
-        void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject == projectile.Owner)
                 return;
 
             TakeDamage td = other.gameObject.GetComponent<TakeDamage>();
-            
+
             if (td != null)
+            {
                 td.TakeDamageMethod(projectile.Damage);
 
-            // How long the delay would be for this projectile to be deleted
-            float destroyProjectileTime = 0;
-            
-            // If collided with an object that can redirect projectiles
-            if (other.gameObject.GetComponent<RedirectProjectile>() != null)
-            {
-                other.gameObject.GetComponent<RedirectProjectile>().Redirect(transform);
-                
-                destroyProjectileTime += 5f;
+                Destroy(gameObject);
             }
-
-            // Start timer to destroy this projectile
-            StartCoroutine(DestroyProjectile(destroyProjectileTime));
-        }
-
-
-        private IEnumerator DestroyProjectile(float _time)
-        {
-            yield return new WaitForSeconds(_time);
-
-            Destroy(gameObject);
         }
     }
 }

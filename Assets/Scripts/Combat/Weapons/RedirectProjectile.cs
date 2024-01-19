@@ -31,5 +31,14 @@ namespace Weapons
             if (proj != null && projectileNewOwner != null)
                 proj.ChangeOwner(projectileNewOwner);
         }
+
+
+        private void OnTriggerEnter2D(Collider2D _collision)
+        {
+            if (_collision.gameObject.GetComponent<DirectProjectile>() == null)
+                return;
+
+            Redirect(_collision.transform);
+        }
     }
 }
