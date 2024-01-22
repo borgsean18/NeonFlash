@@ -128,19 +128,16 @@ namespace Movement
             
             // Do nothing if attack cool down is active, or if theres no touches
             if (Input.touchCount > 0)
-            {
-                for (int i = 0; i < Input.touchCount; ++i)
+            {                
+                if (Input.GetTouch(0).phase == TouchPhase.Began)
                 {
-                    if (Input.GetTouch(i).phase == TouchPhase.Began)
-                    {
-                        // Position of the touch
-                        Vector2 pos = Input.GetTouch(i).position;
+                    // Position of the touch
+                    Vector2 pos = Input.GetTouch(0).position;
 
-                        // If player touched the lower half of the screen
-                        if (pos.y >= Screen.height / 2 && pos.x <= Screen.width / 2)
-                        {
-                            _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                        }
+                    // If player touched the lower half of the screen
+                    if (pos.y >= Screen.height / 2 && pos.x <= Screen.width / 2)
+                    {
+                        _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                     }
                 }
             }

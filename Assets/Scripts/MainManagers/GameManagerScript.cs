@@ -79,6 +79,9 @@ namespace MainManagers
         }
 
 
+        /// <summary>
+        /// This method is called in Unity on the Start Button in the Canvas
+        /// </summary>
         public void PlayGame()
         {
             gameState = GameStates.Play;

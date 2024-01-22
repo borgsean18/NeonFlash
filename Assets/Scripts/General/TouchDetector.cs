@@ -31,21 +31,18 @@ namespace General
         void Update()
         {
             if (Input.touchCount > 0)
-            {
-                for (int i = 0; i < Input.touchCount; ++i)
+            {              
+                if (Input.GetTouch(0).phase == TouchPhase.Began)
                 {
-                    if (Input.GetTouch(i).phase == TouchPhase.Began)
+                    switch (gameManagerScript.GameState)
                     {
-                        switch (gameManagerScript.GameState)
-                        {
-                            case GameStates.Pause:
-                                pauseTouch.Invoke();
-                                break;
+                        case GameStates.Pause:
+                            pauseTouch.Invoke();
+                            break;
                             
-                            case GameStates.Play:
-                                playTouch.Invoke();
-                                break;
-                        }
+                        case GameStates.Play:
+                            playTouch.Invoke();
+                            break;
                     }
                 }
             }
