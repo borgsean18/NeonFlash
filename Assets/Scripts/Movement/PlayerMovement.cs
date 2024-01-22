@@ -112,7 +112,7 @@ namespace Movement
         
         
         /// <summary>
-        /// This method is being called in the update method of TouchDetector.cs
+        /// This method is being called in the Update method of TouchDetector.cs
         /// </summary>
         public void Jump()
         {
