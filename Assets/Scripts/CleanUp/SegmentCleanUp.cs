@@ -26,7 +26,8 @@ namespace CleanUp
 			if (!_other.gameObject.CompareTag("CleanUp"))
 				return;
 			
-			_segment.ParentBiome.UnLoadSegment(_segment);
+			if (_segment != null && _segment.ParentBiome != null)
+				_segment.ParentBiome.UnLoadSegment(_segment);
 			
 			Destroy(gameObject);
 		}

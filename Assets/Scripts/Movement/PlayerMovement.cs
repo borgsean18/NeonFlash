@@ -49,9 +49,11 @@ namespace Movement
         {
 
 #if UNITY_EDITOR
+
             DebugChecks();
+
 #endif
-            
+
         }
 
 
@@ -109,6 +111,9 @@ namespace Movement
         }
         
         
+        /// <summary>
+        /// This method is being called in the update method of TouchDetector.cs
+        /// </summary>
         public void Jump()
         {
             if (!IsGrounded()) return;
