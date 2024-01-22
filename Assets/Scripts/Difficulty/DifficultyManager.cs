@@ -12,7 +12,7 @@ namespace Difficulty
 		
 		// Private Variables
 		private float _currentDifficulty;
-		private DifficultyDampener _difficultyDampener;
+		private DifficultyObject _difficultyDampener;
 		
 		// Properties
 		public int MaxDifficulty => maxDifficulty;
@@ -51,7 +51,7 @@ namespace Difficulty
 		/// <summary>
 		/// Used when spawning difficult enemies, to not spawn too many obstacles while a boss is active
 		/// </summary>
-		public void DampenDifficulty(DifficultyDampener difficultyDampener)
+		public void DampenDifficulty(DifficultyObject difficultyDampener)
 		{
 			_difficultyDampener = difficultyDampener;
 		}
