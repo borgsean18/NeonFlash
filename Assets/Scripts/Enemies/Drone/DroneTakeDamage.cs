@@ -57,6 +57,7 @@ namespace Enemies.Drone
 
 
         #region Debug Methods
+
         private void DebugDeath()
         {
             if (die)
