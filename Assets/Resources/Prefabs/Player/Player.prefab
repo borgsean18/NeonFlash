@@ -315,6 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canMove: 0
   jumpForce: 22
+  maxJumps: 2
   jumpAbleLayers:
     serializedVersion: 2
     m_Bits: 64

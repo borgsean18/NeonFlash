@@ -2,6 +2,7 @@ using Characters;
 using General;
 using MainManagers;
 using UnityEngine;
+using System.Collections;
 
 namespace Movement
 {
@@ -13,6 +14,7 @@ namespace Movement
         
         [Header("Jumping")]
         [SerializeField] private float jumpForce;
+        [SerializeField, Min(1)] private int maxJumps;
         [SerializeField] private LayerMask jumpAbleLayers;
         
         
@@ -20,6 +22,7 @@ namespace Movement
         private Player player;
         private TouchDetector touchDetector;
         private GameManagerScript gameManagerScript;
+        private int _availableJumps;
         
         
         // Components
@@ -41,11 +44,11 @@ namespace Movement
             gameManagerScript.LoseGame.AddListener(FallOver);
 
             touchDetector = FindObjectOfType<TouchDetector>();
-            touchDetector.AddPlayTouchBehaviour(Jump);
+            touchDetector.AddPlayTouchBehaviour(DetectJump);
         }
 
 
-        private void Update()
+        private void FixedUpdate()
         {
 
 #if UNITY_EDITOR
@@ -94,7 +97,8 @@ namespace Movement
 
         public bool IsGrounded()
         {
-            if (!canMove) return false;
+            if (!canMove)
+                return false;
             
             RaycastHit2D hit = Physics2D.Raycast(
                 transform.position, 
@@ -103,7 +107,12 @@ namespace Movement
                 jumpAbleLayers);
 
             if (hit)
+            {
                 SprintState();
+
+                if (_availableJumps < maxJumps)
+                    _availableJumps = maxJumps;
+            }
             else
                 JumpState();
 
@@ -114,13 +123,14 @@ namespace Movement
         /// <summary>
         /// This method is being called in the Update method of TouchDetector.cs
         /// </summary>
-        public void Jump()
+        private void DetectJump()
         {
-            if (!IsGrounded()) return;
+            if (_availableJumps <= 1) return;
+
 #if UNITY_WEBGL
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                Jump();
             }
 #endif
             
@@ -137,13 +147,23 @@ namespace Movement
                     // If player touched the lower half of the screen
                     if (pos.y >= Screen.height / 2 && pos.x <= Screen.width / 2)
                     {
-                        _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                        Jump();
                     }
                 }
             }
             
 #endif
             
+        }
+
+
+        public void Jump()
+        {
+            _availableJumps--;
+
+            _rb.velocity = Vector3.zero;
+
+            _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
         #endregion
