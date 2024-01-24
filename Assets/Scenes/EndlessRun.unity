@@ -476,8 +476,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1287782935}
-        m_TargetAssemblyTypeName: MainManagers.WorldManager, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_TargetAssemblyTypeName: MainManagers.GameManagerScript, Assembly-CSharp
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1342,18 +1342,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 274122551491125627, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
-      propertyPath: testObject
-      value: 
-      objectReference: {fileID: 659242079803337281, guid: 69887a89ae0f14c4998f199d59b8c819, type: 3}
-    - target: {fileID: 274122551491125627, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
-      propertyPath: initSpawnCooldown
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 274122551491125627, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
-      propertyPath: timeBetweenSpawns
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 274122551491125627, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: obstacleSpawnPoint
       value: 
       objectReference: {fileID: 1167571903}
@@ -1361,10 +1349,6 @@ PrefabInstance:
       propertyPath: startGameButton
       value: 
       objectReference: {fileID: 1046231875}
-    - target: {fileID: 2180113981751118403, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
-      propertyPath: immortalDebugRun
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3285524995403224056, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1404,6 +1388,10 @@ PrefabInstance:
     - target: {fileID: 3285524995403224056, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218113588272578260, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
+      propertyPath: globalDifficultyDampening
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6102675502552726176, guid: ba9bfbdd13b5d4e77a3b4905c6272377, type: 3}
       propertyPath: scoreText

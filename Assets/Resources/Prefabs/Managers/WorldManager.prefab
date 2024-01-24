@@ -50,10 +50,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startGame:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4218113588272578260}
+        m_TargetAssemblyTypeName: Difficulty.DifficultyManager, Assembly-CSharp
+        m_MethodName: ResumeDifficulty
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  resumeGame:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4218113588272578260}
+        m_TargetAssemblyTypeName: Difficulty.DifficultyManager, Assembly-CSharp
+        m_MethodName: ResumeDifficulty
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   pauseGame:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4218113588272578260}
+        m_TargetAssemblyTypeName: Difficulty.DifficultyManager, Assembly-CSharp
+        m_MethodName: PauseDifficulty
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   loseGame:
     m_PersistentCalls:
       m_Calls: []
@@ -129,6 +168,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  globalDifficultyDampening: 1
 --- !u!114 &274122551491125627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +185,8 @@ MonoBehaviour:
   timeBetweenSpawns: 1
   obstacleSpawnPoint: {fileID: 0}
   minDistanceBetweenSpawns: 5.5
+  spawnTestObject: 0
+  testObject: {fileID: 659242079803337281, guid: 69887a89ae0f14c4998f199d59b8c819, type: 3}
 --- !u!114 &2942654252123249383
 MonoBehaviour:
   m_ObjectHideFlags: 0

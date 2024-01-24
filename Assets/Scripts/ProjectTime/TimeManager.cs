@@ -9,10 +9,12 @@ namespace ProjectTime
         // Singleton
         public static TimeManager Singleton;
 
+
         // Private Variables
         private GameManagerScript gameManager;
         private float _timePassed;
         private bool _init;
+        
         
         // Properties
         public bool IsInit => _init;

@@ -1,5 +1,6 @@
 using UnityEngine;
 using ProjectTime;
+using System.Collections.Generic;
 
 namespace Difficulty
 {
@@ -9,18 +10,46 @@ namespace Difficulty
 		[SerializeField] private int maxDifficulty;
 		[SerializeField] private float minutesTillMaxDifficulty;
 		[SerializeField] private AnimationCurve difficultyCurveOverTime;
+
 		
 		// Private Variables
+		private bool _init;
+		private float _difficultyTimer;
 		private float _currentDifficulty;
-		private DifficultyObject _difficultyDampener;
+		private int _originalMaxDifficulty;
+		private bool _isPaused;
+		private List<DifficultyObject> _difficultyDampeners;
+
 		
 		// Properties
 		public int MaxDifficulty => maxDifficulty;
 		public float CurrentDifficulty => _currentDifficulty;
 
 
+		private void Awake()
+		{
+			Init();
+		}
+
+
+		private void Init()
+		{
+			_isPaused = true;
+			_difficultyTimer = 0;
+			_originalMaxDifficulty = maxDifficulty;
+			_difficultyDampeners = new List<DifficultyObject>();
+			
+			_init = true;
+		}
+
+
 		private void Update()
 		{
+			if (!_init || _isPaused)
+				return;
+            
+			_difficultyTimer += Time.deltaTime;
+
 			CalculateDifficulty();
 		}
 
@@ -30,21 +59,17 @@ namespace Difficulty
 		/// </summary>
 		private void CalculateDifficulty()
 		{
-			// If reached max speed, return max speed value
+			if (_difficultyDampeners.Count > 0)
+				maxDifficulty = _difficultyDampeners[^1].NewMaxDifficulty; // Max Diff of the last added enemy
+			else
+				maxDifficulty = _originalMaxDifficulty;
+
+			// If reached max difficulty, return max difficulty value
 			if (_currentDifficulty >= maxDifficulty) 
 				_currentDifficulty = maxDifficulty;
 
-			// Current speed is Max Speed * point in the animation curve reached since the run started
-			_currentDifficulty = maxDifficulty * difficultyCurveOverTime.Evaluate(TimeManager.Singleton.TimePassed / (minutesTillMaxDifficulty * 60));
-
-			// If the difficulty should be dampened, set it to the dampened level
-			if (_difficultyDampener != null)
-			{
-				_currentDifficulty /= 2;
-
-				if (_currentDifficulty > _difficultyDampener.MaxDifficultySetting)
-					_currentDifficulty = _difficultyDampener.MaxDifficultySetting;
-			}
+			// Current difficulty is Max Difficulty * point in the animation curve reached since the run started
+			_currentDifficulty = maxDifficulty * difficultyCurveOverTime.Evaluate(_difficultyTimer / (minutesTillMaxDifficulty * 60));			
 		}
 
 
@@ -53,13 +78,29 @@ namespace Difficulty
 		/// </summary>
 		public void DampenDifficulty(DifficultyObject difficultyDampener)
 		{
-			_difficultyDampener = difficultyDampener;
+			_difficultyDampeners.Add(difficultyDampener);
 		}
 
 
-		public void ReturnDifficultyToNormal()
+		public void RemoveDampener(DifficultyObject difficultyDampener)
 		{
-			_difficultyDampener = null;
+			_difficultyDampeners.Remove(difficultyDampener);
+		}
+
+
+		/// <summary>
+		/// Called in the GameManager Start UnityEvent.
+		/// Called in any Resume Button Events (None yet).
+		/// </summary>
+		public void ResumeDifficulty()
+		{
+			_isPaused = false;
+		}
+
+
+		public void PauseDifficulty()
+		{
+			_isPaused = true;
 		}
 	}
 }

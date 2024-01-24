@@ -19,6 +19,7 @@ namespace MainManagers
         // Exposed Variables
         [Header("Events")]
         [SerializeField] private UnityEvent startGame;
+        [SerializeField] private UnityEvent resumeGame;
         [SerializeField] private UnityEvent pauseGame;
         [SerializeField] private UnityEvent loseGame;
         
@@ -68,7 +69,7 @@ namespace MainManagers
                     CalculateCurrentSpeed();
                     break;
                 case GameStates.Pause:
-                    
+                    // Pause methods
                     break;
                 case GameStates.Lose:
                     SlowToHalt();
@@ -82,13 +83,31 @@ namespace MainManagers
         /// <summary>
         /// This method is called in Unity on the Start Button in the Canvas
         /// </summary>
-        public void PlayGame()
+        public void Play()
         {
             gameState = GameStates.Play;
             
             startGameButton.gameObject.SetActive(false);
             
             startGame.Invoke();
+        }
+
+
+        /// <summary>
+        /// Not used anywhere yet. Will run ONCE when a Resume button is pressed
+        /// </summary>
+        public void Resume()
+        {
+            resumeGame.Invoke();
+        }
+
+
+        /// <summary>
+        /// Not used anywhere yet. Will run ONCE when a Pause button is pressed
+        /// </summary>
+        public void Pause()
+        {
+            pauseGame.Invoke();
         }
         
         

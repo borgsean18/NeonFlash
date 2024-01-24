@@ -19,7 +19,7 @@ namespace Difficulty
 
         // Properties
         public int DifficultyLevel => difficultyLevel;
-        public int MaxDifficultySetting => newMaxDifficulty;
+        public int NewMaxDifficulty => newMaxDifficulty;
 
 
         private void Awake()
@@ -41,7 +41,7 @@ namespace Difficulty
         private void OnDestroy()
         {
             if (dampenDifficulty && _difficultyManager != null)
-                _difficultyManager.ReturnDifficultyToNormal();
+                _difficultyManager.RemoveDampener(this);
         }
     }
 }
