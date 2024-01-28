@@ -28,7 +28,9 @@ namespace Weapons
 
             Projectile proj = _projectile.gameObject.GetComponent<Projectile>();
 
-            if (proj != null && projectileNewOwner != null)
+            if (proj != null && 
+                projectileNewOwner != null &&
+                projectileNewOwner != proj.Owner)
                 proj.ChangeOwner(projectileNewOwner);
         }
 
