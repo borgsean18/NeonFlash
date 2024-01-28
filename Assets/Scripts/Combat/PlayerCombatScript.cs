@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using General;
 
 namespace Combat
 {
@@ -11,6 +12,7 @@ namespace Combat
         
         // Private Variables
         protected bool attackCoolDownActive;
+        private TouchDetector touchDetector;
         
         
         private void Awake()
@@ -22,6 +24,11 @@ namespace Combat
         protected virtual void Init()
         {
             attackCoolDownActive = false;
+
+#if UNITY_ANDROID
+            touchDetector = FindObjectOfType<TouchDetector>();
+            touchDetector.AddPlayTouchBehaviour(MobileAttack);
+#endif
         }
 
 
@@ -44,6 +51,9 @@ namespace Combat
         }
 
 
+        /// <summary>
+        /// This class is being called in the Update method of TouchDetector.cs
+        /// </summary>
         protected virtual void MobileAttack()
         {
             // Do nothing if attack cool down is active, or if theres no touches
