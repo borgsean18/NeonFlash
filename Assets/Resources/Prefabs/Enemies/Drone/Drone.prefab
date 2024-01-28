@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficultyLevel: 5
   dampenDifficulty: 1
-  newMaxDifficulty: 6
+  newMaxDifficulty: 5
 --- !u!114 &5498200372262249498
 MonoBehaviour:
   m_ObjectHideFlags: 0
