@@ -7,7 +7,8 @@ namespace Combat
     public abstract class PlayerCombatScript : MonoBehaviour
     {
         // Exposed Variables
-        [SerializeField] protected float coolDownDuration;
+        [SerializeField] protected float meleCoolDown;
+        [SerializeField] protected float projectileCoolDown;
         
         
         // Private Variables
@@ -27,7 +28,7 @@ namespace Combat
 
 #if UNITY_ANDROID
             touchDetector = FindObjectOfType<TouchDetector>();
-            touchDetector.AddPlayTouchBehaviour(MobileAttack);
+            touchDetector.AddPlayTouchBehaviour(MobileAttackDetector);
 #endif
         }
 
@@ -54,7 +55,7 @@ namespace Combat
         /// <summary>
         /// This class is being called in the Update method of TouchDetector.cs
         /// </summary>
-        protected virtual void MobileAttack()
+        private void MobileAttackDetector()
         {
             // Do nothing if attack cool down is active, or if theres no touches
             if (attackCoolDownActive || Input.touchCount <= 0) return; 
@@ -71,19 +72,34 @@ namespace Combat
                     {
                         Attack();
                     }
+
+                    // If player touched the right half of the screen
+                    if (pos.x > Screen.width / 2)
+                    {
+                        MobileProjectileAttack();
+                    }
                 }
             }
         }
 
 
-        protected abstract void Attack();
+        protected virtual void MobileProjectileAttack()
+        {
+            StartCoroutine(CoolDown(projectileCoolDown));
+        }
 
 
-        protected IEnumerator CoolDown()
+        protected virtual void Attack()
+        {
+            StartCoroutine(CoolDown(meleCoolDown));
+        }
+
+
+        protected IEnumerator CoolDown(float _coolDown)
         {
             attackCoolDownActive = true;
             
-            yield return new WaitForSeconds(coolDownDuration);
+            yield return new WaitForSeconds(_coolDown);
             
             attackCoolDownActive = false;
         }

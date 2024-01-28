@@ -18,9 +18,17 @@ namespace Combat
 
         protected override void Attack()
         {
-            animator.SetTrigger("Attack");
+            base.Attack();
 
-            StartCoroutine(CoolDown());
+            animator.SetTrigger("Attack");
+        }
+
+
+        protected override void MobileProjectileAttack()
+        {
+            base.MobileProjectileAttack();
+
+            Debug.Log("FIRE PROJECTILE");
         }
     }
 }

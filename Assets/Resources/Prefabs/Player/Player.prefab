@@ -331,7 +331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 109282e2f54461a4bbc1b46eb5dfebec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDownDuration: 0.4
+  meleCoolDown: 0.2
+  projectileCoolDown: 0.2
 --- !u!114 &2835108227309555566
 MonoBehaviour:
   m_ObjectHideFlags: 0
