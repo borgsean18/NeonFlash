@@ -235,14 +235,23 @@ namespace Enemies.Drone
             if (transform.position.x > _targetMovementPosition.x)
             {
                 _animator.SetBool("Forward", true);
+                _animator.SetBool("Backwards", false);
+                _animator.SetBool("Idle", false);
+            }
+
+            if (transform.position.x < _targetMovementPosition.x)
+            {
+                _animator.SetBool("Backwards", true);
+                _animator.SetBool("Forward", false);
                 _animator.SetBool("Idle", false);
             }
         }
 
         private void IdleAnimation()
         {
-            _animator.SetBool("Forward", false);
             _animator.SetBool("Idle", true);
+            _animator.SetBool("Forward", false);
+            _animator.SetBool("Backwards", false);
         }
 
         #endregion
