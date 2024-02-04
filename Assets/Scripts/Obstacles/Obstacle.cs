@@ -1,6 +1,7 @@
 using UnityEngine;
 using Difficulty;
 using MainManagers;
+using Combat;
 
 namespace Obstacles
 {
@@ -27,7 +28,8 @@ namespace Obstacles
 			// If the obstacle hit the player
 			if (_other.gameObject.CompareTag("Player"))
 			{
-				gameManager.LoseGame.Invoke();
+				TakeDamage td = _other.GetComponent<TakeDamage>();
+				td.RecieveDamage(1);
 			}
 		}
 	}

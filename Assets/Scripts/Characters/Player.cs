@@ -10,10 +10,15 @@ namespace Characters
         private GameManagerScript gameManager;
         private PlayerManager playerManager;
         private PlayerMovement playerMovement;
+
+
+        // Components
+        private Animator _animator;
         
         
         // Properties
         public GameManagerScript GameManagerScript => gameManager;
+        public Animator Animator => _animator;
 
 
         public void Init(PlayerManager _playerManager)
@@ -23,6 +28,8 @@ namespace Characters
             playerManager.PlayerCamera.SetCameraTarget(transform);
 
             gameManager = playerManager.WorldManager;
+
+            _animator = GetComponent<Animator>();
             
             // Must be init after gameManager is set
             playerMovement = GetComponent<PlayerMovement>();
@@ -39,10 +46,9 @@ namespace Characters
         }
 
 
-        private void EndRun()
+        public void EndRun()
         {
-            if (gameManager.ImmortalDebugRun)
-                return;
+            playerMovement.StopMovement();
         }
     }
 }

@@ -6,9 +6,15 @@ namespace Combat
     {
         // Exposed Variables
         [SerializeField] protected int hitPoints;
+
+
+        protected virtual void Awake()
+        {
+
+        }
         
         
-        public virtual void TakeDamageMethod(int _damageAmount)
+        public virtual void RecieveDamage(int _damageAmount)
         {
             hitPoints -= _damageAmount;
 

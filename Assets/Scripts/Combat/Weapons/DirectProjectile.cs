@@ -52,7 +52,7 @@ namespace Weapons
 
             if (td != null)
             {
-                td.TakeDamageMethod(projectile.Damage);
+                td.RecieveDamage(projectile.Damage);
 
                 Destroy(gameObject);
             }

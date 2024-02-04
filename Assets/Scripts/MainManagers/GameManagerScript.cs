@@ -23,9 +23,6 @@ namespace MainManagers
         [SerializeField] private UnityEvent pauseGame;
         [SerializeField] private UnityEvent loseGame;
         
-        [Header("Debug Settings")]
-        [SerializeField] private bool immortalDebugRun;
-        
         [Header("UI")]
         [SerializeField] private GameObject startGameButton;
         [SerializeField] private float gameLoadTime;
@@ -38,7 +35,6 @@ namespace MainManagers
         
         // Properties
         public GameStates GameState => gameState;
-        public bool ImmortalDebugRun => immortalDebugRun;
         public UnityEvent StartGame => startGame;
         public UnityEvent PauseGame => pauseGame;
         public UnityEvent LoseGame => loseGame;
@@ -113,9 +109,6 @@ namespace MainManagers
         
         private void Lose()
         {
-            if (immortalDebugRun)
-                return;
-            
             // Set Lose state
             gameState = GameStates.Lose;
             

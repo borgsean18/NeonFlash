@@ -38,10 +38,10 @@ namespace Movement
             gameManagerScript = player.GameManagerScript;
             
             _rb = GetComponent<Rigidbody2D>();
-            _animator = GetComponent<Animator>();
+            _animator = _player.Animator;
             
             gameManagerScript.StartGame.AddListener(Run);
-            gameManagerScript.LoseGame.AddListener(FallOver);
+            gameManagerScript.LoseGame.AddListener(StopMovement);
 
             touchDetector = FindObjectOfType<TouchDetector>();
             touchDetector.AddPlayTouchBehaviour(DetectJump);
@@ -68,14 +68,10 @@ namespace Movement
         }
 
 
-        private void FallOver()
+        public void StopMovement()
         {
-            if (gameManagerScript.ImmortalDebugRun)
-                return;
-            
             canMove = false;
-            
-            // set to downed animation
+
             DownedState();
         }
         
@@ -169,7 +165,7 @@ namespace Movement
         #endregion
 
         
-        #region Animation States
+        #region Movement Animation States
 
         private void SprintState()
         {
@@ -194,9 +190,10 @@ namespace Movement
 
         private void DownedState()
         {
-            _animator.SetBool("Idle", true);
-            _animator.SetBool("Jump", false);
+            _animator.SetBool("Downed", true);
+            _animator.SetBool("Idle", false);
             _animator.SetBool("Run", false);
+            _animator.SetBool("Jump", false);
         }
 
         #endregion

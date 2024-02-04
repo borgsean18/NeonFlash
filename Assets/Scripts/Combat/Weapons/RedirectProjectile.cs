@@ -1,9 +1,4 @@
-using System;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using Random = UnityEngine.Random;
-using Vector2 = System.Numerics.Vector2;
 
 namespace Weapons
 {
