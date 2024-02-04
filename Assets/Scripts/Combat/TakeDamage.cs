@@ -8,10 +8,7 @@ namespace Combat
         [SerializeField] protected int hitPoints;
 
 
-        protected virtual void Awake()
-        {
-
-        }
+        protected abstract void Awake();
         
         
         public virtual void RecieveDamage(int _damageAmount)
