@@ -9,8 +9,6 @@ namespace Combat
     public class PlayerTakeDamage : TakeDamage
     {   
         // Exposed Variables
-        [Header("Debug Settings")]
-        [SerializeField] private bool _isImmortal;
 
         // Private Variables
         private Player player;
@@ -24,8 +22,7 @@ namespace Combat
 
         protected override void Die()
         {
-            if (!_isImmortal)
-                player.GameManagerScript.LoseGame.Invoke();
+            player.GameManagerScript.LoseGame.Invoke();
         }
     }
 }
