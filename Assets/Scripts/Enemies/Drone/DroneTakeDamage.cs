@@ -22,7 +22,7 @@ namespace Enemies.Drone
         private Rigidbody2D rb;
 
 
-        void Awake()
+        protected override void Awake()
         {
             anim = GetComponent<Animator>();
 
