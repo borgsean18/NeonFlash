@@ -23,14 +23,10 @@ namespace MainManagers
         [SerializeField] private UnityEvent pauseGame;
         [SerializeField] private UnityEvent loseGame;
         
-        [Header("UI")]
-        [SerializeField] private GameObject startGameButton;
-        [SerializeField] private float gameLoadTime;
-        [SerializeField] private Image gameLoaderBackGround;
-        
         
         // Private Variables
         private GameStates gameState;
+        private UIManager uIManager;
         
         
         // Properties
@@ -51,6 +47,9 @@ namespace MainManagers
             gameState = GameStates.Pause;
             
             TimeManager.Singleton.Init(this);
+
+            uIManager = GetComponent<UIManager>();
+            uIManager.Init(this);
             
             // Add Lose method to the list of methods to be executed by the WorldManagers LoseGame event
             LoseGame.AddListener(Lose);
@@ -83,8 +82,6 @@ namespace MainManagers
         {
             gameState = GameStates.Play;
             
-            startGameButton.gameObject.SetActive(false);
-            
             startGame.Invoke();
         }
 
@@ -115,7 +112,7 @@ namespace MainManagers
             // Do score related things
             // ---
 
-            
+
         }
 
 
@@ -123,12 +120,5 @@ namespace MainManagers
 
 
         protected abstract void SlowToHalt();
-
-
-        private IEnumerator LoadGameCoRoutine()
-        {
-            yield return new WaitForSeconds(gameLoadTime);
-            // gameLoaderBackGround.colo
-        }
     }
 }
