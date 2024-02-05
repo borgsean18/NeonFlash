@@ -1,7 +1,9 @@
 using System.Collections;
 using ProjectTime;
+using SceneManagement;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace MainManagers
@@ -27,6 +29,7 @@ namespace MainManagers
         // Private Variables
         private GameStates gameState;
         private UIManager uIManager;
+        private SceneFaderManager sceneFaderManager;
         
         
         // Properties
@@ -50,6 +53,8 @@ namespace MainManagers
 
             uIManager = GetComponent<UIManager>();
             uIManager.Init(this);
+
+            sceneFaderManager = FindObjectOfType<SceneFaderManager>();
             
             // Add Lose method to the list of methods to be executed by the WorldManagers LoseGame event
             LoseGame.AddListener(Lose);
@@ -111,8 +116,21 @@ namespace MainManagers
             
             // Do score related things
             // ---
+        }
 
 
+        public void Retry()
+        {
+            if (sceneFaderManager == null)
+                sceneFaderManager = FindObjectOfType<SceneFaderManager>();
+
+            // If null at this point then probably just playing through UnityEditor
+            if (sceneFaderManager == null)
+                return;
+
+            string sceneName = SceneManager.GetActiveScene().name;
+
+            sceneFaderManager.TransitionToScene(sceneName);
         }
 
 

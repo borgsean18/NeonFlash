@@ -8,6 +8,8 @@ namespace MainManagers
     {
         // Exposed Variables
         [SerializeField] private TextMeshProUGUI scoreText;
+        [SerializeField] private TextMeshProUGUI endRunScoreText;
+        [SerializeField] private TextMeshProUGUI HighScoreText;
         
         // Private Variables
         private GameManagerScript gameManager;
@@ -41,7 +43,17 @@ namespace MainManagers
 
         private void Lose()
         {
-            
+            endRunScoreText.text = scoreText.text;
+
+            int highScore = PlayerPrefs.GetInt("HighScore");
+
+            if (highScore >= score)
+                HighScoreText.text = highScore + "";
+            else
+            {
+                HighScoreText.text = "Best: " + (int)score;
+                PlayerPrefs.SetInt("HighScore", (int)score);
+            }
         }
     }
 }
