@@ -11,6 +11,7 @@ namespace MainManagers
         [SerializeField] private TextMeshProUGUI endRunScoreText;
         [SerializeField] private TextMeshProUGUI HighScoreText;
         
+        
         // Private Variables
         private GameManagerScript gameManager;
         private float score;
