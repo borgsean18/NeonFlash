@@ -45,12 +45,16 @@ namespace MainManagers
         }
 
 
+        void Start()
+        {
+            TimeManager.Singleton.Init(this);
+        }
+
+
         protected virtual void Init()
         {
             gameState = GameStates.Pause;
             
-            TimeManager.Singleton.Init(this);
-
             uIManager = GetComponent<UIManager>();
             uIManager.Init(this);
 

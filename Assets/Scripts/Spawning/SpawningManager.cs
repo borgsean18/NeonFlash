@@ -35,7 +35,7 @@ namespace Spawning
         private bool spawnCooldownActive;
 
 
-        private void Awake()
+        private void Start()
         {
             Init();
         }
