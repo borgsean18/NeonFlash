@@ -2063,6 +2063,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3192772210272541711, guid: 25cfae9e84093473a94842dbb8ad8c9a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4746785642016978698, guid: 25cfae9e84093473a94842dbb8ad8c9a, type: 3}
       propertyPath: maxSegmentsPerBiome
       value: 200
