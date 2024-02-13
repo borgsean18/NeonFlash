@@ -24,8 +24,6 @@ namespace Characters
         public void Init(PlayerManager _playerManager)
         {
             playerManager = _playerManager;
-            
-            playerManager.PlayerCamera.SetCameraTarget(transform);
 
             gameManager = playerManager.WorldManager;
 

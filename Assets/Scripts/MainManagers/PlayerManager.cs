@@ -1,5 +1,4 @@
 using System.Collections;
-using Camera;
 using Characters;
 using Unity.Mathematics;
 using UnityEngine;
@@ -17,11 +16,9 @@ namespace MainManagers
         private bool _init;
         private Player _player;
         private WorldManager _worldManager;
-        private CustomCamera playerCamera;
         
         // Components
         public WorldManager WorldManager => _worldManager;
-        public CustomCamera PlayerCamera => playerCamera;
 
 
         private void Awake()
@@ -36,8 +33,6 @@ namespace MainManagers
             _init = true;
 
             _worldManager = FindObjectOfType<WorldManager>();
-            
-            playerCamera = FindObjectOfType<CustomCamera>();
             
             StartCoroutine(SpawnPlayer());
         }
