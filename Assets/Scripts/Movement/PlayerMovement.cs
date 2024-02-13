@@ -130,7 +130,7 @@ namespace Movement
             }
 #endif
             
-#if UNITY_ANDROID
+#if UNITY_ANDROID || UNITY_IOS
             
             // Do nothing if attack cool down is active, or if theres no touches
             if (Input.touchCount > 0)

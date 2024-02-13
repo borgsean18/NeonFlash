@@ -26,7 +26,7 @@ namespace Combat
         {
             attackCoolDownActive = false;
 
-#if UNITY_ANDROID
+#if UNITY_ANDROID || UNITY_IOS
             touchDetector = FindObjectOfType<TouchDetector>();
             touchDetector.AddPlayTouchBehaviour(MobileAttackDetector);
 #endif
