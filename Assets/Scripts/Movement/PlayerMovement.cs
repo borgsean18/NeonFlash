@@ -115,8 +115,6 @@ namespace Movement
 
             if (hit)
             {
-                DebugText.Singleton.DisplayMessage("Debug");
-                
                 SprintState();
 
                 if (_availableJumps < maxJumps)
@@ -135,19 +133,22 @@ namespace Movement
         private void MobileDetectJump()
         {
             for (int i = 0; i < Input.touchCount; ++i)
-            {
-                DebugText.Singleton.DisplayMessage("attempt jump 1");   
+            { 
                 if (Input.GetTouch(i).phase == TouchPhase.Began)
                 {
-                    DebugText.Singleton.DisplayMessage("jump");
-
                     // Position of the touch
                     Vector2 pos = Input.GetTouch(0).position;
 
                     // If player touched the lower half of the screen
                     if (pos.y >= Screen.height / 2 && pos.x <= Screen.width / 2)
                     {
+                        DebugText.Singleton.DisplayMessage("jump");
                         Jump();
+                    }
+                    else
+                    {
+                        string debugString = "P:" + pos.y + "\n\rSH:" + Screen.height / 2;
+                        DebugText.Singleton.DisplayMessage(debugString);
                     }
                 }
             }     
