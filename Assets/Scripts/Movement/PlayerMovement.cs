@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Collections;
 
 using Debugging;
+using Unity.VisualScripting;
 
 namespace Movement
 {
@@ -30,6 +31,10 @@ namespace Movement
         // Components
         private Rigidbody2D _rb;
         private Animator _animator;
+
+
+        // Debug
+        string debugString = "";
 
 
         public void Init(Player _player)
@@ -59,14 +64,18 @@ namespace Movement
 
             DebugChecks();
 
-#endif
+#else
+            IsGrounded();
 
+#endif
 
 #if UNITY_WEBGL
 
             WebDetectJump();
 
 #endif
+
+            DebugText.Singleton.DisplayMessage(debugString);
 
         }
 
@@ -91,11 +100,11 @@ namespace Movement
         {
             if (!IsGrounded())
             {
-                Debug.DrawLine(transform.position, transform.position + (Vector3.down * 0.8f), Color.red);
+                Debug.DrawLine(transform.position, transform.position + (Vector3.down * 1f), Color.red);
             }
             else
             {
-                Debug.DrawLine(transform.position, transform.position + (Vector3.down * 0.8f), Color.green);
+                Debug.DrawLine(transform.position, transform.position + (Vector3.down * 1f), Color.green);
             }
         }
 
@@ -106,22 +115,28 @@ namespace Movement
         {
             if (!canMove)
                 return false;
+
+            debugString = "aj:" + _availableJumps + "\n\r";
             
             RaycastHit2D hit = Physics2D.Raycast(
                 transform.position, 
                 -Vector2.up, 
-                0.8f, 
+                1f, 
                 jumpAbleLayers);
 
             if (hit)
             {
                 SprintState();
+                debugString += "Grounded" + "\n\r";
 
                 if (_availableJumps < maxJumps)
                     _availableJumps = maxJumps;
             }
             else
+            {
                 JumpState();
+                debugString += "Jumping" + "\n\r";
+            }
 
             return hit;
         }
@@ -142,13 +157,7 @@ namespace Movement
                     // If player touched the lower half of the screen
                     if (pos.y >= Screen.height / 2 && pos.x <= Screen.width / 2)
                     {
-                        DebugText.Singleton.DisplayMessage("jump");
                         Jump();
-                    }
-                    else
-                    {
-                        string debugString = "P:" + pos.y + "\n\rSH:" + Screen.height / 2;
-                        DebugText.Singleton.DisplayMessage(debugString);
                     }
                 }
             }     
@@ -168,11 +177,11 @@ namespace Movement
         {
             if (_availableJumps <= 1) return;
 
-            _availableJumps--;
-
             _rb.velocity = Vector3.zero;
 
             _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+            _availableJumps--;
         }
 
         #endregion
