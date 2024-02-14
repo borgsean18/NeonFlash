@@ -4,6 +4,8 @@ using MainManagers;
 using UnityEngine;
 using System.Collections;
 
+using Debugging;
+
 namespace Movement
 {
     public class PlayerMovement : MonoBehaviour, IJump
@@ -43,8 +45,10 @@ namespace Movement
             gameManagerScript.StartGame.AddListener(Run);
             gameManagerScript.LoseGame.AddListener(StopMovement);
 
+#if UNITY_ANDROID || UNITY_IOS
             touchDetector = FindObjectOfType<TouchDetector>();
-            touchDetector.AddPlayTouchBehaviour(DetectJump);
+            touchDetector.AddPlayTouchBehaviour(MobileDetectJump);
+#endif
         }
 
 
@@ -54,6 +58,13 @@ namespace Movement
 #if UNITY_EDITOR
 
             DebugChecks();
+
+#endif
+
+
+#if UNITY_WEBGL
+
+            WebDetectJump();
 
 #endif
 
@@ -104,6 +115,8 @@ namespace Movement
 
             if (hit)
             {
+                DebugText.Singleton.DisplayMessage("Debug");
+                
                 SprintState();
 
                 if (_availableJumps < maxJumps)
@@ -119,24 +132,15 @@ namespace Movement
         /// <summary>
         /// This method is being called in the Update method of TouchDetector.cs
         /// </summary>
-        private void DetectJump()
+        private void MobileDetectJump()
         {
-            if (_availableJumps <= 1) return;
-
-#if UNITY_WEBGL
-            if (Input.GetKeyDown(KeyCode.Space))
+            for (int i = 0; i < Input.touchCount; ++i)
             {
-                Jump();
-            }
-#endif
-            
-#if UNITY_ANDROID || UNITY_IOS
-            
-            // Do nothing if attack cool down is active, or if theres no touches
-            if (Input.touchCount > 0)
-            {                
-                if (Input.GetTouch(0).phase == TouchPhase.Began)
+                DebugText.Singleton.DisplayMessage("attempt jump 1");   
+                if (Input.GetTouch(i).phase == TouchPhase.Began)
                 {
+                    DebugText.Singleton.DisplayMessage("jump");
+
                     // Position of the touch
                     Vector2 pos = Input.GetTouch(0).position;
 
@@ -146,15 +150,23 @@ namespace Movement
                         Jump();
                     }
                 }
+            }     
+        }
+
+
+        private void WebDetectJump()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
             }
-            
-#endif
-            
         }
 
 
         public void Jump()
         {
+            if (_availableJumps <= 1) return;
+
             _availableJumps--;
 
             _rb.velocity = Vector3.zero;

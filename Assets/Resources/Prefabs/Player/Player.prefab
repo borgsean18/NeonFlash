@@ -359,4 +359,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: 5
-  _isImmortal: 0
+  _isImmortal: 1
