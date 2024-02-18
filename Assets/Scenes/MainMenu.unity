@@ -1000,6 +1000,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneFader
       objectReference: {fileID: 0}
+    - target: {fileID: 8944752902261165905, guid: 4b679f31d330649209264ce134049ea8, type: 3}
+      propertyPath: fadeTime
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
