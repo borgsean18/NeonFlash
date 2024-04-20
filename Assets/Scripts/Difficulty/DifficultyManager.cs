@@ -66,7 +66,10 @@ namespace Difficulty
 
 			// If reached max difficulty, return max difficulty value
 			if (_currentDifficulty >= maxDifficulty) 
+			{
 				_currentDifficulty = maxDifficulty;
+				return;
+			}
 
 			// Current difficulty is Max Difficulty * point in the animation curve reached since the run started
 			_currentDifficulty = maxDifficulty * difficultyCurveOverTime.Evaluate(_difficultyTimer / (minutesTillMaxDifficulty * 60));			
